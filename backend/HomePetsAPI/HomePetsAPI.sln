@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePetsAPI", "HomePetsAPI\HomePetsAPI.csproj", "{75B7CC6F-93D9-41BB-A81B-0FE7B6E10A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomePetsAPI", "HomePetsAPI\HomePetsAPI.csproj", "{75B7CC6F-93D9-41BB-A81B-0FE7B6E10A33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomePets.Domain", "HomePets.Domain\HomePets.Domain.csproj", "{7981DB15-1839-44D1-85A8-56DE56356E50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePets.Data", "HomePets.Data\HomePets.Data.csproj", "{E5159B1B-A5C8-471A-B054-AAF20F5C000D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePets.App", "HomePets.App\HomePets.App.csproj", "{F714A4FE-6F70-4D45-B146-59248B77C334}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{75B7CC6F-93D9-41BB-A81B-0FE7B6E10A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75B7CC6F-93D9-41BB-A81B-0FE7B6E10A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75B7CC6F-93D9-41BB-A81B-0FE7B6E10A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7981DB15-1839-44D1-85A8-56DE56356E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7981DB15-1839-44D1-85A8-56DE56356E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7981DB15-1839-44D1-85A8-56DE56356E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7981DB15-1839-44D1-85A8-56DE56356E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5159B1B-A5C8-471A-B054-AAF20F5C000D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5159B1B-A5C8-471A-B054-AAF20F5C000D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5159B1B-A5C8-471A-B054-AAF20F5C000D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5159B1B-A5C8-471A-B054-AAF20F5C000D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F714A4FE-6F70-4D45-B146-59248B77C334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F714A4FE-6F70-4D45-B146-59248B77C334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F714A4FE-6F70-4D45-B146-59248B77C334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F714A4FE-6F70-4D45-B146-59248B77C334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
