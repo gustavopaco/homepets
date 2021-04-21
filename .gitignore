@@ -4,3 +4,9 @@ backend/HomePetsAPI/.vs/
 backend/HomePetsAPI/HomePetsAPI/bin/
 
 backend/HomePetsAPI/HomePetsAPI/obj/
+
+backend/HomePetsAPI/HomePets.App/obj/
+
+backend/HomePetsAPI/HomePets.Data/obj/
+
+backend/HomePetsAPI/HomePets.Domain/obj/
