@@ -5,16 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.SplashActivity"
-    android:background="@drawable/homepetssplash">
+    android:background="@drawable/beach2">
 
     <ImageView
-        android:layout_width="110dp"
-        android:layout_height="150dp"
-        android:src="@drawable/baggage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/homepetsbgless"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"/>
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="450dp"
+        android:src="@drawable/bag1bgless"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="150dp"
-        android:layout_marginLeft="5dp"
-        android:scaleType="fitXY"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:scaleY="1.1"
+        android:scaleType="fitEnd"/>
+
+
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        android:src="@drawable/pet7"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitEnd"
+        android:layout_marginLeft="65dp"/>
 
 
 </RelativeLayout>
