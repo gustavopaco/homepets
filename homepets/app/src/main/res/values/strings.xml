@@ -14,4 +14,12 @@
     <string name="digite_seu_e_mail">Digite seu E-mail...</string>
     <string name="digite_sua_senha">Digite sua senha...</string>
     <string name="login">Login</string>
+    <string name="enviar">Enviar</string>
+    <string name="freelancer">Freelancer</string>
+    <string name="dono_de_hotel">Dono de Hotel</string>
+    <string name="dono_de_pet">Dono de Pet</string>
+    <string name="quem_sou_eu">Quem sou eu?</string>
+    <string name="confirme_sua_senha">Confirme sua Senha...</string>
+    <string name="informe_seu_e_mail">Informe seu E-mail...</string>
+    <string name="informe_seu_nome">Informe seu Nome...</string>
 </resources>

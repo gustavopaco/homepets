@@ -1,8 +1,8 @@
 package br.com.cotemig.homepets.ui.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.models.Pessoa
 import br.com.cotemig.homepets.models.User

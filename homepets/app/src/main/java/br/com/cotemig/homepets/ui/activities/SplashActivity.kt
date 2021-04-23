@@ -1,8 +1,8 @@
 package br.com.cotemig.homepets.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.R
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
