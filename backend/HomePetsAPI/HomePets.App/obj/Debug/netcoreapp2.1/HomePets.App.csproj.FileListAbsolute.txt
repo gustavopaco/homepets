@@ -1,0 +1,9 @@
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\bin\Debug\netcoreapp2.1\HomePets.App.deps.json
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\bin\Debug\netcoreapp2.1\HomePets.App.dll
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\bin\Debug\netcoreapp2.1\HomePets.App.pdb
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.csprojAssemblyReference.cache
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.AssemblyInfoInputs.cache
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.AssemblyInfo.cs
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.csproj.CoreCompileInputs.cache
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.dll
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.App\obj\Debug\netcoreapp2.1\HomePets.App.pdb
