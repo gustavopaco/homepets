@@ -20,7 +20,7 @@ class LoginUserActivity : AppCompatActivity() {
 
     }
 
-    fun goRegisterActivity(){
+    private fun goRegisterActivity(){
         var intent = Intent(this,RegisterActivity::class.java)
         startActivity(intent)
     }

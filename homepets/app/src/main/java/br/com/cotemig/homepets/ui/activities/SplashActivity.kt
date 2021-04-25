@@ -24,8 +24,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goHomeActivity(){
-        var intent = Intent(this, LoginUserActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this@SplashActivity,LoginUserActivity::class.java))
         finish()
     }
 
