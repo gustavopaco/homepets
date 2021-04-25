@@ -4,8 +4,8 @@ namespace HomePets.Domain
 {
     public class AuthModel
     {
-        public string cpf { get; set; }
-        public string password { get; set; }
+        public string email { get; set; }
+        public string senha { get; set; }
     }
 
 }
