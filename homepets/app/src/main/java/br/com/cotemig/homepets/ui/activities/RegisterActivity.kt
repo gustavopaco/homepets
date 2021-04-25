@@ -59,8 +59,8 @@ class RegisterActivity : AppCompatActivity() {
 
         /* DADOS DA INTERFACE */
 //        Toast.makeText(this,"Nome: " + pessoa.getNome() + "\nE-mail: " + pessoa.getemail() + "\nSenha: " + pessoa.getsenha() + "\nTipo Usuario: " + pessoa.getTipoUsuario(),Toast.LENGTH_LONG).show()
-
-        /* RETROFIT - CONECTANDO COM API */
+//
+//        /* RETROFIT - CONECTANDO COM API */
 //        var s = RetrofitInitializer().serviceAPI().createUser(pessoa.getNome(),pessoa.getemail(),pessoa.getsenha(),pessoa.getTipoUsuario())
 //            .enqueue(object: Callback<DefaultResponse>{
 //
