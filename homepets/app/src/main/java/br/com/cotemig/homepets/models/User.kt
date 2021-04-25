@@ -4,23 +4,39 @@ open class User{
 
     protected var email: String = ""
     protected var senha: String = ""
+    protected var stats: Int = 0
 
-    fun getmail() : String{
+    fun getemail() : String{
         return email
     }
 
-    fun setmail(s: String){
-        email = s
+    fun setemail(email: String){
+        this.email = email
+    }
+
+    fun getsenha() : String{
+        return senha
+    }
+
+    fun setsenha(senha: String){
+        this.senha = senha
+    }
+
+    fun getTipoUsuario() : Int{
+        return stats
+    }
+
+    fun setTipoUsuario(stats : Int){
+        this.stats = stats
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as User
+        if (other !is User) return false
 
         if (email != other.email) return false
         if (senha != other.senha) return false
+        if (stats != other.stats) return false
 
         return true
     }
@@ -28,10 +44,13 @@ open class User{
     override fun hashCode(): Int {
         var result = email.hashCode()
         result = 31 * result + senha.hashCode()
+        result = 31 * result + stats
         return result
     }
 
     override fun toString(): String {
-        return "User(email='$email', senha='$senha')"
+        return "User(email='$email', senha='$senha', stats=$stats)"
     }
+
+
 }
