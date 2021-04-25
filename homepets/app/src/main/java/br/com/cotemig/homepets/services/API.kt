@@ -1,20 +1,21 @@
 package br.com.cotemig.homepets.services
 
-import br.com.cotemig.homepets.models.DefaultResponse
+import br.com.cotemig.homepets.models.Pessoa
+import br.com.cotemig.homepets.models.Usuario
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface API {
 
-    @FormUrlEncoded
-    @POST("SETAR URL AQUI")
+    @POST("register")
     fun createUser(
-        @Field("nome") nome: String,
-        @Field("email") email: String,
-        @Field("senha") senha: String,
-        @Field("stats") stats: Int
-    ) :Call<DefaultResponse>
+        @Body pessoa : Pessoa
+    ) :Call<Pessoa>
+
+    @POST("login")
+    fun getAuth(
+        @Body user : Usuario
+    ) : Call<Usuario>
 
 }

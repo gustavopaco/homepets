@@ -28,7 +28,7 @@ class RetrofitInitializer {
 
     private val retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("SETA URL AQUI")
+        .baseUrl("https://homepets.azurewebsites.net/api/login/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

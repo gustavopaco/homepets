@@ -60,24 +60,25 @@ class RegisterActivity : AppCompatActivity() {
         /* DADOS DA INTERFACE */
 //        Toast.makeText(this,"Nome: " + pessoa.getNome() + "\nE-mail: " + pessoa.getemail() + "\nSenha: " + pessoa.getsenha() + "\nTipo Usuario: " + pessoa.getTipoUsuario(),Toast.LENGTH_LONG).show()
 //
-//        /* RETROFIT - CONECTANDO COM API */
-//        var s = RetrofitInitializer().serviceAPI().createUser(pessoa.getNome(),pessoa.getemail(),pessoa.getsenha(),pessoa.getTipoUsuario())
-//            .enqueue(object: Callback<DefaultResponse>{
-//
-//                override fun onResponse(call: Call<DefaultResponse>?,response: Response<DefaultResponse>?) {
-//                    response.let {
-//                        if(it!!.code() == 200){
-//                            it.body().message
-//                                /* MOSTRAR MENSAGEM DE USUARIO CADASTRADO COM SUCESSO */
-//                            finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<DefaultResponse>?, t: Throwable?) {
-//                    /* MENSAGEM DE ERRO, VINDO DA API */
-//                }
-//            })
+        /* RETROFIT - CONECTANDO COM API */
+        RetrofitInitializer().serviceAPI().createUser(pessoa)
+            .enqueue(object: Callback<Pessoa>{
+
+                override fun onResponse(call: Call<Pessoa>?,response: Response<Pessoa>?) {
+                    response.let {
+                        if(it!!.code() == 200){
+                                /* MOSTRAR MENSAGEM DE USUARIO CADASTRADO COM SUCESSO */
+                            finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
+                        }else{
+                            Toast.makeText(this@RegisterActivity,"Erro Codigo: " + it.code(),Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Pessoa>?, t: Throwable?) {
+                    Toast.makeText(this@RegisterActivity,"API NAO RESPONDE",Toast.LENGTH_LONG).show()
+                }
+            })
 
 
     }
