@@ -1,6 +1,6 @@
 package br.com.cotemig.homepets.models
 
-open class User{
+open class Usuario{
 
     protected var email: String = ""
     protected var senha: String = ""
@@ -32,7 +32,7 @@ open class User{
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is User) return false
+        if (other !is Usuario) return false
 
         if (email != other.email) return false
         if (senha != other.senha) return false

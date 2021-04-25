@@ -1,6 +1,6 @@
 package br.com.cotemig.homepets.models
 
-   class Pessoa : User(){
+   class Pessoa : Usuario(){
        private var nome: String = ""
        private var cpf: String = ""
 
