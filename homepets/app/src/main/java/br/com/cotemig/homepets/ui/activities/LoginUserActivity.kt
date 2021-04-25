@@ -6,7 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.databinding.ActivityLoginUserBinding
+import br.com.cotemig.homepets.models.LoginResponse
 import br.com.cotemig.homepets.models.Pessoa
+import br.com.cotemig.homepets.models.UserAPI
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
@@ -42,19 +44,23 @@ class LoginUserActivity : AppCompatActivity() {
         pessoa.setemail(binding.txtLogin.text.toString())
         pessoa.setsenha(binding.txtPassword.text.toString())
 
-        RetrofitInitializer().serviceAPI().getAuth(pessoa).enqueue(object  : Callback<Pessoa>{
-            override fun onResponse(call: Call<Pessoa>, response: Response<Pessoa>) {
+        var userAPI = UserAPI()
+        userAPI.email = binding.txtLogin.text.toString()
+        userAPI.senha = binding.txtPassword.text.toString()
+
+        RetrofitInitializer().serviceAPI().getAuth(userAPI).enqueue(object  : Callback<LoginResponse>{
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 response?.let {
                     if(it.code() == 200){
                         Toast.makeText(this@LoginUserActivity,"API FUNCIONANDO",Toast.LENGTH_LONG).show()
-                        Log.d("STATE","TOKEN:\n" + it.body()!!.getToken())
+                        Log.d("STATE","TOKEN:\n" + it.body()!!.token + "\nID: " + it.body()!!.stats)
                     }else{
                         Toast.makeText(this@LoginUserActivity,"API NAO FUNCIONANDO" + it.code(),Toast.LENGTH_LONG).show()
                     }
                 }
             }
 
-            override fun onFailure(call: Call<Pessoa>, t: Throwable) {
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@LoginUserActivity,"API FORA DO AR",Toast.LENGTH_LONG).show()
             }
 

@@ -2,14 +2,16 @@ package br.com.cotemig.homepets.ui.activities
 
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityRegisterBinding
-import br.com.cotemig.homepets.models.DefaultResponse
 import br.com.cotemig.homepets.models.Pessoa
+import br.com.cotemig.homepets.models.RegisterResponse
+import br.com.cotemig.homepets.models.UserAPI
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
@@ -49,25 +51,35 @@ class RegisterActivity : AppCompatActivity() {
         pessoa.setemail(binding.txtRegisterMail.text.toString())
         pessoa.setsenha(binding.txtRegisterPassword.text.toString())
 
+        var tipo = 0
+
         if(tipoUsuario().equals("Dono de Pet",true)){
             pessoa.setTipoUsuario(1)
+            tipo = 1
         }else if(tipoUsuario().equals("Dono de Hotel",true)){
             pessoa.setTipoUsuario(2)
+            tipo = 2
         }else{
             pessoa.setTipoUsuario(3)
+            tipo = 3
         }
 
-        /* DADOS DA INTERFACE */
-//        Toast.makeText(this,"Nome: " + pessoa.getNome() + "\nE-mail: " + pessoa.getemail() + "\nSenha: " + pessoa.getsenha() + "\nTipo Usuario: " + pessoa.getTipoUsuario(),Toast.LENGTH_LONG).show()
-//
-        /* RETROFIT - CONECTANDO COM API */
-        RetrofitInitializer().serviceAPI().createUser(pessoa)
-            .enqueue(object: Callback<Pessoa>{
+        var nome = binding.txtRegisterNome.text.toString()
+        var email = binding.txtRegisterMail.text.toString()
+        var senha = binding.txtRegisterPassword.text.toString()
 
-                override fun onResponse(call: Call<Pessoa>?,response: Response<Pessoa>?) {
+        var userAPI = UserAPI(nome,email,senha,tipo)
+
+
+        /* RETROFIT - CONECTANDO COM API */
+        RetrofitInitializer().serviceAPI().createUser(userAPI)
+            .enqueue(object: Callback<RegisterResponse>{
+
+                override fun onResponse(call: Call<RegisterResponse>?,response: Response<RegisterResponse>?) {
                     response.let {
                         if(it!!.code() == 200){
                                 /* MOSTRAR MENSAGEM DE USUARIO CADASTRADO COM SUCESSO */
+                                    Log.d("STATE","TOKEN: \n" + it.body()!!.token)
                             finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
                         }else{
                             Toast.makeText(this@RegisterActivity,"Erro Codigo: " + it.code(),Toast.LENGTH_LONG).show()
@@ -75,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<Pessoa>?, t: Throwable?) {
+                override fun onFailure(call: Call<RegisterResponse>?, t: Throwable?) {
                     Toast.makeText(this@RegisterActivity,"API NAO RESPONDE",Toast.LENGTH_LONG).show()
                 }
             })
