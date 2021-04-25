@@ -15,7 +15,7 @@ interface API {
 
     @POST("login")
     fun getAuth(
-        @Body user : Usuario
-    ) : Call<Usuario>
+        @Body pessoa: Pessoa
+    ) : Call<Pessoa>
 
 }

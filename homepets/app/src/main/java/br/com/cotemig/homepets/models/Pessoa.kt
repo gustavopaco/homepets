@@ -3,7 +3,16 @@ package br.com.cotemig.homepets.models
    class Pessoa : Usuario(){
        private var nome: String = ""
        private var cpf: String = ""
+       private var token: String = ""
 
+
+       fun getToken() : String{
+           return token
+       }
+
+       fun setToken(token : String){
+           this.token = token
+       }
 
        fun getNome() : String{
            return nome
