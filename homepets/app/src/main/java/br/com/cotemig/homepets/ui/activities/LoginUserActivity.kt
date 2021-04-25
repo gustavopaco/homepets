@@ -3,15 +3,18 @@ package br.com.cotemig.homepets.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.cotemig.homepets.R
-import kotlinx.android.synthetic.main.activity_login_user.*
+import br.com.cotemig.homepets.databinding.ActivityLoginUserBinding
 
 class LoginUserActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginUserBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_user)
+        binding = ActivityLoginUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_registrar.setOnClickListener {
+        binding.btnRegistrar.setOnClickListener {
             goRegisterActivity()
         }
 
