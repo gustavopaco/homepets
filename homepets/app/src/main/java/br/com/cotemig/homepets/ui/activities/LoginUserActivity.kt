@@ -10,6 +10,7 @@ import br.com.cotemig.homepets.models.AuthModel
 import br.com.cotemig.homepets.models.RegisterModel
 import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
+import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
@@ -51,6 +52,8 @@ class LoginUserActivity : AppCompatActivity() {
                 response?.let {
                     if(it.code() == 200){
                         Toast.makeText(this@LoginUserActivity,"API FUNCIONANDO",Toast.LENGTH_LONG).show()
+                        saveAccountInfo(it.body()!!.token, it.body()!!.stats)
+                        goHomeActivity()
                     }else{
                         Toast.makeText(this@LoginUserActivity,"API NAO FUNCIONANDO" + it.code(),Toast.LENGTH_LONG).show()
                     }
@@ -63,6 +66,13 @@ class LoginUserActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun saveAccountInfo(token: String, stats: Int){
+        SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","email",binding.txtLogin.text.toString())
+        SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","senha",binding.txtPassword.text.toString())
+        SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","token",token)
+        SharedPreferenceHelper.saveInt(this@LoginUserActivity,"userpreferences","stats",stats)
     }
 
     private fun validaCampo() : Boolean{
@@ -90,8 +100,12 @@ class LoginUserActivity : AppCompatActivity() {
     }
 
     private fun goRegisterActivity(){
-        var intent = Intent(this,RegisterActivity::class.java)
-        startActivity(intent)
+        startActivity((Intent(this@LoginUserActivity,RegisterActivity::class.java)))
+
+    }
+
+    private fun goHomeActivity(){
+        startActivity(Intent(this@LoginUserActivity,HomeActivity::class.java))
     }
 
 }
