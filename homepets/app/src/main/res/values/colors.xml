@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#FF5A54</color>
     <color name="red">#FB091F</color>
+    <color name="bghome">#F6F1F5</color>
 
 
 </resources>
