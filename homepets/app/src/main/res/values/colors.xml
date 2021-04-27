@@ -10,6 +10,10 @@
     <color name="pink">#FF5A54</color>
     <color name="red">#FB091F</color>
     <color name="bghome">#F6F1F5</color>
+    <color name="donoperfil">#FB091F</color>
+    <color name="hotelperfil">#A020F0</color>
+    <color name="freelancerperfil">#7FFF00</color>
+
 
 
 </resources>

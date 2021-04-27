@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.SplashActivity"
-    android:background="@drawable/beach2">
+    android:background="@drawable/beach">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/homepetsbgless"
+        android:src="@drawable/homepetssplash"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"/>
 
     <ImageView
         android:layout_width="170dp"
         android:layout_height="450dp"
-        android:src="@drawable/bag1bgless"
+        android:src="@drawable/bag1"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
@@ -29,7 +29,7 @@
     <ImageView
         android:layout_width="300dp"
         android:layout_height="450dp"
-        android:src="@drawable/pet7"
+        android:src="@drawable/petsplash"
         android:layout_alignParentBottom="true"
         android:scaleType="fitEnd"
         android:layout_marginLeft="65dp"/>
