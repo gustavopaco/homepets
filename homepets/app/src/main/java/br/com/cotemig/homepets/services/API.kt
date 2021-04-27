@@ -9,12 +9,12 @@ interface API {
 
     @POST("register")
     fun createUser(
-        @Body userAPI: UserAPI
-    ) :Call<RegisterResponse>
+        @Body registerModel: RegisterModel
+    ) :Call<TokenModelResponse>
 
     @POST("login")
     fun getAuth(
-        @Body userAPI: UserAPI
-    ) : Call<LoginResponse>
+        @Body authModel: AuthModel
+    ) : Call<TokenModelResponse>
 
 }

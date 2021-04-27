@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityRegisterBinding
-import br.com.cotemig.homepets.models.Pessoa
-import br.com.cotemig.homepets.models.RegisterResponse
-import br.com.cotemig.homepets.models.UserAPI
+import br.com.cotemig.homepets.models.RegisterModel
+import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
@@ -44,23 +43,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registrarPessoa(){
 
-        var pessoa = Pessoa()
-
-        /* SETANDO VALORES NO OBJETO */
-        pessoa.setNome(binding.txtRegisterNome.text.toString())
-        pessoa.setemail(binding.txtRegisterMail.text.toString())
-        pessoa.setsenha(binding.txtRegisterPassword.text.toString())
-
         var tipo = 0
 
         if(tipoUsuario().equals("Dono de Pet",true)){
-            pessoa.setTipoUsuario(1)
             tipo = 1
         }else if(tipoUsuario().equals("Dono de Hotel",true)){
-            pessoa.setTipoUsuario(2)
             tipo = 2
         }else{
-            pessoa.setTipoUsuario(3)
             tipo = 3
         }
 
@@ -68,18 +57,17 @@ class RegisterActivity : AppCompatActivity() {
         var email = binding.txtRegisterMail.text.toString()
         var senha = binding.txtRegisterPassword.text.toString()
 
-        var userAPI = UserAPI(nome,email,senha,tipo)
+        var userAPI = RegisterModel(nome,email,senha,tipo)
 
 
         /* RETROFIT - CONECTANDO COM API */
         RetrofitInitializer().serviceAPI().createUser(userAPI)
-            .enqueue(object: Callback<RegisterResponse>{
+            .enqueue(object: Callback<TokenModelResponse>{
 
-                override fun onResponse(call: Call<RegisterResponse>?,response: Response<RegisterResponse>?) {
+                override fun onResponse(call: Call<TokenModelResponse>?,response: Response<TokenModelResponse>?) {
                     response.let {
                         if(it!!.code() == 200){
-                                /* MOSTRAR MENSAGEM DE USUARIO CADASTRADO COM SUCESSO */
-                                    Log.d("STATE","TOKEN: \n" + it.body()!!.token)
+
                             finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
                         }else{
                             Toast.makeText(this@RegisterActivity,"Erro Codigo: " + it.code(),Toast.LENGTH_LONG).show()
@@ -87,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<RegisterResponse>?, t: Throwable?) {
+                override fun onFailure(call: Call<TokenModelResponse>?, t: Throwable?) {
                     Toast.makeText(this@RegisterActivity,"API NAO RESPONDE",Toast.LENGTH_LONG).show()
                 }
             })
