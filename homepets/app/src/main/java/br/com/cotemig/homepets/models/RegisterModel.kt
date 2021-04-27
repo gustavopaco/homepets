@@ -1,6 +1,6 @@
 package br.com.cotemig.homepets.models
 
-data class UserAPI(
+data class RegisterModel(
     var nome : String = "",
     var email : String = "",
     var senha: String = "",

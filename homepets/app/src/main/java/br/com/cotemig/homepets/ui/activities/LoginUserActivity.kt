@@ -6,9 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.cotemig.homepets.databinding.ActivityLoginUserBinding
-import br.com.cotemig.homepets.models.LoginResponse
-import br.com.cotemig.homepets.models.Pessoa
-import br.com.cotemig.homepets.models.UserAPI
+import br.com.cotemig.homepets.models.AuthModel
+import br.com.cotemig.homepets.models.RegisterModel
+import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
@@ -39,28 +39,25 @@ class LoginUserActivity : AppCompatActivity() {
 
     private fun getLogin(){
 
-        var pessoa = Pessoa()
 
-        pessoa.setemail(binding.txtLogin.text.toString())
-        pessoa.setsenha(binding.txtPassword.text.toString())
+        var email = binding.txtLogin.text.toString()
+        var senha = binding.txtPassword.text.toString()
 
-        var userAPI = UserAPI()
-        userAPI.email = binding.txtLogin.text.toString()
-        userAPI.senha = binding.txtPassword.text.toString()
+        var userAPI = AuthModel(email,senha)
 
-        RetrofitInitializer().serviceAPI().getAuth(userAPI).enqueue(object  : Callback<LoginResponse>{
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+        RetrofitInitializer().serviceAPI().getAuth(userAPI).enqueue(object  : Callback<TokenModelResponse>{
+
+            override fun onResponse(call: Call<TokenModelResponse>, response: Response<TokenModelResponse>) {
                 response?.let {
                     if(it.code() == 200){
                         Toast.makeText(this@LoginUserActivity,"API FUNCIONANDO",Toast.LENGTH_LONG).show()
-                        Log.d("STATE","TOKEN:\n" + it.body()!!.token + "\nID: " + it.body()!!.stats)
                     }else{
                         Toast.makeText(this@LoginUserActivity,"API NAO FUNCIONANDO" + it.code(),Toast.LENGTH_LONG).show()
                     }
                 }
             }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
                 Toast.makeText(this@LoginUserActivity,"API FORA DO AR",Toast.LENGTH_LONG).show()
             }
 
