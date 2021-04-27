@@ -22,4 +22,6 @@
     <string name="confirme_sua_senha">Confirme sua Senha...</string>
     <string name="informe_seu_e_mail">Informe seu E-mail...</string>
     <string name="informe_seu_nome">Informe seu Nome...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

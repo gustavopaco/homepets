@@ -63,6 +63,8 @@ dependencies {
 
     // biblioteca de mensagem na tela
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
 
     testImplementation 'junit:junit:4.12'
