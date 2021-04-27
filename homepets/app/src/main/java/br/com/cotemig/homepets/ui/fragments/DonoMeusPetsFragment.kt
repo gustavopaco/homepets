@@ -5,18 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.cotemig.homepets.R
-import br.com.cotemig.homepets.databinding.FragmentBuscaServicosBinding
+import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
 
-class BuscaServicosFragment : Fragment() {
 
-    private lateinit var binding: FragmentBuscaServicosBinding
+class DonoMeusPetsFragment : Fragment() {
+
+    private lateinit var binding: FragmentDonoMeusPetsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBuscaServicosBinding.inflate(layoutInflater,container,false)
+        binding = FragmentDonoMeusPetsBinding.inflate(layoutInflater,container,false)
+
         return binding.root
     }
 

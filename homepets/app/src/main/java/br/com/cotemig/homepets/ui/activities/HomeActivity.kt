@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityHomeBinding
 import br.com.cotemig.homepets.ui.fragments.*
-import com.afollestad.materialdialogs.Theme
 
 class HomeActivity : AppCompatActivity() {
 
@@ -81,8 +80,8 @@ class HomeActivity : AppCompatActivity() {
         when(menu){
             0 -> setFragment(HomeFragment(),"home")
             1 -> setFragment(PerfilFragment(),"perfil")
-            2 -> setFragment(MeusPetsFragment(),"donomeuspets")
-            3 -> setFragment(BuscaServicosFragment(),"donoservicos")
+            2 -> setFragment(DonoMeusPetsFragment(),"donomeuspets")
+            3 -> setFragment(DonoBuscaServicosFragment(),"donoservicos")
             4 -> setFragment(HotelServicosFragment(),"hotelservicos")
             5 -> setFragment(HotelReservasFragment(),"hotelreservas")
             6 -> setFragment(FreelancerServicosFragment(),"freelancerservicos")
