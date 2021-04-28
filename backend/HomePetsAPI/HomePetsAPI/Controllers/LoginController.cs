@@ -1,4 +1,6 @@
-﻿using HomePets.Domain;
+﻿using HomePets.App;
+using HomePets.Data;
+using HomePets.Domain;
 using HomePetsAPI.Code;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,9 +15,12 @@ namespace HomePetsAPI.Controllers
     public class LoginController : ControllerBase
     {
 
+        UsuarioApp UsuarioApp = null;
 
-        public LoginController()
+
+        public LoginController(EFContext context)
         {
+            UsuarioApp = new UsuarioApp(context);
 
         }
 
@@ -26,12 +31,9 @@ namespace HomePetsAPI.Controllers
         {
             try
             {
-                //TODO : registrar usuario
-
-                var UsuarioApp = new UsuarioApp(null);
-
                 var id = UsuarioApp.SalvarUsuario(model.email);
-                
+
+
                 var token = TokenService.GenerateToken(id.ToString(), model.nome, "ROLE"); //TODO: definir qual será a ROLE baseado no perfil do usuario : cliente, freela, dono de hotel
 
 

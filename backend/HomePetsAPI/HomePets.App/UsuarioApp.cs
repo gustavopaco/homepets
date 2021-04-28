@@ -1,4 +1,8 @@
-﻿using System;
+﻿using HomePets.Data;
+using HomePets.Domain;
+using System;
+using System.Transactions;
+using System.Linq;
 
 namespace HomePets.App
 {
@@ -10,21 +14,32 @@ namespace HomePets.App
         {
             _context = context;
         }
-        public int SalvarUsuario( String email)
+
+        public int SalvarUsuario(String email)
         {
-           var Id = 0;
+
+            var validacaoEmail = _context.Usuarios.Where(p => !p.Deleted && p.Email == email).Any();
+            if (validacaoEmail)
+                throw new Exception("Email já cadastrado.");
+
+
+            var Id = 0;
+
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
                 var oUsuario = new Usuario()
                 {
                     Email = email,
+                                       
 
                 };
-              _context.Usuarios.Add(oUsuario);
-              _context.SaveChanges();
-              scope.Complete(); 
+
+                _context.Usuarios.Add(oUsuario);
+                _context.SaveChanges();
+
+                scope.Complete();
             }
-             return Id;
+            return Id;
         }
 
     }

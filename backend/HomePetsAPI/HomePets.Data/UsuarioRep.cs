@@ -7,7 +7,7 @@ namespace HomePets.Data
 {
     public class UsuarioRep : Repositorio<Usuario>, IUsuarioRep
     {
-        public UsuarioRep(DbContext context) : base(context)
+        public UsuarioRep(EFContext context) : base(context)
         {
 
         }

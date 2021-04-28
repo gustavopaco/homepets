@@ -1,4 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HomePets.Domain
 {
@@ -21,7 +26,7 @@ namespace HomePets.Domain
         void AddRange(IEnumerable<TEntity> entities);
         void Attach(TEntity entity);
         void Remove(TEntity entity);
-        IEnumerable<TEntity> RemoveRange(IEnumerable<TEntity> entities);
+        //IEnumerable<TEntity> RemoveRange(IEnumerable<TEntity> entities);
 
 
         IEnumerable<TEntity> WhereWithInclude(Expression<Func<TEntity, bool>> where, params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includeProperties);
