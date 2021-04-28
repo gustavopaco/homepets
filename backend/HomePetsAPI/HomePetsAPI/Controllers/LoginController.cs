@@ -28,8 +28,10 @@ namespace HomePetsAPI.Controllers
             {
                 //TODO : registrar usuario
 
+                var UsuarioApp = new UsuarioApp(null);
 
-                var id = 0;
+                var id = UsuarioApp.SalvarUsuario(model.email);
+                
                 var token = TokenService.GenerateToken(id.ToString(), model.nome, "ROLE"); //TODO: definir qual será a ROLE baseado no perfil do usuario : cliente, freela, dono de hotel
 
 

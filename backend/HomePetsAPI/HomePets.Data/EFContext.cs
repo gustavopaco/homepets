@@ -13,8 +13,7 @@ namespace HomePets.Data
         {
 
         }
-
-        DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
     }
 }
