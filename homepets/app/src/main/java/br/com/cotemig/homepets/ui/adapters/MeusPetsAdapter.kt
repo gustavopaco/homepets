@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.cotemig.homepets.databinding.ItemDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModelResponse
 
-class MeusPetsAdapter (var context : Context, var list: List<PetModelResponse>) : RecyclerView.Adapter<MeusPetsAdapter.ViewMeusPets>(){
+class MeusPetsAdapter (var context : Context, var list: List<PetModelResponse>?) : RecyclerView.Adapter<MeusPetsAdapter.ViewMeusPets>(){
 
     private lateinit var binding: ItemDonoMeusPetsBinding
 
@@ -17,11 +17,11 @@ class MeusPetsAdapter (var context : Context, var list: List<PetModelResponse>) 
     }
 
     override fun onBindViewHolder(holder: ViewMeusPets, position: Int) {
-        holder.bind(context, list[position])
+        holder.bind(context, list!![position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list!!.size
     }
 
     class ViewMeusPets(binding : ItemDonoMeusPetsBinding) : RecyclerView.ViewHolder(binding.root){

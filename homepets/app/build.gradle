@@ -48,7 +48,7 @@ dependencies {
 
     // retrofit
     // biblioteca do retrofit versão 2.1 - https://square.github.io/retrofit/
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     // biblioteca para conversão de JSON para Classe e Classe para JSON
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'

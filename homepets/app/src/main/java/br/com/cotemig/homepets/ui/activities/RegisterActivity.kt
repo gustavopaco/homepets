@@ -14,6 +14,7 @@ import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -70,7 +71,8 @@ class RegisterActivity : AppCompatActivity() {
 
                             finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
                         }else{
-                            Toast.makeText(this@RegisterActivity,"Erro Codigo: " + it.code(),Toast.LENGTH_LONG).show()
+
+                            Toast.makeText(this@RegisterActivity,"Erro 1: "+ it.errorBody()!!.string(),Toast.LENGTH_LONG).show()
                         }
                     }
                 }
