@@ -1,0 +1,139 @@
+package br.com.cotemig.homepets.ui.activities
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+import br.com.cotemig.homepets.databinding.ActivityDonoAddPetBinding
+import br.com.cotemig.homepets.models.PetModel
+import br.com.cotemig.homepets.models.TokenModelResponse
+import br.com.cotemig.homepets.services.RetrofitInitializer
+import br.com.cotemig.homepets.util.Constantes
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.Theme
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DonoAddPetActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDonoAddPetBinding
+    private var radioGroupSexo : RadioGroup? = null
+    private var radioGroupTipo : RadioGroup? = null
+    private lateinit var radioButtonSexo: RadioButton
+    private lateinit var radioButtonTipo: RadioButton
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDonoAddPetBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        radioGroupSexo = binding.radioSexo
+        radioGroupTipo = binding.radioTipo
+
+        binding.btnSalvarPet.setOnClickListener {
+           if(validaCampo()){
+               /* SALVAR PET DE ACORDO COM DONO */
+               addNovoPet()
+           }
+        }
+
+    }
+
+    private fun addNovoPet(){
+
+        var nome = binding.inputNomepet.text.toString()
+        var raca = binding.inputRacapet.text.toString()
+
+        var sexo = if(sexoPet().equals(Constantes.Feminino(),true)){
+            Constantes.Feminino()
+        }else{
+            Constantes.Masculino()
+        }
+
+        var tipo = if (tipoPet().equals(Constantes.Cachorro(),true)){
+            1
+        }else{
+            2
+        }
+
+        var petModel = PetModel(nome,raca,sexo,tipo)
+
+        RetrofitInitializer().serviceAPI().createPet(petModel).enqueue(object : Callback<TokenModelResponse>{
+
+            override fun onResponse(
+                call: Call<TokenModelResponse>,
+                response: Response<TokenModelResponse>
+            ) {
+                response?.let {
+                    if(it.code() == 200){
+                        MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Sucesso").content("Pet Cadastrado com Sucesso").positiveText("Ok").show()
+                        finish()
+                    }else{
+                        MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
+                MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Erro").content("API Fora do AR").positiveText("Ok").show()
+            }
+
+        })
+
+    }
+
+    private fun validaCampo() : Boolean{
+
+        var imprime = ""
+        var validacao = true
+
+        if(binding.inputNomepet.text.toString().isEmpty()){
+            imprime += "Nome do Pet\n"
+            validacao = false
+        }
+
+        if(binding.inputRacapet.text.toString().isEmpty()){
+            imprime += "Raça\n"
+            validacao = false
+        }
+
+        if(sexoPet() == null){
+            imprime += "Sexo\n"
+            validacao = false
+        }
+
+        if(tipoPet() == null){
+            imprime += "Tipo\n"
+            validacao = false
+        }
+
+        if(imprime.isNotEmpty()){
+            var notificacao = "Preencha os Campos:\n$imprime"
+            MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro").content(notificacao).positiveText("Ok").show()
+            validacao = false
+        }
+
+        return validacao
+    }
+
+    private fun sexoPet() : String? {
+        val selectedOption : Int = radioGroupSexo!!.checkedRadioButtonId
+        if(findViewById<RadioGroup>(selectedOption) != null){
+            radioButtonSexo = findViewById(selectedOption)
+            return radioButtonSexo.text.toString()
+        }
+        return null
+    }
+
+    private fun tipoPet() : String? {
+        val selectedOption : Int = radioGroupTipo!!.checkedRadioButtonId
+        if(findViewById<RadioGroup>(selectedOption) != null){
+            radioButtonTipo = findViewById(selectedOption)
+            return radioButtonTipo.text.toString()
+        }
+        return null
+    }
+
+}

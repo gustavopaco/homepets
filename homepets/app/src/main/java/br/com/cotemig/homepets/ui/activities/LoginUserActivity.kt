@@ -93,6 +93,7 @@ class LoginUserActivity : AppCompatActivity() {
         if(imprime.isNotEmpty()){
             var notificacao = "Preencha os campos: $imprime"
             MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Error").content(notificacao).positiveText("Ok").show()
+            validacao = false
         }
 
         return validacao
