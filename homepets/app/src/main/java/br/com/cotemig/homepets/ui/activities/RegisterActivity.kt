@@ -12,6 +12,7 @@ import br.com.cotemig.homepets.databinding.ActivityRegisterBinding
 import br.com.cotemig.homepets.models.RegisterModel
 import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
+import br.com.cotemig.homepets.util.Constantes
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
 import org.json.JSONObject
@@ -44,14 +45,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registrarPessoa(){
 
-        var tipo = 0
 
-        if(tipoUsuario().equals("Dono de Pet",true)){
-            tipo = 1
-        }else if(tipoUsuario().equals("Dono de Hotel",true)){
-            tipo = 2
-        }else{
-            tipo = 3
+
+        var tipo = when(tipoUsuario()){
+            Constantes.DonoPet() -> 1
+            Constantes.DonoHotel() -> 2
+            else -> 3
         }
 
         var nome = binding.txtRegisterNome.text.toString()

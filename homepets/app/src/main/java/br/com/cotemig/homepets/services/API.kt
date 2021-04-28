@@ -18,6 +18,11 @@ interface API {
         @Body authModel: AuthModel
     ) : Call<TokenModelResponse>
 
-    @GET("URLAQUI")
-    fun getPets() : Call<List<PetModelResponse>>
+    @GET("URLLISTAPETSAQUI")
+    fun getPets() : Call<List<PetModel>>
+
+    @POST("URLADDPETAQUI")
+    fun createPet(
+        @Body petModel: PetModel
+    ) : Call<TokenModelResponse>
 }

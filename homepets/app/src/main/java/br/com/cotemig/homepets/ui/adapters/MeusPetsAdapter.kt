@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.cotemig.homepets.databinding.ItemDonoMeusPetsBinding
-import br.com.cotemig.homepets.models.PetModelResponse
+import br.com.cotemig.homepets.models.PetModel
 
-class MeusPetsAdapter (var context : Context, var list: List<PetModelResponse>?) : RecyclerView.Adapter<MeusPetsAdapter.ViewMeusPets>(){
+class MeusPetsAdapter (var context : Context, var list: List<PetModel>?) : RecyclerView.Adapter<MeusPetsAdapter.ViewMeusPets>(){
 
     private lateinit var binding: ItemDonoMeusPetsBinding
 
@@ -29,7 +29,7 @@ class MeusPetsAdapter (var context : Context, var list: List<PetModelResponse>?)
         private var nome_pet = binding.txtnomePet
         private var raca_pet = binding.txtRacaPet
 
-        fun bind(context: Context,item : PetModelResponse){
+        fun bind(context: Context,item : PetModel){
             nome_pet.text = item.nome
             raca_pet.text = item.raca
         }

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
-import br.com.cotemig.homepets.models.PetModelResponse
+import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.DonoAddPetActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity
@@ -43,11 +43,11 @@ class DonoMeusPetsFragment : Fragment() {
         var activity = context as HomeActivity
 
          /* RETROFIT AQUI */
-        RetrofitInitializer().serviceAPI().getPets().enqueue(object : Callback<List<PetModelResponse>>{
+        RetrofitInitializer().serviceAPI().getPets().enqueue(object : Callback<List<PetModel>>{
 
             override fun onResponse(
-                call: Call<List<PetModelResponse>>?,
-                response: Response<List<PetModelResponse>>?
+                call: Call<List<PetModel>>?,
+                response: Response<List<PetModel>>?
             ) {
                 response?.let {
                     if(it.code() == 200){
@@ -60,7 +60,7 @@ class DonoMeusPetsFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<PetModelResponse>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<PetModel>>?, t: Throwable?) {
                 Toast.makeText(activity,"API FORA DO AR",
                     Toast.LENGTH_LONG).show()
             }
