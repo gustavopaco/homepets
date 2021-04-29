@@ -68,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun setFragment(f: Fragment, name: String){
+    fun setFragment(f: Fragment, name: String){
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(binding.contenthome.id,f,name)
         ft.commit()

@@ -14,6 +14,7 @@ import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.DonoAddPetActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.adapters.MeusPetsAdapter
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,15 +55,13 @@ class DonoMeusPetsFragment : Fragment() {
                         binding.listapets.adapter = MeusPetsAdapter(activity,it.body())
                         binding.listapets.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
                     }else{
-                        Toast.makeText(activity,"API NAO FUNCIONANDO" + it.code(),
-                            Toast.LENGTH_LONG).show()
+                        MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<PetModel>>?, t: Throwable?) {
-                Toast.makeText(activity,"API FORA DO AR",
-                    Toast.LENGTH_LONG).show()
+                MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
             }
 
         })

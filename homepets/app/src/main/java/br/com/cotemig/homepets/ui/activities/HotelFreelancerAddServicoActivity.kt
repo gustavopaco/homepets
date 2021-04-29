@@ -93,29 +93,23 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
 
     private fun validaCampos() : Boolean{
 
-        var imprime = ""
         var validacao = true
 
         if(binding.inputNomeServico.text.toString().isEmpty()){
-            imprime += "Nome do Serviço\n"
+            binding.inputNomeServico.setError("Informe o Nome do Servico")
             validacao = false
         }
         if(binding.inputPrecoServico.text.toString() == "$0.00"){
-            imprime += "Preço\n"
+            binding.inputPrecoServico.setError("Informe o Preco do Servico")
             validacao = false
         }
         if(tipoPreco() == null){
-            imprime += "Tipo de Serviço\n"
+            binding.radiobtnHora.setError("Informe o Tipo de Preco")
             validacao = false
+        }else{
+            binding.radiobtnHora.setError(null)
         }
 
-        if(imprime.isNotEmpty()){
-            var notificacao = "Preencha os Campos:\n$imprime"
-            MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro").content(notificacao).positiveText(
-                "Ok"
-            ).show()
-            validacao = false
-        }
         return validacao
 
     }
