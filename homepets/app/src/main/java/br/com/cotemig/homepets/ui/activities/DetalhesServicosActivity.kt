@@ -52,12 +52,7 @@ class DetalhesServicosActivity : AppCompatActivity() {
 
     private fun getDetalhes(){
 
-//        var services = intent.extras!!.get("objeto") as ServicesResponse
-
-        var nome = "Passeios"
-        var preco = 50.00
-        var tipo = 3
-        var services = ServicesResponse(1,nome,preco,tipo)
+        var services = intent.extras!!.get("objeto") as ServicesResponse
 
         binding.inputNomeServico.setText(services.nomeServico)
         binding.inputPrecoServico.setText(binding.inputPrecoServico.formatCurrency((services.preco * 100).toLong()))
