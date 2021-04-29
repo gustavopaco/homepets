@@ -18,7 +18,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var t : Double = 0.0
 //        var stats = SharedPreferenceHelper.readInt(this@HomeActivity,"userpreferences","stats",-1)
 
         var stats = 1

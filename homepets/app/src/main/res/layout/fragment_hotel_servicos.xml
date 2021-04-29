@@ -5,11 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HotelServicosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/head_meusServicos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TELA MEUS SERVICOS HOTEL"
-        android:layout_centerInParent="true"/>
+        android:text="Meus Serviços:"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserratsemibold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaservicos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/head_meusServicos"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageButton
+        android:id="@+id/add_novoServico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:tint="@color/blue"
+        android:background="@drawable/background_add_btn"/>
 
 </RelativeLayout>

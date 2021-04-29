@@ -27,11 +27,11 @@
         android:id="@+id/add_novoPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/add_novopet"
+        android:src="@drawable/add_btn"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:tint="@color/freelancerperfil"
-        android:background="@drawable/background_add_pet"/>
+        android:background="@drawable/background_add_btn"/>
 
 </RelativeLayout>
