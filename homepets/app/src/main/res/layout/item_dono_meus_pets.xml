@@ -17,11 +17,12 @@
         android:id="@+id/txtnome_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/txt_nome"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/txt_nome"
         android:fontFamily="@font/montserratmedium"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/txt_raca"
@@ -39,19 +40,20 @@
         android:id="@+id/txt_raca_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/txt_raca"
+        android:layout_alignBaseline="@id/txt_raca"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/txt_raca"
+        android:fontFamily="@font/montserratmedium"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserratmedium"/>
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/txt_sexo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:layout_below="@id/txt_nome"
+        android:layout_margin="5dp"
         android:fontFamily="@font/montserratmedium"
         android:text="Sexo: "
         android:textColor="@color/black"
@@ -61,21 +63,21 @@
         android:id="@+id/txtsexo_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/txt_sexo"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/txt_sexo"
-        android:layout_alignBaseline="@id/txt_sexo"
         android:fontFamily="@font/montserratmedium"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/txt_tipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/txt_sexo"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/txt_sexo"
-        android:layout_alignBaseline="@id/txt_sexo"
         android:fontFamily="@font/montserratmedium"
         android:text="Tipo: "
         android:textColor="@color/black"
@@ -85,13 +87,13 @@
         android:id="@+id/txt_tipo_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/txt_tipo"
         android:layout_alignBaseline="@id/txt_tipo"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/txt_tipo"
+        android:fontFamily="@font/montserratmedium"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserratmedium"/>
+        android:textSize="12sp" />
 
     <View
         android:layout_width="match_parent"

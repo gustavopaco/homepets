@@ -4,29 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bghome"
-    tools:context=".ui.activities.HotelAddServicoActivity">
+    tools:context=".ui.activities.HotelFreelancerAddServicoActivity">
 
     <ImageView
-        android:layout_width="450dp"
-        android:layout_height="450dp"
-        android:scrollX="-55dp"
-        android:scrollY="160dp"
-        android:src="@drawable/pets2bg" />
+        android:id="@+id/img_bg1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bghome"
+        android:visibility="visible" />
 
     <ImageView
-        android:layout_width="450dp"
-        android:layout_height="450dp"
+        android:id="@+id/img_hotelbg2"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:scrollX="-58dp"
+        android:layout_alignParentRight="true"
+        android:scrollY="140dp"
+        android:src="@drawable/pets2bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_hotelbg3"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:scrollX="-55dp"
-        android:src="@drawable/pets9bg" />
+        android:scrollX="-60dp"
+        android:src="@drawable/pets9bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg1"
+        android:layout_width="580dp"
+        android:layout_height="580dp"
+        android:layout_alignParentBottom="true"
+        android:scrollX="-130dp"
+        android:scrollY="-65dp"
+        android:src="@drawable/passeio5bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scrollY="25dp"
+        android:src="@drawable/passeio7bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg3"
+        android:layout_width="340dp"
+        android:layout_height="320dp"
+        android:layout_alignParentRight="true"
+        android:scrollX="-100dp"
+        android:scrollY="80dp"
+        android:src="@drawable/passeio8bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg4"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:scrollX="130dp"
+        android:scrollY="-40dp"
+        android:src="@drawable/passeio2bg"
+        android:visibility="invisible" />
 
     <RelativeLayout
         android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="170dp"
         android:background="@drawable/shadow_item">
 
         <TextView
@@ -82,9 +132,9 @@
             android:layout_alignBaseline="@id/txt_precoServico"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="5dp"
-            android:maxLength="15"
             android:layout_toRightOf="@id/txt_precoServico"
             android:fontFamily="@font/montserratmedium"
+            android:maxLength="15"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:allow_negative_values="true" />
