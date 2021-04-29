@@ -35,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnRegisterSalvar.setOnClickListener {
 
-            if(validaCampos()){
+            if (validaCampos()) {
 
                 registrarPessoa()
             }
@@ -43,11 +43,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun registrarPessoa(){
+    private fun registrarPessoa() {
 
 
-
-        var tipo = when(tipoUsuario()){
+        var tipo = when (tipoUsuario()) {
             Constantes.DonoPet() -> 1
             Constantes.DonoHotel() -> 2
             else -> 3
@@ -57,27 +56,29 @@ class RegisterActivity : AppCompatActivity() {
         var email = binding.txtRegisterMail.text.toString()
         var senha = binding.txtRegisterPassword.text.toString()
 
-        var userAPI = RegisterModel(nome,email,senha,tipo)
+        var userAPI = RegisterModel(nome, email, senha, tipo)
 
 
         /* RETROFIT - CONECTANDO COM API */
         RetrofitInitializer().serviceAPI().createUser(userAPI)
-            .enqueue(object: Callback<TokenModelResponse>{
+            .enqueue(object : Callback<TokenModelResponse> {
 
-                override fun onResponse(call: Call<TokenModelResponse>?,response: Response<TokenModelResponse>?) {
+                override fun onResponse(
+                    call: Call<TokenModelResponse>?,
+                    response: Response<TokenModelResponse>?
+                ) {
                     response.let {
-                        if(it!!.code() == 200){
-
+                        if (it!!.code() == 200) {
+                            MaterialDialog.Builder(this@RegisterActivity).title("Sucesso").content("Usuario cadastrado com sucesso").positiveText("Ok").show()
                             finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
-                        }else{
-
-                            Toast.makeText(this@RegisterActivity,"Erro 1: "+ it.errorBody()!!.string(),Toast.LENGTH_LONG).show()
+                        } else {
+                            MaterialDialog.Builder(this@RegisterActivity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<TokenModelResponse>?, t: Throwable?) {
-                    Toast.makeText(this@RegisterActivity,"API NAO RESPONDE",Toast.LENGTH_LONG).show()
+                    MaterialDialog.Builder(this@RegisterActivity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
                 }
             })
 
@@ -97,42 +98,51 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun validaCampos(): Boolean {
 
-        var imprimeCampos = ""
         var validacao = true
 
         if (binding.txtRegisterNome.text.toString().isEmpty()) {
-            imprimeCampos += "Nome\n"
+            binding.txtRegisterNome.setError("Informe seu Nome")
             validacao = false
         }
 
         if (binding.txtRegisterMail.text.toString().isEmpty()) {
-            imprimeCampos += "Email\n"
+            binding.txtRegisterMail.setError("Informe seu Email")
             validacao = false
         }
 
-        if (binding.txtRegisterPassword.text.toString().isNotEmpty() && binding.txtRegisterRepeatPassword.text.toString().isNotEmpty()) {
+        if (binding.txtRegisterPassword.text.toString().isEmpty()) {
+            binding.txtRegisterPassword.setError("Informe a Senha")
+            validacao = false
+        } else if (binding.txtRegisterPassword.text.toString().length < 5) {
+            binding.txtRegisterPassword.setError("Min 5 caracteres")
+            validacao = false
+        }
 
-            if (!binding.txtRegisterPassword.text.toString().equals(binding.txtRegisterRepeatPassword.text.toString(), true)) {
-                MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro")
-                    .content("Senha e Confirmacao de senha, nao correspodem").positiveText("Ok")
-                    .show()
+        if (binding.txtRegisterRepeatPassword.text.toString().isEmpty()) {
+            binding.txtRegisterRepeatPassword.setError("Informe a Senha")
+            validacao = false
+        } else if (binding.txtRegisterRepeatPassword.text.toString().length < 5) {
+            binding.txtRegisterRepeatPassword.setError("Min 5 caracteres")
+            validacao = false
+        }
+
+        if(binding.txtRegisterPassword.text.toString().length >= 5 && binding.txtRegisterRepeatPassword.text.toString().length >= 5){
+            if (!binding.txtRegisterPassword.text.toString().equals(binding.txtRegisterRepeatPassword.text.toString(), false)
+            ) {
+                MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro").content("Senha e Confirmacao de senha, nao correspodem").positiveText("Ok").show()
                 validacao = false
             }
-        } else {
-            imprimeCampos += "Senha e/ou Confirmacao de Senha\n"
-            validacao = false
         }
 
+
+
         if (tipoUsuario() == null) {
-            imprimeCampos += "Tipo de Usuario\n"
+            binding.btnRegisterDono.setError("Selecione um Tipo de Usuario")
             validacao = false
+        }else{
+            binding.btnRegisterDono.setError(null)
         }
-        if (imprimeCampos.isNotEmpty()) {
-            var notificacao = "Preencha os campos:\n$imprimeCampos"
-            MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro")
-                .content(notificacao).positiveText("Ok").show()
-            validacao = false
-        }
+
         return validacao
     }
 }

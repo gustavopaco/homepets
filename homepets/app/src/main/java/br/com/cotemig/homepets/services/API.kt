@@ -18,6 +18,11 @@ interface API {
         @Body authModel: AuthModel
     ) : Call<TokenModelResponse>
 
+    @POST("URL_UPDATE_PERFIL_USUARIO_AQUI")
+    fun updateUser(
+        @Body registerModel: RegisterModel
+    ) : Call<TokenModelResponse>
+
     @GET("URL_LISTA_PETS_AQUI")
     fun getPets() : Call<List<PetModel>>
 

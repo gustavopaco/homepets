@@ -85,34 +85,32 @@ class DonoAddPetActivity : AppCompatActivity() {
 
     private fun validaCampo() : Boolean{
 
-        var imprime = ""
         var validacao = true
 
         if(binding.inputNomepet.text.toString().isEmpty()){
-            imprime += "Nome do Pet\n"
+            binding.inputNomepet.setError("Informe nome do pet")
             validacao = false
         }
 
         if(binding.inputRacapet.text.toString().isEmpty()){
-            imprime += "Raça\n"
+            binding.inputRacapet.setError("Informe a Raca")
             validacao = false
         }
 
         if(sexoPet() == null){
-            imprime += "Sexo\n"
+            binding.radiobtnFeminino.setError("Informe o Sexo")
             validacao = false
+        }else{
+            binding.radiobtnFeminino.setError(null)
         }
 
         if(tipoPet() == null){
-            imprime += "Tipo\n"
+            binding.radiobtnCachorro.setError("Informe o Tipo de Pet")
             validacao = false
+        }else{
+            binding.radiobtnCachorro.setError(null)
         }
 
-        if(imprime.isNotEmpty()){
-            var notificacao = "Preencha os Campos:\n$imprime"
-            MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro").content(notificacao).positiveText("Ok").show()
-            validacao = false
-        }
 
         return validacao
     }

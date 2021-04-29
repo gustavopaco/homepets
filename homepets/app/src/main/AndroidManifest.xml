@@ -12,21 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homepets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activities.HotelFreelancerAddServicoActivity">
-
-        </activity>
+        <activity android:name=".ui.activities.HotelFreelancerAddServicoActivity"/>
         <activity android:name=".ui.activities.DonoAddPetActivity" />
         <activity android:name=".ui.activities.RegisterActivity" />
         <activity android:name=".ui.activities.HomeActivity">
+
+        </activity>
+        <activity android:name=".ui.activities.LoginUserActivity" />
+        <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.activities.LoginUserActivity" />
-        <activity android:name=".ui.activities.SplashActivity">
-
         </activity>
     </application>
 

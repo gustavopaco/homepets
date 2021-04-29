@@ -51,17 +51,16 @@ class LoginUserActivity : AppCompatActivity() {
             override fun onResponse(call: Call<TokenModelResponse>, response: Response<TokenModelResponse>) {
                 response?.let {
                     if(it.code() == 200){
-                        Toast.makeText(this@LoginUserActivity,"API FUNCIONANDO",Toast.LENGTH_LONG).show()
                         saveAccountInfo(it.body()!!.token, it.body()!!.stats)
                         goHomeActivity()
                     }else{
-                        Toast.makeText(this@LoginUserActivity,"API NAO FUNCIONANDO" + it.code(),Toast.LENGTH_LONG).show()
+                        MaterialDialog.Builder(this@LoginUserActivity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                     }
                 }
             }
 
             override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
-                Toast.makeText(this@LoginUserActivity,"API FORA DO AR",Toast.LENGTH_LONG).show()
+                MaterialDialog.Builder(this@LoginUserActivity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
             }
 
         })
@@ -77,24 +76,18 @@ class LoginUserActivity : AppCompatActivity() {
 
     private fun validaCampo() : Boolean{
 
-        var imprime = ""
         var validacao = true
 
         if(binding.txtLogin.text.toString().isEmpty()){
-            imprime += "\nLogin"
+            binding.txtLogin.setError("Informe seu E-mail")
             validacao = false
         }
 
         if(binding.txtPassword.text.toString().isEmpty()){
-            imprime += "\nSenha"
+            binding.txtPassword.setError("Informe sua senha")
             validacao = false
         }
 
-        if(imprime.isNotEmpty()){
-            var notificacao = "Preencha os campos: $imprime"
-            MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Error").content(notificacao).positiveText("Ok").show()
-            validacao = false
-        }
 
         return validacao
 
