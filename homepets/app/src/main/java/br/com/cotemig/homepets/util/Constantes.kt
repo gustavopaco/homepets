@@ -10,6 +10,9 @@ package br.com.cotemig.homepets.util
         fun DonoPet() : String = "Dono de Pet"
         fun DonoHotel() : String = "Dono de Hotel"
         fun Freelancer() : String = "Freelancer"
+        fun Hora() : String = "Hora"
+        fun Diaria() : String = "Diaria"
+        fun Fechado() : String = "Fechado"
     }
 
 }

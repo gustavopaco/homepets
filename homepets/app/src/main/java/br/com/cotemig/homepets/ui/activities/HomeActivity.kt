@@ -18,10 +18,9 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var t : Double = 0.0
 //        var stats = SharedPreferenceHelper.readInt(this@HomeActivity,"userpreferences","stats",-1)
 
-        var stats = 1
+        var stats = 3
 
         if(stats == 1){
             binding.headDonoPets.visibility = View.VISIBLE
@@ -82,9 +81,9 @@ class HomeActivity : AppCompatActivity() {
             1 -> setFragment(PerfilFragment(),"perfil")
             2 -> setFragment(DonoMeusPetsFragment(),"donomeuspets")
             3 -> setFragment(DonoBuscaServicosFragment(),"donoservicos")
-            4 -> setFragment(HotelServicosFragment(),"hotelservicos")
+            4 -> setFragment(HotelFreelancerServicosFragment(),"hotelservicos")
             5 -> setFragment(HotelReservasFragment(),"hotelreservas")
-            6 -> setFragment(FreelancerServicosFragment(),"freelancerservicos")
+            6 -> setFragment(HotelFreelancerServicosFragment(),"freelancerservicos")
             7 -> setFragment(FreelancerContratadosFragment(),"freelancercontratados")
         }
 

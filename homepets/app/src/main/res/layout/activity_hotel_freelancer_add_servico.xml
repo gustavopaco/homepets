@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.HotelFreelancerAddServicoActivity">
+
+    <ImageView
+        android:id="@+id/img_bg1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bghome"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/img_hotelbg2"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:scrollX="-58dp"
+        android:layout_alignParentRight="true"
+        android:scrollY="140dp"
+        android:src="@drawable/pets2bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_hotelbg3"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:scrollX="-60dp"
+        android:src="@drawable/pets9bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg1"
+        android:layout_width="580dp"
+        android:layout_height="580dp"
+        android:layout_alignParentBottom="true"
+        android:scrollX="-130dp"
+        android:scrollY="-65dp"
+        android:src="@drawable/passeio5bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scrollY="25dp"
+        android:src="@drawable/passeio7bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg3"
+        android:layout_width="340dp"
+        android:layout_height="320dp"
+        android:layout_alignParentRight="true"
+        android:scrollX="-100dp"
+        android:scrollY="80dp"
+        android:src="@drawable/passeio8bg"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/img_freelancerbg4"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:scrollX="130dp"
+        android:scrollY="-40dp"
+        android:src="@drawable/passeio2bg"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/shadow_item">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/cadastro_de_servicos"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/txt_nomeServico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Serviço:"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/input_nomeServico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/txt_nomeServico"
+            android:layout_marginHorizontal="5dp"
+            android:layout_toRightOf="@id/txt_nomeServico"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt_precoServico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_nomeServico"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Preço:"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/input_precoServico"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/txt_precoServico"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/txt_precoServico"
+            android:fontFamily="@font/montserratmedium"
+            android:maxLength="15"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:allow_negative_values="true" />
+
+        <TextView
+            android:id="@+id/txt_tipoServico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_precoServico"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Tipo de Servico:"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/radio_tipoServico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_tipoServico"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiobtn_hora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Hora"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_diaria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Diaria"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_fechado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Fechado"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_salvarServico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radio_tipoServico"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_btn"
+            android:fontFamily="@font/robotmedium"
+            android:text="Salvar"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Toast
 import br.com.cotemig.homepets.databinding.ActivityDonoAddPetBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
+import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
@@ -43,22 +43,21 @@ class DonoAddPetActivity : AppCompatActivity() {
 
     private fun addNovoPet(){
 
+        var email = SharedPreferenceHelper.readString(this@DonoAddPetActivity,"userpreferences","email","")
         var nome = binding.inputNomepet.text.toString()
         var raca = binding.inputRacapet.text.toString()
 
-        var sexo = if(sexoPet().equals(Constantes.Feminino(),true)){
-            Constantes.Feminino()
-        }else{
-            Constantes.Masculino()
+        var sexo = when(sexoPet()){
+            Constantes.Feminino() -> Constantes.Feminino()
+            else -> Constantes.Masculino()
         }
 
-        var tipo = if (tipoPet().equals(Constantes.Cachorro(),true)){
-            1
-        }else{
-            2
+        var tipo = when(tipoPet()){
+            Constantes.Cachorro() -> 1
+            else -> 2
         }
 
-        var petModel = PetModel(nome,raca,sexo,tipo)
+        var petModel = PetModel(email.toString(),nome,raca,sexo,tipo)
 
         RetrofitInitializer().serviceAPI().createPet(petModel).enqueue(object : Callback<TokenModelResponse>{
 
