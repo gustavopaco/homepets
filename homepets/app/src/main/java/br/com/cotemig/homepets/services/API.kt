@@ -2,9 +2,7 @@ package br.com.cotemig.homepets.services
 
 import br.com.cotemig.homepets.models.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface API {
 
@@ -23,9 +21,6 @@ interface API {
         @Body registerModel: RegisterModel
     ) : Call<TokenModelResponse>
 
-    @GET("URL_LISTA_PETS_AQUI")
-    fun getPets() : Call<List<PetModel>>
-
     @POST("URL_ADD_PET_AQUI")
     fun createPet(
         @Body petModel: PetModel
@@ -35,4 +30,26 @@ interface API {
     fun createService(
         @Body serviceModel: ServiceModel
     ) : Call<TokenModelResponse>
+
+    @GET("URL_LISTA_PETS_AQUI/{email}")
+    fun getPets(
+        @Path ("email") email : String
+    ) : Call<List<PetsResponse>>
+
+    @GET("URL_LISTA_SERVICOS_AQUI/{email}")
+    fun getServices(
+        @Path("email") email : String
+    ) : Call<List<ServicesResponse>>
+
+    @POST("URL_UPDATE_DADOS_SERVICO_AQUI")
+    fun updateService(
+        @Body serviceModel: ServiceModel
+    ) : Call<TokenModelResponse>
+
+    @DELETE("URL_DELETE_SERVICO_AQUI/{id}/{email}")
+    fun deleteService(
+        @Path("id") id : Int,
+        @Path("email") email : String,
+    ) : Call<Void>
+
 }

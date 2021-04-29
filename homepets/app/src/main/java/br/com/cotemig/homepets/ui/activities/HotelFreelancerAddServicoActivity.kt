@@ -28,7 +28,7 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
         binding = ActivityHotelFreelancerAddServicoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         statsBackground()
-        radioGroup = binding.radioTipoServico
+        radioGroup = binding.radioTipoPreco
 
         binding.btnSalvarServico.setOnClickListener {
 
@@ -57,7 +57,7 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
         }
 
 
-        var novoServico = ServiceModel(email.toString(), nomeServico, preco.toDouble(), tipoPreco)
+        var novoServico = ServiceModel(email.toString(),0, nomeServico, preco.toDouble(), tipoPreco)
 
         RetrofitInitializer().serviceAPI().createService(novoServico).enqueue(object : Callback<TokenModelResponse>{
             override fun onResponse(

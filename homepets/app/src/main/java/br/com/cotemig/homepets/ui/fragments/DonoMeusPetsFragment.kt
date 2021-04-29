@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModel
+import br.com.cotemig.homepets.models.PetsResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.DonoAddPetActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.adapters.MeusPetsAdapter
+import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,13 +44,14 @@ class DonoMeusPetsFragment : Fragment() {
     fun getMeusPets(){
 
         var activity = context as HomeActivity
+        var email = SharedPreferenceHelper.readString(activity,"userpreferences","email","")
 
          /* RETROFIT AQUI */
-        RetrofitInitializer().serviceAPI().getPets().enqueue(object : Callback<List<PetModel>>{
+        RetrofitInitializer().serviceAPI().getPets(email.toString()).enqueue(object : Callback<List<PetsResponse>>{
 
             override fun onResponse(
-                call: Call<List<PetModel>>?,
-                response: Response<List<PetModel>>?
+                call: Call<List<PetsResponse>>?,
+                response: Response<List<PetsResponse>>?
             ) {
                 response?.let {
                     if(it.code() == 200){
@@ -60,7 +63,7 @@ class DonoMeusPetsFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<PetModel>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<PetsResponse>>?, t: Throwable?) {
                 MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
             }
 
