@@ -121,8 +121,7 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
     }
 
     private fun statsBackground(){
-        var stats = 2
-//            SharedPreferenceHelper.readInt(this,"userpreferences","stats",-1)
+        var stats = SharedPreferenceHelper.readInt(this,"userpreferences","stats",-1)
 
         when(stats){
             2 ->{
