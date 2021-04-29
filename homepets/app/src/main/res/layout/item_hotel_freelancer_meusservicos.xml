@@ -59,7 +59,7 @@
         android:fontFamily="@font/montserratmedium"/>
 
     <TextView
-        android:id="@+id/txt_tipoServico"
+        android:id="@+id/txt_tipoPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/txt_tipo"
@@ -67,6 +67,12 @@
         android:textSize="12sp"
         android:textColor="@color/black"
         android:fontFamily="@font/montserratmedium"/>
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/input_currency"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"/>
 
     <androidx.viewpager.widget.ViewPager
         android:layout_below="@id/txt_tipo"
