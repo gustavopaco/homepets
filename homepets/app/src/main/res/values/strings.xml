@@ -28,4 +28,5 @@
     <string name="cadastro_de_servicos"><u>Cadastro de Serviços</u></string>
     <string name="dados_do_usuario"><u>Dados do Usuario</u></string>
     <string name="detalhes_de_servicos"><u>Detalhes de Servicos</u></string>
+    <string name="detalhes_do_pet"><u>Detalhes do Pet</u></string>
 </resources>

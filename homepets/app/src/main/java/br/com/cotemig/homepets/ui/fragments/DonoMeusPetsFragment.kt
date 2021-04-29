@@ -12,14 +12,17 @@ import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.PetsResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
+import br.com.cotemig.homepets.ui.activities.DetalhesPetsActivity
 import br.com.cotemig.homepets.ui.activities.DonoAddPetActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.adapters.MeusPetsAdapter
+import br.com.cotemig.homepets.util.RecyclerItemClickListener
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 
 
 class DonoMeusPetsFragment : Fragment() {
@@ -57,6 +60,7 @@ class DonoMeusPetsFragment : Fragment() {
                     if(it.code() == 200){
                         binding.listapets.adapter = MeusPetsAdapter(activity,it.body())
                         binding.listapets.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+                        getRecycleItemClickListener(it.body())
                     }else{
                         MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                     }
@@ -73,6 +77,24 @@ class DonoMeusPetsFragment : Fragment() {
     private fun goAddPetActivity(){
         var activity = context as HomeActivity
         startActivity(Intent(activity,DonoAddPetActivity::class.java))
+    }
+
+    private fun getRecycleItemClickListener(lista : List<PetsResponse>?) {
+        binding.listapets.addOnItemTouchListener(RecyclerItemClickListener(context as HomeActivity,binding.listapets,object : RecyclerItemClickListener.OnItemClickListener{
+
+            override fun onItemClick(view: View?, position: Int) {
+
+                var petsResponse : PetsResponse = lista!![position]
+                var intent = Intent(context as HomeActivity,DetalhesPetsActivity::class.java)
+                intent.putExtra("objetoPets", petsResponse as Serializable)
+                startActivity(intent)
+            }
+
+            override fun onLongItemClick(view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+        }))
     }
 
 }

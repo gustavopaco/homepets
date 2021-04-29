@@ -113,7 +113,7 @@ class DetalhesServicosActivity : AppCompatActivity() {
         var email = SharedPreferenceHelper.readString(this,"userpreferences","email","")
         var services = intent.extras!!.get("objeto") as ServicesResponse
 
-        RetrofitInitializer().serviceAPI().deleteService(services.id,email.toString()).enqueue(object : Callback<Void>{
+        RetrofitInitializer().serviceAPI().deleteService(email.toString(),services.id).enqueue(object : Callback<Void>{
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {

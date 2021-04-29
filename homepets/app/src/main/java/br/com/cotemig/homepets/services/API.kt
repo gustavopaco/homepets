@@ -46,10 +46,17 @@ interface API {
         @Body serviceModel: ServiceModel
     ) : Call<TokenModelResponse>
 
-    @DELETE("URL_DELETE_SERVICO_AQUI/{id}/{email}")
+    @DELETE("URL_DELETE_SERVICO_AQUI/{email}/{id}")
     fun deleteService(
-        @Path("id") id : Int,
         @Path("email") email : String,
+        @Path("id") id : Int
+
+    ) : Call<Void>
+
+    @DELETE("URL_DELETE_PET_AQUI/{email}/{id}")
+    fun deletePet(
+        @Path("email") email: String,
+        @Path("id") id: Int
     ) : Call<Void>
 
 }
