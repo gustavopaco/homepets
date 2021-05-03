@@ -17,3 +17,7 @@ backend/HomePetsAPI/HomePets.Data/bin/
 
 backend/HomePetsAPI/HomePets.Domain/bin/
 /backend/HomePetsAPI/HomePetsAPI/Properties/PublishProfiles
+
+.vscode/launch.json
+
+.vscode/tasks.json

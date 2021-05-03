@@ -4,14 +4,16 @@ using HomePets.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomePets.Data.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20210428014953_CreateUsuario")]
+    partial class CreateUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +30,7 @@ namespace HomePets.Data.Migrations
 
                     b.Property<bool>("Deleted");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(200);
+                    b.Property<string>("Email");
 
                     b.Property<string>("Nome");
 
