@@ -23,9 +23,9 @@ namespace HomePetsAPI.Controllers
 
             return new ServiceModel[] {
                 new ServiceModel(){ id = 1, nomeServico = "Serviço 1", preco = 1.00, tipoPreco = 1 },
-                new ServiceModel(){ id = 2, nomeServico = "Serviço 2", preco = 2.00, tipoPreco = 1 },
-                new ServiceModel(){ id = 3, nomeServico = "Serviço 3", preco = 3.00, tipoPreco = 1 },
-                new ServiceModel(){ id = 4, nomeServico = "Serviço 4", preco = 4.00, tipoPreco = 1 },
+                new ServiceModel(){ id = 2, nomeServico = "Serviço 2", preco = 2.00, tipoPreco = 2 },
+                new ServiceModel(){ id = 3, nomeServico = "Serviço 3", preco = 3.00, tipoPreco = 3 },
+                new ServiceModel(){ id = 4, nomeServico = "Serviço 4", preco = 4.00, tipoPreco = 2 },
                 new ServiceModel(){ id = 5, nomeServico = "Serviço 5", preco = 5.00, tipoPreco = 1 },
             };
         }
