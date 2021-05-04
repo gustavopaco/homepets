@@ -31,24 +31,24 @@ namespace HomePetsAPI.Controllers
         //    return new ServiceModel() { email = "email.com", id = 1, nomeServico = "Serviço 1", preco = 1.00, tipoPreco = 1 };
         //}
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] UserModel value)
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody] UserModel value)
+        {
+
+        }
+
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] UserModel value)
+        //{
+        //}
+
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
         //{
 
         //}
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UserModel value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-
-        }
     }
 }
