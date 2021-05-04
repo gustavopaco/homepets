@@ -50,9 +50,9 @@ class HotelFreelancerServicosFragment : Fragment() {
     private fun getServices() {
 
         var activity = context as HomeActivity
-        var email = SharedPreferenceHelper.readString(activity, "userpreferences", "email", "")
+        var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
 
-        RetrofitInitializer().serviceAPI().getServices(email.toString())
+        RetrofitInitializer().serviceAPI().getServices(token= "Bearer $token")
             .enqueue(object : Callback<List<ServicesResponse>> {
 
                 override fun onResponse(
@@ -62,19 +62,24 @@ class HotelFreelancerServicosFragment : Fragment() {
                     response?.let {
                         if (it.code() == 200) {
                             binding.listaservicos.adapter = MeusServicosAdapter(activity, it.body())
-                            binding.listaservicos.layoutManager =
-                                LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                            binding.listaservicos.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                             getRecycleItemClickListener(it.body())
                         } else {
-                            MaterialDialog.Builder(activity).title("Erro")
-                                .content(it.errorBody()!!.string()).positiveText("Ok").show()
+                            MaterialDialog(activity).show {
+                                title(R.string.erro)
+                                message(null,it.errorBody()!!.string())
+                                positiveButton(null,"Ok")
+                            }
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<List<ServicesResponse>>, t: Throwable) {
-                    MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR")
-                        .positiveText("Ok").show()
+                    MaterialDialog(activity).show {
+                        title(R.string.erro)
+                        message(null,"API FORA DO AR")
+                        positiveButton(null,"Ok")
+                    }
                 }
 
             })

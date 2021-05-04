@@ -6,56 +6,62 @@ import retrofit2.http.*
 
 interface API {
 
-    @POST("register")
+    @Headers("Content-Type: application/json")
+    @POST("login/register")
     fun createUser(
         @Body registerModel: RegisterModel
     ) :Call<TokenModelResponse>
 
-    @POST("login")
+    @Headers("Content-Type: application/json")
+    @POST("login/login")
     fun getAuth(
         @Body authModel: AuthModel
     ) : Call<TokenModelResponse>
 
-    @POST("URL_UPDATE_PERFIL_USUARIO_AQUI")
+    @Headers("Content-Type: application/json")
+    @POST("user")
     fun updateUser(
+        @Header("Authorization") token: String,
         @Body updateUserModel: UpdateUserModel
-    ) : Call<TokenModelResponse>
-
-    @POST("URL_ADD_PET_AQUI")
-    fun createPet(
-        @Body petModel: PetModel
-    ) : Call<TokenModelResponse>
-
-    @POST("URL_ADD_SERVICO_AQUI")
-    fun createService(
-        @Body serviceModel: ServiceModel
-    ) : Call<TokenModelResponse>
-
-    @GET("URL_LISTA_PETS_AQUI/{email}")
-    fun getPets(
-        @Path ("email") email : String
-    ) : Call<List<PetsResponse>>
-
-    @GET("URL_LISTA_SERVICOS_AQUI/{email}")
-    fun getServices(
-        @Path("email") email : String
-    ) : Call<List<ServicesResponse>>
-
-    @POST("URL_UPDATE_DADOS_SERVICO_AQUI")
-    fun updateService(
-        @Body serviceModel: ServiceModel
-    ) : Call<TokenModelResponse>
-
-    @DELETE("URL_DELETE_SERVICO_AQUI/{email}/{id}")
-    fun deleteService(
-        @Path("email") email : String,
-        @Path("id") id : Int
-
     ) : Call<Void>
 
-    @DELETE("URL_DELETE_PET_AQUI/{email}/{id}")
+    @Headers("Content-Type: application/json")
+    @POST("pet")
+    fun createPet(
+        @Header("Authorization") token: String,
+        @Body petModel: PetModel
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("service")
+    fun createService(
+        @Header("Authorization") token: String,
+        @Body serviceModel: ServiceModel
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("pet")
+    fun getPets(
+        @Header("Authorization") token: String
+    ) : Call<List<PetsResponse>>
+
+    @Headers("Content-Type: application/json")
+    @GET("service")
+    fun getServices(
+        @Header("Authorization") token: String
+    ) : Call<List<ServicesResponse>>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("service/{id}")
+    fun deleteService(
+        @Header("Authorization") token: String,
+        @Path("id") id : Int
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("pet/{id}")
     fun deletePet(
-        @Path("email") email: String,
+        @Header("Authorization") token: String,
         @Path("id") id: Int
     ) : Call<Void>
 

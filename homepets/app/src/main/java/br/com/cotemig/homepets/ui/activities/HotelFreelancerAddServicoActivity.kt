@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityHotelFreelancerAddServicoBinding
 import br.com.cotemig.homepets.models.ServiceModel
 import br.com.cotemig.homepets.models.TokenModelResponse
@@ -12,7 +13,6 @@ import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,12 +41,7 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
 
     private fun addNovoServico(){
 
-        var email = SharedPreferenceHelper.readString(
-            this@HotelFreelancerAddServicoActivity,
-            "userpreferences",
-            "email",
-            ""
-        )
+        var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
         var nomeServico = binding.inputNomeServico.text.toString()
         var preco = binding.inputPrecoServico.text.toString().replace("$", "").replace(",", "")
 
@@ -57,25 +52,39 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
         }
 
 
-        var novoServico = ServiceModel(email.toString(),0, nomeServico, preco.toDouble(), tipoPreco)
+        var novoServico = ServiceModel(0, nomeServico, preco.toDouble(), tipoPreco)
 
-        RetrofitInitializer().serviceAPI().createService(novoServico).enqueue(object : Callback<TokenModelResponse>{
+        RetrofitInitializer().serviceAPI().createService(token= "Bearer $token",novoServico).enqueue(object : Callback<Void>{
             override fun onResponse(
-                call: Call<TokenModelResponse>,
-                response: Response<TokenModelResponse>
+                call: Call<Void>,
+                response: Response<Void>
             ) {
                 response?.let {
                     if(it.code() == 200){
-                        MaterialDialog.Builder(this@HotelFreelancerAddServicoActivity).theme(Theme.LIGHT).title("Sucesso").content("Novo Serviço cadastrado!").positiveText("Ok").show()
-                        finish()
+                        MaterialDialog(this@HotelFreelancerAddServicoActivity).show {
+                            title(R.string.sucesso)
+                            message(R.string.servicocadastrado)
+                            positiveButton(R.string.ok){
+                                finish()
+                            }
+                        }
+
                     }else{
-                        MaterialDialog.Builder(this@HotelFreelancerAddServicoActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@HotelFreelancerAddServicoActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
-            override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
-                MaterialDialog.Builder(this@HotelFreelancerAddServicoActivity).theme(Theme.LIGHT).title("Erro").content("API fora do AR").positiveText("Ok").show()
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                MaterialDialog(this@HotelFreelancerAddServicoActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

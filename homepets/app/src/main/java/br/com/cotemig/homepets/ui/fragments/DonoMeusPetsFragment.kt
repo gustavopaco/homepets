@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.PetsResponse
@@ -47,10 +48,10 @@ class DonoMeusPetsFragment : Fragment() {
     fun getMeusPets(){
 
         var activity = context as HomeActivity
-        var email = SharedPreferenceHelper.readString(activity,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
 
          /* RETROFIT AQUI */
-        RetrofitInitializer().serviceAPI().getPets(email.toString()).enqueue(object : Callback<List<PetsResponse>>{
+        RetrofitInitializer().serviceAPI().getPets(token= "Bearer $token").enqueue(object : Callback<List<PetsResponse>>{
 
             override fun onResponse(
                 call: Call<List<PetsResponse>>?,
@@ -62,13 +63,21 @@ class DonoMeusPetsFragment : Fragment() {
                         binding.listapets.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
                         getRecycleItemClickListener(it.body())
                     }else{
-                        MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(activity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<PetsResponse>>?, t: Throwable?) {
-                MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+                MaterialDialog(activity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

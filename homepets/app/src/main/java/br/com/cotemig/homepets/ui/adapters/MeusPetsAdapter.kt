@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.cotemig.homepets.databinding.ItemDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.PetsResponse
+import br.com.cotemig.homepets.util.Constantes
 
 class MeusPetsAdapter (var context : Context, var list: List<PetsResponse>?) : RecyclerView.Adapter<MeusPetsAdapter.ViewMeusPets>(){
 
@@ -18,7 +19,7 @@ class MeusPetsAdapter (var context : Context, var list: List<PetsResponse>?) : R
     }
 
     override fun onBindViewHolder(holder: ViewMeusPets, position: Int) {
-        holder.bind(context, list!![position])
+        holder.bind(context,list!![position])
     }
 
     override fun getItemCount(): Int {
@@ -29,10 +30,19 @@ class MeusPetsAdapter (var context : Context, var list: List<PetsResponse>?) : R
 
         private var nome_pet = binding.txtnomePet
         private var raca_pet = binding.txtRacaPet
+        private var sexo_pet = binding.txtsexoPet
+        private var tipo_pet = binding.txtTipoPet
 
         fun bind(context: Context,item : PetsResponse){
             nome_pet.text = item.nome
             raca_pet.text = item.raca
+            sexo_pet.text = item.sexo
+            if(item.tipoPet == 1){
+                tipo_pet.text = "Cachorro"
+            }else{
+                tipo_pet.text = "Gato"
+            }
+
         }
 
     }

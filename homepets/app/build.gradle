@@ -66,9 +66,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // biblioteca de mensagem na tela
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
 
     // biblioteca para currency no edittext
 //    implementation 'me.abhinay.input:currency-edittext:1.1'

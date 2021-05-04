@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityDonoAddPetBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.TokenModelResponse
@@ -11,7 +12,6 @@ import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +43,7 @@ class DonoAddPetActivity : AppCompatActivity() {
 
     private fun addNovoPet(){
 
-        var email = SharedPreferenceHelper.readString(this@DonoAddPetActivity,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(this@DonoAddPetActivity,"userpreferences","token","")
         var nome = binding.inputNomepet.text.toString()
         var raca = binding.inputRacapet.text.toString()
 
@@ -57,26 +57,40 @@ class DonoAddPetActivity : AppCompatActivity() {
             else -> 2
         }
 
-        var petModel = PetModel(email.toString(),nome,raca,sexo,tipo)
+        var petModel = PetModel(nome,raca,sexo,tipo)
 
-        RetrofitInitializer().serviceAPI().createPet(petModel).enqueue(object : Callback<TokenModelResponse>{
+        RetrofitInitializer().serviceAPI().createPet(token= "Bearer $token",petModel).enqueue(object : Callback<Void>{
 
             override fun onResponse(
-                call: Call<TokenModelResponse>,
-                response: Response<TokenModelResponse>
+                call: Call<Void>,
+                response: Response<Void>
             ) {
                 response?.let {
                     if(it.code() == 200){
-                        MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Sucesso").content("Pet Cadastrado com Sucesso").positiveText("Ok").show()
-                        finish()
+                        MaterialDialog(this@DonoAddPetActivity).show {
+                            title(R.string.sucesso)
+                            message(R.string.petcadastrado)
+                            positiveButton(R.string.ok){
+                                finish()
+                            }
+                        }
+
                     }else{
-                        MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@DonoAddPetActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
-            override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
-                MaterialDialog.Builder(this@DonoAddPetActivity).theme(Theme.LIGHT).title("Erro").content("API Fora do AR").positiveText("Ok").show()
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                MaterialDialog(this@DonoAddPetActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

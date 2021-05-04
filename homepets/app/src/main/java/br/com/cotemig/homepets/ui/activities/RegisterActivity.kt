@@ -14,8 +14,6 @@ import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,16 +67,30 @@ class RegisterActivity : AppCompatActivity() {
                 ) {
                     response.let {
                         if (it!!.code() == 200) {
-                            MaterialDialog.Builder(this@RegisterActivity).title("Sucesso").content("Usuario cadastrado com sucesso").positiveText("Ok").show()
-                            finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
+                            MaterialDialog(this@RegisterActivity).show {
+                                title(R.string.sucesso)
+                                message(R.string.usuariocadastrado)
+                                positiveButton(R.string.ok){
+                                    finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
+                                }
+                            }
+
                         } else {
-                            MaterialDialog.Builder(this@RegisterActivity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                            MaterialDialog(this@RegisterActivity).show {
+                                title(R.string.erro)
+                                message(null,it.errorBody()!!.string())
+                                positiveButton(null,"Ok")
+                            }
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<TokenModelResponse>?, t: Throwable?) {
-                    MaterialDialog.Builder(this@RegisterActivity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+                    MaterialDialog(this@RegisterActivity).show {
+                        title(R.string.erro)
+                        message(null,"API FORA DO AR")
+                        positiveButton(null,"Ok")
+                    }
                 }
             })
 
@@ -129,7 +141,11 @@ class RegisterActivity : AppCompatActivity() {
         if(binding.txtRegisterPassword.text.toString().length >= 5 && binding.txtRegisterRepeatPassword.text.toString().length >= 5){
             if (!binding.txtRegisterPassword.text.toString().equals(binding.txtRegisterRepeatPassword.text.toString(), false)
             ) {
-                MaterialDialog.Builder(this).theme(Theme.LIGHT).title("Erro").content("Senha e Confirmacao de senha, nao correspodem").positiveText("Ok").show()
+                MaterialDialog(this).show {
+                    title(R.string.erro)
+                    message(R.string.senhasdiferentes)
+                    positiveButton(R.string.ok)
+                }
                 validacao = false
             }
         }

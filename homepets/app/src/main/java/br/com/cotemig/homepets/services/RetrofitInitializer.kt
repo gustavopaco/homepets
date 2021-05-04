@@ -28,7 +28,7 @@ class RetrofitInitializer {
 
     private val retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://homepets.azurewebsites.net/api/login/")
+        .baseUrl("https://homepets.azurewebsites.net/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
