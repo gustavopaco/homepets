@@ -19,7 +19,7 @@ class MeusPetsAdapter (var context : Context, var list: List<PetsResponse>?) : R
     }
 
     override fun onBindViewHolder(holder: ViewMeusPets, position: Int) {
-        holder.bind(context, list!![position])
+        holder.bind(context,list!![position])
     }
 
     override fun getItemCount(): Int {

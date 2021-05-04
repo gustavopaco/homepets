@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
 import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.PetsResponse
@@ -62,13 +63,21 @@ class DonoMeusPetsFragment : Fragment() {
                         binding.listapets.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
                         getRecycleItemClickListener(it.body())
                     }else{
-                        MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(activity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<PetsResponse>>?, t: Throwable?) {
-                MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+                MaterialDialog(activity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

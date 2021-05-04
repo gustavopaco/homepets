@@ -1,6 +1,5 @@
 package br.com.cotemig.homepets.ui.fragments
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,14 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentPerfilBinding
-import br.com.cotemig.homepets.models.RegisterModel
-import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.models.UpdateUserModel
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.activities.LoginUserActivity
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,21 +64,35 @@ class PerfilFragment : Fragment() {
             ) {
                 response?.let {
                     if(it.code() == 200){
-                        MaterialDialog.Builder(activity).title("Sucesso").content("Dados alterados! Por favor, logue novamente.").positiveText("Ok").show()
-                        SharedPreferenceHelper.saveString(activity,"userpreferences","email","")
-                        SharedPreferenceHelper.saveString(activity,"userpreferences","senha","")
-                        SharedPreferenceHelper.saveString(activity,"userpreferences","nome","")
-                        SharedPreferenceHelper.saveString(activity,"userpreferences","token","")
-                        SharedPreferenceHelper.saveInt(activity,"userpreferences","stats",-1)
-                        goLoginActivity()
+                        MaterialDialog(activity).show {
+                            title(R.string.sucesso)
+                            message(R.string.dadosalterados)
+                            positiveButton(R.string.ok){
+
+                                SharedPreferenceHelper.saveString(activity,"userpreferences","email","")
+                                SharedPreferenceHelper.saveString(activity,"userpreferences","senha","")
+                                SharedPreferenceHelper.saveString(activity,"userpreferences","nome","")
+                                SharedPreferenceHelper.saveString(activity,"userpreferences","token","")
+                                SharedPreferenceHelper.saveInt(activity,"userpreferences","stats",-1)
+                                goLoginActivity()
+                            }
+                        }
                     }else{
-                        MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(activity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+                MaterialDialog(activity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })
@@ -124,7 +134,11 @@ class PerfilFragment : Fragment() {
         }
         if(binding.inputNovaSenha1.text.toString().length >= 5 && binding.inputNovaSenha2.text.toString().length >= 5){
             if(!binding.inputNovaSenha1.text.toString().equals(binding.inputNovaSenha2.text.toString(),false)){
-                MaterialDialog.Builder(activity).title("Erro").content("Nova senha e Confirmacao devem ser a mesma").positiveText("Ok").show()
+                MaterialDialog(activity).show {
+                    title(R.string.erro)
+                    message(R.string.senhaeconfirmacao)
+                    positiveButton(R.string.ok)
+                }
                 validacao = false
             }
         }

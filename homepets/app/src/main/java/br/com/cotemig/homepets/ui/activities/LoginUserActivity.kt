@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityLoginUserBinding
 import br.com.cotemig.homepets.models.AuthModel
 import br.com.cotemig.homepets.models.RegisterModel
@@ -12,7 +13,6 @@ import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,13 +54,21 @@ class LoginUserActivity : AppCompatActivity() {
                         saveAccountInfo(it.body()!!.token,it.body()!!.nome, it.body()!!.stats)
                         goHomeActivity()
                     }else{
-                        MaterialDialog.Builder(this@LoginUserActivity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@LoginUserActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
-                MaterialDialog.Builder(this@LoginUserActivity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+                MaterialDialog(this@LoginUserActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

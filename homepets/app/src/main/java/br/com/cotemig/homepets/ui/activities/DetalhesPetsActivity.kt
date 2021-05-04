@@ -2,13 +2,13 @@ package br.com.cotemig.homepets.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityDetalhesPetsBinding
 import br.com.cotemig.homepets.models.PetsResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +36,6 @@ class DetalhesPetsActivity : AppCompatActivity() {
 
     private fun getDetalhes(){
 
-//        var petsResponse = intent.extras!!.get("objetoPets") as PetsResponse
       var petsResponse = intent.getSerializableExtra("objetoPets") as PetsResponse
         binding.inputNomePet.setText(petsResponse.nome)
         binding.inputRacaPet.setText(petsResponse.raca)
@@ -57,23 +56,36 @@ class DetalhesPetsActivity : AppCompatActivity() {
     private fun deletePet(){
 
         var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
-        var petsResponse = intent.extras!!.get("objetoPets") as PetsResponse
+        var petsResponse = intent.getSerializableExtra("objetoPets") as PetsResponse
 
         RetrofitInitializer().serviceAPI().deletePet(token= "Bearer $token",petsResponse.id).enqueue(object : Callback<Void>{
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {
-                    if(it.code() == 204){
-                        MaterialDialog.Builder(this@DetalhesPetsActivity).theme(Theme.LIGHT).title("Sucesso").content("Pet Deletado!").positiveText("Ok").show()
-                        finish()
+                    if(it.code() == 200){
+                        MaterialDialog(this@DetalhesPetsActivity).show {
+                            title(R.string.sucesso)
+                            message(R.string.petdeletado)
+                            positiveButton(R.string.ok){
+                                finish()
+                            }
+                        }
                     }else{
-                        MaterialDialog.Builder(this@DetalhesPetsActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@DetalhesPetsActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                MaterialDialog.Builder(this@DetalhesPetsActivity).theme(Theme.LIGHT).title("Erro").content("API fora do AR").positiveText("Ok").show()
+                MaterialDialog(this@DetalhesPetsActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
 
 //        var stats = SharedPreferenceHelper.readInt(this@HomeActivity,"userpreferences","stats",-1)
 
-        var stats = 2
+        var stats = 1
 
         if(stats == 1){
             binding.headDonoPets.visibility = View.VISIBLE

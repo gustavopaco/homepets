@@ -29,4 +29,16 @@
     <string name="dados_do_usuario"><u>Dados do Usuario</u></string>
     <string name="detalhes_de_servicos"><u>Detalhes de Servicos</u></string>
     <string name="detalhes_do_pet"><u>Detalhes do Pet</u></string>
+    <string name="dadosalterados">Dados alterados! Por favor, logue novamente.</string>
+    <string name="ok">Ok</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="erro">Erro</string>
+    <string name="senhaeconfirmacao">Nova senha e Confirmacao devem ser a mesma</string>
+    <string name="petdeletado">Pet Deletado!</string>
+    <string name="servicoalterado">Dados do Servico Alterado!</string>
+    <string name="servicodeletado">Servico Deletado!</string>
+    <string name="petcadastrado">Pet Cadastrado com Sucesso</string>
+    <string name="servicocadastrado">Novo Serviço cadastrado!</string>
+    <string name="usuariocadastrado">Usuario cadastrado com sucesso</string>
+    <string name="senhasdiferentes">Senha e Confirmacao de senha, nao correspodem</string>
 </resources>

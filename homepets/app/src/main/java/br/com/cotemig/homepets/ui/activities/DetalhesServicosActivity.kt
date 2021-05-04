@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityDetalhesServicosBinding
 import br.com.cotemig.homepets.models.ServiceModel
 import br.com.cotemig.homepets.models.ServicesResponse
@@ -12,7 +13,6 @@ import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,7 +52,7 @@ class DetalhesServicosActivity : AppCompatActivity() {
 
     private fun getDetalhes(){
 
-        var services = intent.extras!!.get("objeto") as ServicesResponse
+        var services = intent.getSerializableExtra("objeto") as ServicesResponse
 
         binding.inputNomeServico.setText(services.nomeServico)
         binding.inputPrecoServico.setText(binding.inputPrecoServico.formatCurrency((services.preco * 100).toLong()))
@@ -68,7 +68,7 @@ class DetalhesServicosActivity : AppCompatActivity() {
     private fun updateServices(){
 
         var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
-        var services = intent.extras!!.get("objeto") as ServicesResponse
+        var services = intent.getSerializableExtra("objeto") as ServicesResponse
 
         services.nomeServico = binding.inputNomeServico.text.toString()
         services.preco = binding.inputPrecoServico.text.toString().replace("$","").replace(",","").toDouble()
@@ -92,16 +92,31 @@ class DetalhesServicosActivity : AppCompatActivity() {
             ) {
                 response?.let {
                     if(it.code() == 200){
-                        MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Sucesso").content("Dados do Servico Alterado!").positiveText("Ok").show()
-//                        finish()
+                        MaterialDialog(this@DetalhesServicosActivity).show {
+                            title(R.string.sucesso)
+                            message(R.string.servicoalterado)
+                            positiveButton(R.string.ok){
+                                finish()
+                            }
+                        }
+
+
                     }else{
-                        MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@DetalhesServicosActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content("API fora do AR").positiveText("Ok").show()
+                MaterialDialog(this@DetalhesServicosActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })
@@ -118,16 +133,30 @@ class DetalhesServicosActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {
                     if(it.code() == 200){
-                        MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Sucesso").content("Servico Deletado!").positiveText("Ok").show()
-//                        finish()
+                        MaterialDialog(this@DetalhesServicosActivity).show {
+                            title(R.string.sucesso)
+                            message(R.string.servicodeletado)
+                            positiveButton(R.string.ok){
+                                finish()
+                            }
+                        }
+
                     }else{
-                        MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                        MaterialDialog(this@DetalhesServicosActivity).show {
+                            title(R.string.erro)
+                            message(null,it.errorBody()!!.string())
+                            positiveButton(null,"Ok")
+                        }
                     }
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content("API fora do AR").positiveText("Ok").show()
+                MaterialDialog(this@DetalhesServicosActivity).show {
+                    title(R.string.erro)
+                    message(null,"API FORA DO AR")
+                    positiveButton(null,"Ok")
+                }
             }
 
         })

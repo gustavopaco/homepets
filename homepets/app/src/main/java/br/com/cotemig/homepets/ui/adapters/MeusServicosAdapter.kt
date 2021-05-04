@@ -20,7 +20,7 @@ class MeusServicosAdapter(var context: Context, var list: List<ServicesResponse>
     }
 
     override fun onBindViewHolder(holder: ViewServices, position: Int) {
-        holder.bind(context, list!![position])
+        holder.bind(context,list!![position])
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +34,7 @@ class MeusServicosAdapter(var context: Context, var list: List<ServicesResponse>
         private var tipoPreco = binding.txtTipoPreco
         private var currency = binding.inputCurrency
 
-        fun bind(context: Context, item : ServicesResponse){
+        fun bind(context: Context,item : ServicesResponse){
 
             nomeServico.text = item.nomeServico
             precoServico.text = currency.formatCurrency((item.preco*100).toLong()).toString()

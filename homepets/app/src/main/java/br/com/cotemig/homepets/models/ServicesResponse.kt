@@ -7,4 +7,4 @@ data class ServicesResponse(
     var nomeServico : String,
     var preco : Double,
     var tipoPreco : Int
-) : Serializable{}
+) : Serializable
