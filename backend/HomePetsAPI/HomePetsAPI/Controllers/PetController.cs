@@ -24,10 +24,10 @@ namespace HomePetsAPI.Controllers
 
 
             return new PetModel[] {
-                new PetModel(){ id= 1, nome = "Nome 1", raca = "Raça 1", sexo = "M", tipoPet = 0, },
-                new PetModel(){ id= 2, nome = "Nome 2", raca = "Raça 1", sexo = "M", tipoPet = 0, },
-                new PetModel(){ id= 3, nome = "Nome 3", raca = "Raça 1", sexo = "M", tipoPet = 0, },
-                new PetModel(){ id= 4, nome = "Nome 4", raca = "Raça 1", sexo = "M", tipoPet = 0, },
+                new PetModel(){ id= 1, nome = "Nome 1", raca = "Raça 1", sexo = "Masculino", tipoPet = 1, },
+                new PetModel(){ id= 2, nome = "Nome 2", raca = "Raça 1", sexo = "Feminino", tipoPet = 2, },
+                new PetModel(){ id= 3, nome = "Nome 3", raca = "Raça 1", sexo = "Masculino", tipoPet = 2, },
+                new PetModel(){ id= 4, nome = "Nome 4", raca = "Raça 1", sexo = "Feminino", tipoPet = 1, },
             };
         }
 
@@ -35,7 +35,7 @@ namespace HomePetsAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<PetModel> Get(int id)
         {
-            return new PetModel() { id = id, nome = "Nome 1", raca = "Raça 1", sexo = "M", tipoPet = 0, };
+            return new PetModel() { id = 1, nome = "Nome 1", raca = "Raça 1", sexo = "Masculino", tipoPet = 1, };
         }
 
         // POST api/values
