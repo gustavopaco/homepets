@@ -1,19 +1,23 @@
 package br.com.cotemig.homepets.ui.fragments
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentPerfilBinding
 import br.com.cotemig.homepets.models.RegisterModel
 import br.com.cotemig.homepets.models.TokenModelResponse
+import br.com.cotemig.homepets.models.UpdateUserModel
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.activities.LoginUserActivity
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
+import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,42 +44,48 @@ class PerfilFragment : Fragment() {
         binding.btnSalvarPerfil.setOnClickListener {
 
            if(validaCampos()){
-
-               /* RETROFIT AQUI*/
-               var nome = binding.inputNomeUsuario.text.toString()
-               var senha = binding.inputNovaSenha1.text.toString()
-               var stats = SharedPreferenceHelper.readInt(activity,"userpreferences","stats",-1)
-
-               var registerModel = RegisterModel(nome,email.toString(),senha,stats)
-
-               RetrofitInitializer().serviceAPI().updateUser(registerModel).enqueue(object : Callback<TokenModelResponse>{
-                   override fun onResponse(
-                       call: Call<TokenModelResponse>,
-                       response: Response<TokenModelResponse>
-                   ) {
-                       response?.let {
-                           if(it.code() == 200){
-                               MaterialDialog.Builder(activity).title("Sucesso").content("Dados alterados! Por favor, logue novamente.").positiveText("Ok").show()
-                               SharedPreferenceHelper.saveString(activity,"userpreferences","email","")
-                               SharedPreferenceHelper.saveString(activity,"userpreferences","senha","")
-                               SharedPreferenceHelper.saveString(activity,"userpreferences","token","")
-                               SharedPreferenceHelper.saveInt(activity,"userpreferences","stats",-1)
-                               goLoginActivity()
-                           }else{
-                               MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
-                           }
-                       }
-                   }
-
-                   override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
-                       MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
-                   }
-
-               })
+               updateUser()
            }
         }
 
         return binding.root
+    }
+
+    private fun updateUser(){
+
+        var activity = context as HomeActivity
+        var nome = binding.inputNomeUsuario.text.toString()
+        var senha = binding.inputNovaSenha1.text.toString()
+        var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
+
+        var updateUserModel = UpdateUserModel(nome,senha)
+
+        /* RETROFIT AQUI*/
+        RetrofitInitializer().serviceAPI().updateUser(token= "Bearer $token",updateUserModel).enqueue(object : Callback<Void>{
+            override fun onResponse(
+                call: Call<Void>,
+                response: Response<Void>
+            ) {
+                response?.let {
+                    if(it.code() == 200){
+                        MaterialDialog.Builder(activity).title("Sucesso").content("Dados alterados! Por favor, logue novamente.").positiveText("Ok").show()
+                        SharedPreferenceHelper.saveString(activity,"userpreferences","email","")
+                        SharedPreferenceHelper.saveString(activity,"userpreferences","senha","")
+                        SharedPreferenceHelper.saveString(activity,"userpreferences","nome","")
+                        SharedPreferenceHelper.saveString(activity,"userpreferences","token","")
+                        SharedPreferenceHelper.saveInt(activity,"userpreferences","stats",-1)
+                        goLoginActivity()
+                    }else{
+                        MaterialDialog.Builder(activity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                MaterialDialog.Builder(activity).title("Erro").content("API FORA DO AR").positiveText("Ok").show()
+            }
+
+        })
     }
 
     private fun validaCampos() : Boolean{

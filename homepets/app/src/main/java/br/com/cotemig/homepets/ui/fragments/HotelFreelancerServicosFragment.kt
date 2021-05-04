@@ -51,8 +51,9 @@ class HotelFreelancerServicosFragment : Fragment() {
 
         var activity = context as HomeActivity
         var email = SharedPreferenceHelper.readString(activity, "userpreferences", "email", "")
+        var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
 
-        RetrofitInitializer().serviceAPI().getServices(email.toString())
+        RetrofitInitializer().serviceAPI().getServices(token= "Bearer $token")
             .enqueue(object : Callback<List<ServicesResponse>> {
 
                 override fun onResponse(

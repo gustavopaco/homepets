@@ -47,10 +47,10 @@ class DonoMeusPetsFragment : Fragment() {
     fun getMeusPets(){
 
         var activity = context as HomeActivity
-        var email = SharedPreferenceHelper.readString(activity,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
 
          /* RETROFIT AQUI */
-        RetrofitInitializer().serviceAPI().getPets(email.toString()).enqueue(object : Callback<List<PetsResponse>>{
+        RetrofitInitializer().serviceAPI().getPets(token= "Bearer $token").enqueue(object : Callback<List<PetsResponse>>{
 
             override fun onResponse(
                 call: Call<List<PetsResponse>>?,

@@ -51,7 +51,7 @@ class LoginUserActivity : AppCompatActivity() {
             override fun onResponse(call: Call<TokenModelResponse>, response: Response<TokenModelResponse>) {
                 response?.let {
                     if(it.code() == 200){
-                        saveAccountInfo(it.body()!!.token, it.body()!!.stats)
+                        saveAccountInfo(it.body()!!.token,it.body()!!.nome, it.body()!!.stats)
                         goHomeActivity()
                     }else{
                         MaterialDialog.Builder(this@LoginUserActivity).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
@@ -67,10 +67,11 @@ class LoginUserActivity : AppCompatActivity() {
 
     }
 
-    private fun saveAccountInfo(token: String, stats: Int){
+    private fun saveAccountInfo(token: String, nome : String, stats: Int){
         SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","email",binding.txtLogin.text.toString())
         SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","senha",binding.txtPassword.text.toString())
         SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","token",token)
+        SharedPreferenceHelper.saveString(this@LoginUserActivity,"userpreferences","nome",nome)
         SharedPreferenceHelper.saveInt(this@LoginUserActivity,"userpreferences","stats",stats)
     }
 

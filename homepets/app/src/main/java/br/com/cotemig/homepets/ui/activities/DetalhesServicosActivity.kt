@@ -67,7 +67,7 @@ class DetalhesServicosActivity : AppCompatActivity() {
 
     private fun updateServices(){
 
-        var email = SharedPreferenceHelper.readString(this,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
         var services = intent.extras!!.get("objeto") as ServicesResponse
 
         services.nomeServico = binding.inputNomeServico.text.toString()
@@ -80,27 +80,27 @@ class DetalhesServicosActivity : AppCompatActivity() {
         }
 
 
-        var servicesModel = ServiceModel(email.toString(),services.id,services.nomeServico,services.preco,services.tipoPreco)
+        var servicesModel = ServiceModel(services.id,services.nomeServico,services.preco,services.tipoPreco)
 
 
         /* RETROFIT AQUI */
-        RetrofitInitializer().serviceAPI().updateService(servicesModel).enqueue(object : Callback<TokenModelResponse>{
+        RetrofitInitializer().serviceAPI().createService(token= "Bearer $token",servicesModel).enqueue(object : Callback<Void>{
 
             override fun onResponse(
-                call: Call<TokenModelResponse>,
-                response: Response<TokenModelResponse>
+                call: Call<Void>,
+                response: Response<Void>
             ) {
                 response?.let {
                     if(it.code() == 200){
                         MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Sucesso").content("Dados do Servico Alterado!").positiveText("Ok").show()
-                        finish()
+//                        finish()
                     }else{
                         MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                     }
                 }
             }
 
-            override fun onFailure(call: Call<TokenModelResponse>, t: Throwable) {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content("API fora do AR").positiveText("Ok").show()
             }
 
@@ -110,16 +110,16 @@ class DetalhesServicosActivity : AppCompatActivity() {
     }
 
     private fun deleteService(){
-        var email = SharedPreferenceHelper.readString(this,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
         var services = intent.extras!!.get("objeto") as ServicesResponse
 
-        RetrofitInitializer().serviceAPI().deleteService(email.toString(),services.id).enqueue(object : Callback<Void>{
+        RetrofitInitializer().serviceAPI().deleteService(token= "Bearer $token",services.id).enqueue(object : Callback<Void>{
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {
-                    if(it.code() == 204){
+                    if(it.code() == 200){
                         MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Sucesso").content("Servico Deletado!").positiveText("Ok").show()
-                        finish()
+//                        finish()
                     }else{
                         MaterialDialog.Builder(this@DetalhesServicosActivity).theme(Theme.LIGHT).title("Erro").content(it.errorBody()!!.string()).positiveText("Ok").show()
                     }

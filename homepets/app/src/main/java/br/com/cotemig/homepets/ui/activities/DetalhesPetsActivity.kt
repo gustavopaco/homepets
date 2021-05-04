@@ -36,8 +36,8 @@ class DetalhesPetsActivity : AppCompatActivity() {
 
     private fun getDetalhes(){
 
-        var petsResponse = intent.extras!!.get("objetoPets") as PetsResponse
-
+//        var petsResponse = intent.extras!!.get("objetoPets") as PetsResponse
+      var petsResponse = intent.getSerializableExtra("objetoPets") as PetsResponse
         binding.inputNomePet.setText(petsResponse.nome)
         binding.inputRacaPet.setText(petsResponse.raca)
 
@@ -56,10 +56,10 @@ class DetalhesPetsActivity : AppCompatActivity() {
 
     private fun deletePet(){
 
-        var email = SharedPreferenceHelper.readString(this,"userpreferences","email","")
+        var token = SharedPreferenceHelper.readString(this,"userpreferences","token","")
         var petsResponse = intent.extras!!.get("objetoPets") as PetsResponse
 
-        RetrofitInitializer().serviceAPI().deletePet(email.toString(),petsResponse.id).enqueue(object : Callback<Void>{
+        RetrofitInitializer().serviceAPI().deletePet(token= "Bearer $token",petsResponse.id).enqueue(object : Callback<Void>{
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {
