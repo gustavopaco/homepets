@@ -66,6 +66,9 @@ namespace HomePetsAPI.Controllers
                 return new TokenModel()
                 {
                     token = token,
+                    nome = "NOME DA PESSOA",
+                    stats = 0,//tipo de pessoa
+
                     //completeRegistration = bool true, false/// ?
                 };
 
