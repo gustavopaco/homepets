@@ -18,7 +18,7 @@ interface API {
 
     @POST("URL_UPDATE_PERFIL_USUARIO_AQUI")
     fun updateUser(
-        @Body registerModel: RegisterModel
+        @Body updateUserModel: UpdateUserModel
     ) : Call<TokenModelResponse>
 
     @POST("URL_ADD_PET_AQUI")
