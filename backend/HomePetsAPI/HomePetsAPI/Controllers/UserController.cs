@@ -1,4 +1,5 @@
 ﻿using HomePets.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace HomePetsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         //// GET api/values
@@ -35,6 +37,11 @@ namespace HomePetsAPI.Controllers
         [HttpPost]
         public void Post([FromBody] UserModel value)
         {
+            var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
+            var UsuarioLogadoId = Int32.Parse(userDataClaim);
+
+
+            //Alterar dados do usuario.
 
         }
 
