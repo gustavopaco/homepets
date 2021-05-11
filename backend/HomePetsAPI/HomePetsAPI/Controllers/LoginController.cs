@@ -35,7 +35,7 @@ namespace HomePetsAPI.Controllers
                 //1- Cliente
                 //2- Dono Hotel
                 //3- Freelancer
-                UsuarioApp.SalvarUsuario(0, model.email, model.nome, model.senha, (TipoUsuario)model.stats);
+                UsuarioApp.CriarUsuario(model.email, model.nome, model.senha, (TipoUsuario)model.stats);
 
                 var usuario = UoW.Usuarios.ObterUsuarioPeloEmail(model.email);
 

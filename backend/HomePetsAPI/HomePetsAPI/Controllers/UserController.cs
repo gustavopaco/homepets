@@ -1,4 +1,5 @@
-﻿using HomePets.Domain;
+﻿using HomePets.App;
+using HomePets.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,25 +14,17 @@ namespace HomePetsAPI.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
-        //// GET api/values
-        //[HttpGet]
-        //public ActionResult<IEnumerable<UserModel>> Get()
-        //{
-        //    return new UserModel[] {
-        //        new UserModel(){  nome="Nome 1", email = "email.com"},
-        //        new UserModel(){ email = "email.com", id = 1, nomeServico = "Serviço 2", preco = 2.00, tipoPreco = 1 },
-        //        new UserModel(){ email = "email.com", id = 1, nomeServico = "Serviço 3", preco = 3.00, tipoPreco = 1 },
-        //        new UserModel(){ email = "email.com", id = 1, nomeServico = "Serviço 4", preco = 4.00, tipoPreco = 1 },
-        //        new UserModel(){ email = "email.com", id = 1, nomeServico = "Serviço 5", preco = 5.00, tipoPreco = 1 },
-        //    };
-        //}
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public ActionResult<ServiceModel> Get(int id)
-        //{
-        //    return new ServiceModel() { email = "email.com", id = 1, nomeServico = "Serviço 1", preco = 1.00, tipoPreco = 1 };
-        //}
+        private readonly IUoW UoW;
+        UsuarioApp UsuarioApp = null;
+
+
+        public UserController(IUoW uow)
+        {
+            UoW = uow;
+            UsuarioApp = new UsuarioApp(UoW);
+        }
+
 
         // POST api/values
         [HttpPost]
@@ -42,20 +35,7 @@ namespace HomePetsAPI.Controllers
 
 
             //Alterar dados do usuario.
-
+            UsuarioApp.AlterarDados(UsuarioLogadoId, value.nome, value.senha);
         }
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] UserModel value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-
-        //}
     }
 }
