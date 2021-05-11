@@ -8,6 +8,6 @@ namespace HomePets.Domain
 
         Usuario ObterUsuarioPeloEmail(string Email);
 
-        bool ExisteEmail(int Id, string Email);
+        bool ExisteEmail(string Email);
     }
 }

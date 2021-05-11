@@ -32,9 +32,9 @@ namespace HomePets.Data
                 }).SingleOrDefault()?.s;
         }
 
-        public bool ExisteEmail(int Id, string Email)
+        public bool ExisteEmail(string Email)
         {
-            return AsQueryable().Where(p => !p.Deleted && p.Email == Email && p.Id != Id).Any();
+            return AsQueryable().Where(p => !p.Deleted && p.Email == Email).Any();
         }
     }
 }
