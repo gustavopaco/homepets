@@ -1,4 +1,6 @@
-﻿using HomePets.Domain;
+﻿using HomePets.App;
+using HomePets.Data;
+using HomePets.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,29 +15,54 @@ namespace HomePetsAPI.Controllers
     [Authorize]
     public class PetController : ControllerBase
     {
+        private readonly IUoW UoW;
+        PetApp PetApp = null;
+
+        public PetController(IUoW uow)
+        {
+            UoW = uow;
+            PetApp = new PetApp(UoW);
+        }
+
+
+
+
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<PetModel>> Get()
         {
-
             var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
-
-
-            return new PetModel[] {
-                new PetModel(){ id= 1, nome = "Nome 1", raca = "Raça 1", sexo = "Masculino", tipoPet = 1, },
-                new PetModel(){ id= 2, nome = "Nome 2", raca = "Raça 1", sexo = "Feminino", tipoPet = 2, },
-                new PetModel(){ id= 3, nome = "Nome 3", raca = "Raça 1", sexo = "Masculino", tipoPet = 2, },
-                new PetModel(){ id= 4, nome = "Nome 4", raca = "Raça 1", sexo = "Feminino", tipoPet = 1, },
-            };
+            return UoW.Pets.ObterPets(UsuarioLogadoId)
+                .Select(s => new PetModel()
+                {
+                    id = s.Id,
+                    nome = s.Nome,
+                    raca = s.Raca,
+                    sexo = s.Sexo,
+                    tipoPet = s.Tipo,
+                }).ToList();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<PetModel> Get(int id)
         {
-            return new PetModel() { id = 1, nome = "Nome 1", raca = "Raça 1", sexo = "Masculino", tipoPet = 1, };
+            var s = UoW.Pets.ObterPet(id);
+            if (s == null)
+                return NotFound("Pet não encontrado.");
+
+
+            return new PetModel()
+            {
+                id = s.Id,
+                nome = s.Nome,
+                raca = s.Raca,
+                sexo = s.Sexo,
+                tipoPet = s.Tipo,
+            };
         }
 
         // POST api/values
@@ -45,22 +72,8 @@ namespace HomePetsAPI.Controllers
             var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
-            if (value.id == 0)
-            {
-                //inclusao
-            }
-            else
-            {
-                //alteracao
-            }
-
+            PetApp.SalvarPet(value.id, value.nome, value.raca, value.sexo, value.tipoPet, UsuarioLogadoId);
         }
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] PetModel value)
-        //{
-        //}
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
@@ -70,6 +83,7 @@ namespace HomePetsAPI.Controllers
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
 
+            PetApp.ApagarPet(id, UsuarioLogadoId);
         }
     }
 }

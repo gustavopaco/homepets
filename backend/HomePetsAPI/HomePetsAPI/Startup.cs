@@ -1,4 +1,5 @@
 ﻿using HomePets.Data;
+using HomePets.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,7 @@ namespace HomePetsAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<EFContext>(item => item.UseSqlServer(Configuration.GetConnectionString("MS_TableConnectionString")));
+            services.AddScoped<IUoW, UoW>();
 
 
             var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");

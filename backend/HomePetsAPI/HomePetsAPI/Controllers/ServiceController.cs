@@ -1,4 +1,5 @@
-﻿using HomePets.Domain;
+﻿using HomePets.App;
+using HomePets.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,19 @@ namespace HomePetsAPI.Controllers
     [Authorize]
     public class ServiceController : ControllerBase
     {
+
+        private readonly IUoW UoW;
+        ServicoApp ServicoApp = null;
+
+        public ServiceController(IUoW uow)
+        {
+            UoW = uow;
+            ServicoApp = new ServicoApp(UoW);
+        }
+
+
+
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<ServiceModel>> Get()
@@ -20,21 +34,32 @@ namespace HomePetsAPI.Controllers
             var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
-
-            return new ServiceModel[] {
-                new ServiceModel(){ id = 1, nomeServico = "Serviço 1", preco = 1.00, tipoPreco = 1 },
-                new ServiceModel(){ id = 2, nomeServico = "Serviço 2", preco = 2.00, tipoPreco = 2 },
-                new ServiceModel(){ id = 3, nomeServico = "Serviço 3", preco = 3.00, tipoPreco = 3 },
-                new ServiceModel(){ id = 4, nomeServico = "Serviço 4", preco = 4.00, tipoPreco = 2 },
-                new ServiceModel(){ id = 5, nomeServico = "Serviço 5", preco = 5.00, tipoPreco = 1 },
-            };
+            return UoW.Servicos.ObterServicos(UsuarioLogadoId)
+                .Select(s => new ServiceModel()
+                {
+                    id = s.Id,
+                    nomeServico = s.Nome,
+                    preco = s.Preco,
+                    tipoPreco = s.TipoPreco,
+                }).ToList();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<ServiceModel> Get(int id)
         {
-            return new ServiceModel() { id = id, nomeServico = "Serviço 1", preco = 1.00, tipoPreco = 1 };
+            var s = UoW.Servicos.ObterServico(id);
+            if (s == null)
+                return NotFound("Serviço não encontrado.");
+
+
+            return new ServiceModel()
+            {
+                id = s.Id,
+                nomeServico = s.Nome,
+                preco = s.Preco,
+                tipoPreco = s.TipoPreco,
+            };
         }
 
         // POST api/values
@@ -44,14 +69,7 @@ namespace HomePetsAPI.Controllers
             var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
-            if (value.id == 0)
-            {
-                //inclusao
-            }
-            else
-            {
-                //alteracao
-            }
+            ServicoApp.SalvarServico(value.id, value.nomeServico, value.preco, value.tipoPreco, UsuarioLogadoId);
         }
 
         // DELETE api/values/5
@@ -62,7 +80,7 @@ namespace HomePetsAPI.Controllers
             var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
 
-
+            ServicoApp.ApagarServico(id, UsuarioLogadoId);
         }
     }
 }

@@ -8,39 +8,41 @@ namespace HomePets.App
 {
     public class UsuarioApp
     {
-        private readonly EFContext _context;
+        private readonly IUoW _uow;
 
-        public UsuarioApp(EFContext context)
+        public UsuarioApp(IUoW uow)
         {
-            _context = context;
+            _uow = uow;
         }
 
-        public int SalvarUsuario(String email)
+        public void SalvarUsuario(int Id, String email, string nome, string senha, TipoUsuario tipo)
         {
 
-            var validacaoEmail = _context.Usuarios.Where(p => !p.Deleted && p.Email == email).Any();
+            var validacaoEmail = _uow.Usuarios.ExisteEmail(Id, email);
             if (validacaoEmail)
                 throw new Exception("Email já cadastrado.");
 
-
-            var Id = 0;
-
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
-                var oUsuario = new Usuario()
+                Usuario oUsuario = _uow.Usuarios.ObterUsuarioPeloId(Id);
+
+                if (oUsuario == null)
                 {
-                    Email = email,
-                                       
+                    oUsuario = new Usuario();
+                    _uow.Usuarios.Add(oUsuario);
+                }
 
-                };
 
-                _context.Usuarios.Add(oUsuario);
-                _context.SaveChanges();
+                oUsuario.Email = email;
+                oUsuario.Nome = nome;
+                oUsuario.Tipo = tipo;
+                oUsuario.Senha = senha;
+
+
+                _uow.SaveChanges();
 
                 scope.Complete();
             }
-            return Id;
         }
-
     }
 }

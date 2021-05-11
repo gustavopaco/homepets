@@ -14,6 +14,8 @@ namespace HomePets.Data
 
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Pet> Pets { get; set; }
+        public DbSet<Servico> Servicos { get; set; }
 
     }
 }

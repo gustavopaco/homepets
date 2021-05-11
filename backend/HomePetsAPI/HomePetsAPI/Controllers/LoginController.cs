@@ -15,13 +15,14 @@ namespace HomePetsAPI.Controllers
     public class LoginController : ControllerBase
     {
 
+        private readonly IUoW UoW;
         UsuarioApp UsuarioApp = null;
 
 
-        public LoginController(EFContext context)
+        public LoginController(IUoW uow)
         {
-            UsuarioApp = new UsuarioApp(context);
-
+            UoW = uow;
+            UsuarioApp = new UsuarioApp(UoW);
         }
 
 
@@ -31,11 +32,14 @@ namespace HomePetsAPI.Controllers
         {
             try
             {
-                var id = UsuarioApp.SalvarUsuario(model.email);
+                //1- Cliente
+                //2- Dono Hotel
+                //3- Freelancer
+                UsuarioApp.SalvarUsuario(0, model.email, model.nome, model.senha, (TipoUsuario)model.stats);
 
+                var usuario = UoW.Usuarios.ObterUsuarioPeloEmail(model.email);
 
-                var token = TokenService.GenerateToken(id.ToString(), model.nome, "ROLE"); //TODO: definir qual será a ROLE baseado no perfil do usuario : cliente, freela, dono de hotel
-
+                var token = TokenService.GenerateToken(usuario.Id.ToString(), usuario.Nome, ((int)usuario.Tipo).ToString());
 
                 return new TokenModel() { token = token };
 
@@ -53,23 +57,21 @@ namespace HomePetsAPI.Controllers
         {
             try
             {
-                //TODO : obter usuario via Rep
+                //obter usuario via Rep
+                var usuario = UoW.Usuarios.ObterUsuarioPeloEmail(model.email);
 
-                //TODO:  validar senha
-                //return Unauthorized();
+                if (usuario.Senha != model.senha)
+                    return Unauthorized();
 
                 //Criar token
-                var id = 0;
-                var nome = "";
-                var token = TokenService.GenerateToken(id.ToString(), nome, "ROLE"); //TODO: definir qual será a ROLE baseado no perfil do usuario : cliente, freela, dono de hotel
+                var token = TokenService.GenerateToken(usuario.Id.ToString(), usuario.Nome, ((int)usuario.Tipo).ToString());
+
 
                 return new TokenModel()
                 {
                     token = token,
-                    nome = "NOME DA PESSOA",
-                    stats = 0,//tipo de pessoa
-
-                    //completeRegistration = bool true, false/// ?
+                    nome = usuario.Nome,
+                    stats = (int)usuario.Tipo,
                 };
 
             }
