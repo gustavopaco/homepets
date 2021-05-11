@@ -8,39 +8,55 @@ namespace HomePets.App
 {
     public class PetApp
     {
-        private readonly EFContext _context;
+        private readonly IUoW _uow;
 
-        public PetApp(EFContext context)
+        public PetApp(IUoW uow)
         {
-            _context = context;
+            _uow = uow;
         }
 
-        public int SalvarPet(String nome)
+        public void SalvarPet(int Id, string nome, string raca, string sexo, int tipo, int usuarioId)
         {
-
-            //var validacaoEmail = _context.Pets.Where(p => !p.Deleted && p.Email == email).Any();
-            //if (validacaoEmail)
-            //    throw new Exception("Email já cadastrado.");
-
-
-            var Id = 0;
-
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
-                var oPet = new Pet()
+                Pet oPet = _uow.Pets.ObterPet(Id);
+
+                if (oPet == null)
                 {
-                    Nome = nome,
+                    oPet = new Pet();
+                    _uow.Pets.Add(oPet);
+                }
 
+                oPet.Nome = nome;
+                oPet.Raca = raca;
+                oPet.Sexo = sexo;
+                oPet.Tipo = tipo;
+                oPet.UsuarioId = usuarioId;
 
-                };
-
-                _context.Pets.Add(oPet);
-                _context.SaveChanges();
+                _uow.SaveChanges();
 
                 scope.Complete();
             }
-            return Id;
         }
 
+        public void ApagarPet(int Id, int usuarioId)
+        {
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
+            {
+                Pet oPet = _uow.Pets.ObterPet(Id);
+
+                if (oPet == null)
+                    throw new Exception("Pet não encontrado.");
+
+                if (oPet.UsuarioId != usuarioId)
+                    throw new Exception("Usuário não tem permissão.");
+
+                oPet.Deleted = true;
+
+                _uow.SaveChanges();
+
+                scope.Complete();
+            }
+        }
     }
 }

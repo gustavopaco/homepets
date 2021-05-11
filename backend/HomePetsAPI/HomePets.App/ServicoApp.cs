@@ -8,39 +8,54 @@ namespace HomePets.App
 {
     public class ServicoApp
     {
-        private readonly EFContext _context;
+        private readonly IUoW _uow;
 
-        public ServicoApp(EFContext context)
+        public ServicoApp(IUoW uow)
         {
-            _context = context;
+            _uow = uow;
         }
 
-        public int SalvarServico(String nome)
+        public void SalvarServico(int Id, String nome, double preco, int tipoPreco, int usuarioId)
         {
-
-            //var validacaoEmail = _context.Pets.Where(p => !p.Deleted && p.Email == email).Any();
-            //if (validacaoEmail)
-            //    throw new Exception("Email já cadastrado.");
-
-
-            var Id = 0;
-
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
-                var oServico = new Servico()
+                Servico oServico = _uow.Servicos.ObterServico(Id);
+
+                if (oServico == null)
                 {
-                    Nome = nome,
+                    oServico = new Servico();
+                    _uow.Servicos.Add(oServico);
+                }
 
+                oServico.Nome = nome;
+                oServico.Preco = preco;
+                oServico.TipoPreco = tipoPreco;
+                oServico.UsuarioId = usuarioId;
 
-                };
-
-                _context.Servicos.Add(oServico);
-                _context.SaveChanges();
+                _uow.SaveChanges();
 
                 scope.Complete();
             }
-            return Id;
         }
 
+        public void ApagarServico(int Id, int usuarioId)
+        {
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
+            {
+                Servico oServico = _uow.Servicos.ObterServico(Id);
+
+                if (oServico == null)
+                    throw new Exception("Serviço não encontrado.");
+
+                if (oServico.UsuarioId != usuarioId)
+                    throw new Exception("Usuário não tem permissão.");
+
+                oServico.Deleted = true;
+
+                _uow.SaveChanges();
+
+                scope.Complete();
+            }
+        }
     }
 }

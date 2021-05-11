@@ -13,7 +13,17 @@ namespace HomePets.Domain
 
         [Column("PetId")]
         public override int Id { get; set; }
-        
+
         public string Nome { get; set; }
+
+        public string Raca { get; set; }
+
+        public string Sexo { get; set; }
+
+        public int Tipo { get; set; }
+
+
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
