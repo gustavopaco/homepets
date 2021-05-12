@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityHomeBinding
 import br.com.cotemig.homepets.ui.fragments.*
+import br.com.cotemig.homepets.util.SharedPreferenceHelper
 
 class HomeActivity : AppCompatActivity() {
 
@@ -18,9 +19,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        var stats = SharedPreferenceHelper.readInt(this@HomeActivity,"userpreferences","stats",-1)
-
-        var stats = 1
+        var stats = SharedPreferenceHelper.readInt(this@HomeActivity,"userpreferences","stats",-1)
 
         if(stats == 1){
             binding.headDonoPets.visibility = View.VISIBLE
