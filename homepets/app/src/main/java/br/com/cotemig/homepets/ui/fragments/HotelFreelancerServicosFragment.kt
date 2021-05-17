@@ -1,8 +1,6 @@
 package br.com.cotemig.homepets.ui.fragments
 
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.ColorFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,22 +10,22 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentHotelFreelancerServicosBinding
-import br.com.cotemig.homepets.models.ServiceModel
 import br.com.cotemig.homepets.models.ServicesResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.DetalhesServicosActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity
 import br.com.cotemig.homepets.ui.activities.HotelFreelancerAddServicoActivity
 import br.com.cotemig.homepets.ui.adapters.MeusServicosAdapter
-import br.com.cotemig.homepets.util.RecyclerItemClickListener
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.Serializable
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
-class HotelFreelancerServicosFragment : Fragment() {
+class HotelFreelancerServicosFragment : Fragment(), MeusServicosAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentHotelFreelancerServicosBinding
 
@@ -44,11 +42,12 @@ class HotelFreelancerServicosFragment : Fragment() {
             goAddNovoServico()
         }
 
+        swipeList()
+
         return binding.root
     }
 
-    private fun getServices() {
-
+    private fun getServices(){
         var activity = context as HomeActivity
         var token = SharedPreferenceHelper.readString(activity,"userpreferences","token","")
 
@@ -58,12 +57,11 @@ class HotelFreelancerServicosFragment : Fragment() {
                 override fun onResponse(
                     call: Call<List<ServicesResponse>>,
                     response: Response<List<ServicesResponse>>
-                ) {
+                ){
                     response?.let {
                         if (it.code() == 200) {
-                            binding.listaservicos.adapter = MeusServicosAdapter(activity, it.body())
+                            binding.listaservicos.adapter = MeusServicosAdapter(activity, it.body(),this@HotelFreelancerServicosFragment)
                             binding.listaservicos.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                            getRecycleItemClickListener(it.body())
                         } else {
                             MaterialDialog(activity).show {
                                 title(R.string.erro)
@@ -83,7 +81,6 @@ class HotelFreelancerServicosFragment : Fragment() {
                 }
 
             })
-
     }
 
     private fun goAddNovoServico() {
@@ -101,23 +98,20 @@ class HotelFreelancerServicosFragment : Fragment() {
         }
     }
 
-    private fun getRecycleItemClickListener(lista : List<ServicesResponse>?) {
-        binding.listaservicos.addOnItemTouchListener(RecyclerItemClickListener(context as HomeActivity,binding.listaservicos,object : RecyclerItemClickListener.OnItemClickListener {
+    private fun swipeList(){
+        binding.swipe.setOnRefreshListener {
+            getServices()
 
-                    override fun onItemClick(view: View?, position: Int) {
+            Executors.newSingleThreadScheduledExecutor().schedule({
+                binding.swipe.isRefreshing = false
+            },1,TimeUnit.SECONDS)
+        }
+    }
 
-                        var services : ServicesResponse = lista!![position]
-                        var intent =Intent(context as HomeActivity, DetalhesServicosActivity::class.java)
-                        intent.putExtra("objeto", services as Serializable)
-                        startActivity(intent)
-                    }
-
-                    override fun onLongItemClick(view: View?, position: Int) {
-                        TODO("Not yet implemented")
-                    }
-
-                })
-        )
+    override fun OnItemClick(position: Int, servico: ServicesResponse) {
+        var intent =Intent(context as HomeActivity, DetalhesServicosActivity::class.java)
+        intent.putExtra("objeto", servico as Serializable)
+        startActivity(intent)
 
     }
 }

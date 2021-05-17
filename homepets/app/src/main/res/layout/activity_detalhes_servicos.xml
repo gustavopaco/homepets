@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.DetalhesServicosActivity"
-    android:background="@color/bghome">
+    android:background="@drawable/backgroundpets">
 
     <ImageButton
         android:id="@+id/btn_voltar"

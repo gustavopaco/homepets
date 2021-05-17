@@ -69,9 +69,9 @@ class PerfilFragment : Fragment() {
                             message(R.string.dadosalterados)
                             positiveButton(R.string.ok){
 
+                                SharedPreferenceHelper.saveString(activity,"userpreferences","nome","")
                                 SharedPreferenceHelper.saveString(activity,"userpreferences","email","")
                                 SharedPreferenceHelper.saveString(activity,"userpreferences","senha","")
-                                SharedPreferenceHelper.saveString(activity,"userpreferences","nome","")
                                 SharedPreferenceHelper.saveString(activity,"userpreferences","token","")
                                 SharedPreferenceHelper.saveInt(activity,"userpreferences","stats",-1)
                                 goLoginActivity()

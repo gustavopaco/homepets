@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentDonoMeusPetsBinding
-import br.com.cotemig.homepets.models.PetModel
 import br.com.cotemig.homepets.models.PetsResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.ui.activities.DetalhesPetsActivity
@@ -24,11 +23,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.Serializable
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 
-class DonoMeusPetsFragment : Fragment() {
+class DonoMeusPetsFragment : Fragment(), MeusPetsAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentDonoMeusPetsBinding
+    private var Swipe : SwipeRefreshLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,8 @@ class DonoMeusPetsFragment : Fragment() {
         binding.addNovoPet.setOnClickListener {
             goAddPetActivity()
         }
+
+        swipeView()
 
         return binding.root
     }
@@ -59,9 +63,8 @@ class DonoMeusPetsFragment : Fragment() {
             ) {
                 response?.let {
                     if(it.code() == 200){
-                        binding.listapets.adapter = MeusPetsAdapter(activity,it.body())
+                        binding.listapets.adapter = MeusPetsAdapter(activity,it.body(),this@DonoMeusPetsFragment)
                         binding.listapets.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
-                        getRecycleItemClickListener(it.body())
                     }else{
                         MaterialDialog(activity).show {
                             title(R.string.erro)
@@ -88,22 +91,20 @@ class DonoMeusPetsFragment : Fragment() {
         startActivity(Intent(activity,DonoAddPetActivity::class.java))
     }
 
-    private fun getRecycleItemClickListener(lista : List<PetsResponse>?) {
-        binding.listapets.addOnItemTouchListener(RecyclerItemClickListener(context as HomeActivity,binding.listapets,object : RecyclerItemClickListener.OnItemClickListener{
+    private fun swipeView(){
 
-            override fun onItemClick(view: View?, position: Int) {
+        binding.swipe.setOnRefreshListener {
+            getMeusPets()
+            Executors.newSingleThreadScheduledExecutor().schedule({
+                binding.swipe.isRefreshing = false
+            }, 1,TimeUnit.SECONDS)
+        }
 
-                var petsResponse : PetsResponse = lista!![position]
-                var intent = Intent(context as HomeActivity,DetalhesPetsActivity::class.java)
-                intent.putExtra("objetoPets", petsResponse as Serializable)
-                startActivity(intent)
-            }
-
-            override fun onLongItemClick(view: View?, position: Int) {
-                TODO("Not yet implemented")
-            }
-
-        }))
     }
 
+    override fun OnItemClick(position: Int, pet : PetsResponse) {
+        var intent = Intent(context as HomeActivity,DetalhesPetsActivity::class.java)
+        intent.putExtra("objetoPets", pet as Serializable)
+        startActivity(intent)
+    }
 }
