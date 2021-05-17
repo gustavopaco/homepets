@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.activities.RegisterActivity">
+
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/homepetsbgless"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="100dp"/>
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="250dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txt_registerNome"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@id/txt_registerMail"
+            android:fontFamily="@font/montserratmedium"
+            android:hint="@string/informe_seu_nome"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/txt_registerMail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_marginVertical="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:inputType="textWebEmailAddress"
+            android:hint="@string/informe_seu_e_mail"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/txt_registerPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/txt_registerMail"
+            android:fontFamily="@font/montserratmedium"
+            android:hint="@string/digite_sua_senha"
+            android:inputType="textWebPassword"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/txt_registerRepeatPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/txt_registerMail"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:hint="@string/confirme_sua_senha"
+            android:inputType="textWebPassword"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/lbl_registerQuem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/quem_sou_eu"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/btn_registerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn_registerDono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/dono_de_pet"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/black"/>
+
+        <RadioButton
+            android:id="@+id/btn_registerHotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/dono_de_hotel"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/black"/>
+
+        <RadioButton
+            android:id="@+id/btn_registerFreelancer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/freelancer"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_registerSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_registerStatus"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_btn"
+        android:fontFamily="@font/robotmedium"
+        android:letterSpacing="0.1"
+        android:text="@string/enviar"
+        android:textAllCaps="true"/>
+
+
+</RelativeLayout>

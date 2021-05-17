@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundpets"
+    tools:context=".ui.activities.DonoAddPetActivity">
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitEnd"
+        android:scrollX="80dp"
+        android:scrollY="-55dp"
+        android:src="@drawable/pets6" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/shadow_item">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cadastro_de_pet"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            />
+
+        <TextView
+            android:layout_below="@+id/title"
+            android:id="@+id/txt_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Nome:"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/input_nomepet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/txt_nome"
+            android:layout_marginRight="5dp"
+            android:layout_alignBaseline="@id/txt_nome"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt_raca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginVertical="20dp"
+            android:layout_below="@id/txt_nome"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Raça:"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/input_racapet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/txt_raca"
+            android:layout_alignBaseline="@id/txt_raca"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt_sexo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_raca"
+            android:layout_marginLeft="10dp"
+            android:text="Sexo: "
+            android:textSize="15sp"
+            android:paddingTop="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            />
+
+        <RadioGroup
+            android:id="@+id/radio_sexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_raca"
+            android:layout_toRightOf="@id/txt_sexo"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiobtn_feminino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Feminino"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserratmedium"/>
+
+            <RadioButton
+                android:id="@+id/radiobtn_masculino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Masculino"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserratmedium"/>
+
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_tipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_sexo"
+            android:layout_marginLeft="10dp"
+            android:text="Tipo de Pet:"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserratmedium"
+            />
+
+        <RadioGroup
+            android:id="@+id/radio_tipo"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@id/txt_tipo"
+            android:layout_below="@id/radio_sexo"
+            android:paddingTop="7dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiobtn_cachorro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cachorro"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserratmedium"/>
+
+            <RadioButton
+                android:id="@+id/radiobtn_gato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gato"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserratmedium"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_salvarPet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_tipo"
+            android:layout_marginHorizontal="20dp"
+            android:text="Salvar"
+            android:fontFamily="@font/robotmedium"
+            android:layout_marginBottom="10dp"
+            android:letterSpacing="0.1"
+            android:textSize="15sp"
+            android:background="@drawable/background_btn"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

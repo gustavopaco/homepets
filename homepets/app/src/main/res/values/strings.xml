@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">homepets</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="registre_se_aqui"><b><u>Registre-se Aqui</u></b></string>
+    <string name="nao_eh_cadastrado">Não é Cadastrado?</string>
+    <string name="digite_seu_e_mail">Digite seu E-mail...</string>
+    <string name="digite_sua_senha">Digite sua senha...</string>
+    <string name="login">Login</string>
+    <string name="enviar">Enviar</string>
+    <string name="freelancer">Freelancer</string>
+    <string name="dono_de_hotel">Dono de Hotel</string>
+    <string name="dono_de_pet">Dono de Pet</string>
+    <string name="quem_sou_eu">Quem sou eu?</string>
+    <string name="confirme_sua_senha">Confirme sua Senha...</string>
+    <string name="informe_seu_e_mail">Informe seu E-mail...</string>
+    <string name="informe_seu_nome">Informe seu Nome...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cadastro_de_pet"><u>Cadastro de Pet</u></string>
+    <string name="cadastro_de_servicos"><u>Cadastro de Serviços</u></string>
+    <string name="dados_do_usuario"><u>Dados do Usuario</u></string>
+    <string name="detalhes_de_servicos"><u>Detalhes de Servicos</u></string>
+    <string name="detalhes_do_pet"><u>Detalhes do Pet</u></string>
+    <string name="dadosalterados">Dados alterados! Por favor, logue novamente.</string>
+    <string name="ok">Ok</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="erro">Erro</string>
+    <string name="senhaeconfirmacao">Nova senha e Confirmacao devem ser a mesma</string>
+    <string name="petdeletado">Pet Deletado!</string>
+    <string name="servicoalterado">Dados do Servico Alterado!</string>
+    <string name="servicodeletado">Servico Deletado!</string>
+    <string name="petcadastrado">Pet Cadastrado com Sucesso</string>
+    <string name="servicocadastrado">Novo Serviço cadastrado!</string>
+    <string name="usuariocadastrado">Usuario cadastrado com sucesso</string>
+    <string name="senhasdiferentes">Senha e Confirmacao de senha, nao correspodem</string>
+    <string name="home_descricaofreelancer">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores,
+        cadastre seus servicos, veja seus servicos contratados, edite seu perfil, e tenha toda tranquilidade e
+        praticidade que só a Home Pets pode oferecer!
+    </string>
+    <string name="home_descricaohotel">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores, cadastre
+        seus servicos, veja o historico de reservas, edite seu perfil, e tenha toda tranquilidade e praticidade que só a
+        Home Pets pode oferecer!
+    </string>
+    <string name="home_descricaodono">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores, cadastre
+        seus pets, busque por Prestadores de Servico, edite seu perfil, e tenha toda tranquilidade e praticidade que só
+        a Home Pets pode oferecer!
+    </string>
+    <string name="bem_vindo">Bem Vindo,</string>
+</resources>

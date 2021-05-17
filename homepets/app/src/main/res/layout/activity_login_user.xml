@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.activities.LoginUserActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pets1bgless"
+        android:layout_alignParentBottom="true"
+    />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/homepetsbgless"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+    />
+
+    <RelativeLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="140dp">
+
+        <EditText
+            android:id="@+id/txt_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/txt_password"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:hint="@string/digite_seu_e_mail"
+            android:inputType="textWebEmailAddress"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/txt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/montserratmedium"
+            android:hint="@string/digite_sua_senha"
+            android:inputType="textWebPassword"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_password"
+            android:layout_margin="20dp"
+            android:background="@drawable/background_btn"
+            android:fontFamily="@font/robotmedium"
+            android:text="@string/login"
+            android:letterSpacing="0.1"
+            android:textColor="@color/black"
+            android:textAllCaps="true"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/lbl_info_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/nao_eh_cadastrado"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/btn_registrar"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@id/lbl_info_cadastro"
+            android:layout_toRightOf="@id/lbl_info_cadastro"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserratsemibold"
+            android:paddingRight="10dp"
+            android:text="@string/registre_se_aqui"
+            android:textAllCaps="false"
+            android:textColor="@color/red"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

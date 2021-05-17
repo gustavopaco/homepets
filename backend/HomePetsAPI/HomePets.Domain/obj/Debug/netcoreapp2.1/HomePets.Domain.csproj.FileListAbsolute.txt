@@ -1,0 +1,8 @@
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\bin\Debug\netcoreapp2.1\HomePets.Domain.deps.json
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\bin\Debug\netcoreapp2.1\HomePets.Domain.dll
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\bin\Debug\netcoreapp2.1\HomePets.Domain.pdb
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\obj\Debug\netcoreapp2.1\HomePets.Domain.AssemblyInfoInputs.cache
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\obj\Debug\netcoreapp2.1\HomePets.Domain.AssemblyInfo.cs
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\obj\Debug\netcoreapp2.1\HomePets.Domain.csproj.CoreCompileInputs.cache
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\obj\Debug\netcoreapp2.1\HomePets.Domain.dll
+G:\gitlab\homepetstpii\backend\HomePetsAPI\HomePets.Domain\obj\Debug\netcoreapp2.1\HomePets.Domain.pdb
