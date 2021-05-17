@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         var stats = SharedPreferenceHelper.readInt(activity,"userpreferences","stats",-1)
         var nome = SharedPreferenceHelper.readString(activity,"userpreferences","nome","")
 
-        binding.headBemvindo.text = binding.headBemvindo.text.toString() + nome.toString()
+        binding.headBemvindo.text = binding.headBemvindo.text.toString() + " " + nome.toString()
 
         when(stats){
             1 -> binding.homeDono.isVisible = true
