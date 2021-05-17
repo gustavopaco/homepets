@@ -41,4 +41,16 @@
     <string name="servicocadastrado">Novo Serviço cadastrado!</string>
     <string name="usuariocadastrado">Usuario cadastrado com sucesso</string>
     <string name="senhasdiferentes">Senha e Confirmacao de senha, nao correspodem</string>
+    <string name="home_descricaofreelancer">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores,
+        cadastre seus servicos, veja seus servicos contratados, edite seu perfil, e tenha toda tranquilidade e
+        praticidade que só a Home Pets pode oferecer!
+    </string>
+    <string name="home_descricaohotel">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores, cadastre
+        seus servicos, veja o historico de reservas, edite seu perfil, e tenha toda tranquilidade e praticidade que só a
+        Home Pets pode oferecer!
+    </string>
+    <string name="home_descricaodono">Obrigado por escolher nosso aplicativo! Navegue nos menus superiores, cadastre
+        seus pets, busque por Prestadores de Servico, edite seu perfil, e tenha toda tranquilidade e praticidade que só
+        a Home Pets pode oferecer!
+    </string>
 </resources>

@@ -2,6 +2,7 @@ package br.com.cotemig.homepets.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.cotemig.homepets.databinding.ItemHotelFreelancerMeusservicosBinding
@@ -9,7 +10,7 @@ import br.com.cotemig.homepets.models.ServiceModel
 import br.com.cotemig.homepets.models.ServicesResponse
 import br.com.cotemig.homepets.util.Constantes
 
-class MeusServicosAdapter(var context: Context, var list: List<ServicesResponse>?) : RecyclerView.Adapter<MeusServicosAdapter.ViewServices>(){
+class MeusServicosAdapter(var context: Context, var list: List<ServicesResponse>?, val listener : OnItemClickListener) : RecyclerView.Adapter<MeusServicosAdapter.ViewServices>(){
 
     private lateinit var binding: ItemHotelFreelancerMeusservicosBinding
 
@@ -20,30 +21,56 @@ class MeusServicosAdapter(var context: Context, var list: List<ServicesResponse>
     }
 
     override fun onBindViewHolder(holder: ViewServices, position: Int) {
-        holder.bind(context,list!![position])
+        val currentItem = list!![position]
+        holder.nomeServico.text = currentItem.nomeServico
+        holder.precoServico.text = holder.currency.formatCurrency((currentItem.preco*100).toLong()).toString()
+        holder.servicoID.text = currentItem.id.toString()
+
+        when(currentItem.tipoPreco){
+            1 -> {
+                holder.tipoPreco.text = Constantes.Hora()
+                holder.tipoPreco2 = currentItem.tipoPreco
+            }
+            2 -> {
+                holder.tipoPreco.text = Constantes.Diaria()
+                holder.tipoPreco2 = currentItem.tipoPreco
+            }
+            3 -> {
+                holder.tipoPreco.text = Constantes.Fechado()
+                holder.tipoPreco2 = currentItem.tipoPreco
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return list!!.size
     }
 
-    class ViewServices(binding: ItemHotelFreelancerMeusservicosBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewServices(binding: ItemHotelFreelancerMeusservicosBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener{
+        val nomeServico = binding.txtNomeServico
+        val precoServico = binding.txtPrecoServico
+        val tipoPreco = binding.txtTipoPreco
+        val currency =  binding.inputCurrency
+        val servicoID = binding.servicoID
+        var tipoPreco2 = -1
 
-        private var nomeServico = binding.txtNomeServico
-        private var precoServico = binding.txtPrecoServico
-        private var tipoPreco = binding.txtTipoPreco
-        private var currency = binding.inputCurrency
+        init {
+            binding.root.setOnClickListener(this)
+        }
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if(position != RecyclerView.NO_POSITION){
+                var id : Int = servicoID.text.toString().toInt()
+                var nomeServico : String = nomeServico.text.toString()
+                var preco : Double = precoServico.text.toString().replace("$","").replace(",","").toDouble()
 
-        fun bind(context: Context,item : ServicesResponse){
-
-            nomeServico.text = item.nomeServico
-            precoServico.text = currency.formatCurrency((item.preco*100).toLong()).toString()
-
-            when(item.tipoPreco){
-                1 -> tipoPreco.text = Constantes.Hora()
-                2 -> tipoPreco.text = Constantes.Diaria()
-                3 -> tipoPreco.text = Constantes.Fechado()
+                val servico = ServicesResponse(id,nomeServico,preco,tipoPreco2)
+                listener.OnItemClick(position, servico)
             }
         }
+    }
+
+    interface OnItemClickListener{
+        fun OnItemClick(position: Int, service : ServicesResponse)
     }
 }

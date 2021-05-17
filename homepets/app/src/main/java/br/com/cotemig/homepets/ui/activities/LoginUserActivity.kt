@@ -56,7 +56,7 @@ class LoginUserActivity : AppCompatActivity() {
                     }else{
                         MaterialDialog(this@LoginUserActivity).show {
                             title(R.string.erro)
-                            message(null,it.errorBody()!!.string())
+                            message(null,"Login ou Senha incorretos")
                             positiveButton(null,"Ok")
                         }
                     }

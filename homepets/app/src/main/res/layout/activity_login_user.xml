@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/petlogin"
-    tools:context=".ui.activities.LoginUserActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.activities.LoginUserActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pets1bgless"
+        android:layout_alignParentBottom="true"
+    />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/homepetsbgless"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+    />
 
     <RelativeLayout
         android:id="@+id/body"
@@ -53,7 +68,7 @@
             android:letterSpacing="0.1"
             android:textColor="@color/black"
             android:textAllCaps="true"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/lbl_info_cadastro"
@@ -64,7 +79,7 @@
             android:fontFamily="@font/montserratsemibold"
             android:text="@string/nao_eh_cadastrado"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/btn_registrar"
@@ -78,7 +93,7 @@
             android:text="@string/registre_se_aqui"
             android:textAllCaps="false"
             android:textColor="@color/red"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
 
     </RelativeLayout>
 

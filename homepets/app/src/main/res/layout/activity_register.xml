@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/register"
-    tools:context=".ui.activities.RegisterActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.activities.RegisterActivity">
 
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/homepetsbgless"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="100dp"/>
 
     <LinearLayout
         android:id="@+id/head"
@@ -25,7 +30,7 @@
             android:hint="@string/informe_seu_nome"
             android:paddingLeft="20dp"
             android:textColorHint="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/txt_registerMail"
@@ -38,7 +43,7 @@
             android:hint="@string/informe_seu_e_mail"
             android:paddingLeft="20dp"
             android:textColorHint="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/txt_registerPassword"
@@ -50,7 +55,7 @@
             android:inputType="textWebPassword"
             android:paddingLeft="20dp"
             android:textColorHint="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/txt_registerRepeatPassword"
@@ -63,7 +68,7 @@
             android:inputType="textWebPassword"
             android:paddingLeft="20dp"
             android:textColorHint="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/lbl_registerQuem"
@@ -75,7 +80,7 @@
             android:fontFamily="@font/montserratsemibold"
             android:text="@string/quem_sou_eu"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
@@ -93,33 +98,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserratmedium"
-            android:text="@string/dono_de_pet" />
+            android:text="@string/dono_de_pet"/>
 
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="5dp"
-            android:background="@color/black" />
+            android:background="@color/black"/>
 
         <RadioButton
             android:id="@+id/btn_registerHotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserratmedium"
-            android:text="@string/dono_de_hotel" />
+            android:text="@string/dono_de_hotel"/>
 
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="5dp"
-            android:background="@color/black" />
+            android:background="@color/black"/>
 
         <RadioButton
             android:id="@+id/btn_registerFreelancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserratmedium"
-            android:text="@string/freelancer" />
+            android:text="@string/freelancer"/>
 
     </RadioGroup>
 
@@ -134,7 +139,7 @@
         android:fontFamily="@font/robotmedium"
         android:letterSpacing="0.1"
         android:text="@string/enviar"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"/>
 
 
 </RelativeLayout>
