@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
                         if (it!!.code() == 200) {
                             SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","nome",nome)
                             SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","email",email)
-                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","senha",nome)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","senha",senha)
                             SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","token",it.body()!!.token)
                             SharedPreferenceHelper.saveInt(this@RegisterActivity,"userpreferences","stats",tipo)
                             MaterialDialog(this@RegisterActivity).show {
