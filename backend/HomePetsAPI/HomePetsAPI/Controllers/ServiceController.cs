@@ -44,6 +44,26 @@ namespace HomePetsAPI.Controllers
                 }).ToList();
         }
 
+
+        // GET api/values
+        [HttpGet]
+        public ActionResult<IEnumerable<ServiceDescriptionModel>> Get(string query)
+        {
+            var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
+            var UsuarioLogadoId = Int32.Parse(userDataClaim);
+
+            return UoW.Servicos.ObterServicosDisponiveis(query)
+                .Select(s => new ServiceDescriptionModel()
+                {
+                    id = s.Id,
+                    nomeServico = s.Nome,
+                    preco = s.Preco,
+                    tipoPreco = s.TipoPreco,
+
+                    nomePrestador = s.Usuario.Nome,
+                }).ToList();
+        }
+
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<ServiceModel> Get(int id)
