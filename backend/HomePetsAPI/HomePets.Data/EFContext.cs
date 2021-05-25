@@ -17,6 +17,6 @@ namespace HomePets.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<ServicoContratado> ServicosContratados { get; set; }
-
+        public DbSet<CartaoCredito> CartoesCredito { get; set; }
     }
 }
