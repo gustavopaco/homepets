@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.HotelFreelancerServicosFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.fragments.HotelFreelancerServicosFragment">
 
     <TextView
         android:id="@+id/head_meusServicos"
@@ -16,12 +17,20 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaservicos"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/head_meusServicos"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listaservicos"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <ImageButton
         android:id="@+id/add_novoServico"

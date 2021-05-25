@@ -1,6 +1,7 @@
 package br.com.cotemig.homepets.ui.activities
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
@@ -13,6 +14,7 @@ import br.com.cotemig.homepets.models.RegisterModel
 import br.com.cotemig.homepets.models.TokenModelResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
 import br.com.cotemig.homepets.util.Constantes
+import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,10 +69,16 @@ class RegisterActivity : AppCompatActivity() {
                 ) {
                     response.let {
                         if (it!!.code() == 200) {
+                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","nome",nome)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","email",email)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","senha",senha)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","token",it.body()!!.token)
+                            SharedPreferenceHelper.saveInt(this@RegisterActivity,"userpreferences","stats",tipo)
                             MaterialDialog(this@RegisterActivity).show {
                                 title(R.string.sucesso)
                                 message(R.string.usuariocadastrado)
                                 positiveButton(R.string.ok){
+                                    goHomeActvitiy()
                                     finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
                                 }
                             }
@@ -106,6 +114,11 @@ class RegisterActivity : AppCompatActivity() {
             return null
         }
 
+    }
+
+    private fun goHomeActvitiy(){
+        var intent = Intent(this,HomeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun validaCampos(): Boolean {
