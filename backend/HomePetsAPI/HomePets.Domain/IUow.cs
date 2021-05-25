@@ -8,6 +8,8 @@ namespace HomePets.Domain
 
         IUsuarioRep Usuarios { get; }
         IServicoRep Servicos { get; }
+        IServicoContratadoRep ServicosContratados { get; }
         IPetRep Pets { get; }
+
     }
 }
