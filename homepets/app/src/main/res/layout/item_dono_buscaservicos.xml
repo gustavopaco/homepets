@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_item"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome:"
+            android:id="@+id/lbl_nome_usuario"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/montserratmedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_nome_usuario"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_toRightOf="@id/lbl_nome_usuario"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="215dp"
+            android:fontFamily="@font/montserratmedium"
+            android:id="@+id/lbl_nome_servico"
+            android:text="Serviço:"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_nome_servico"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_toRightOf="@id/lbl_nome_servico"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_preco_servico"
+            android:layout_below="@id/lbl_nome_usuario"
+            android:layout_margin="5dp"
+            android:text="Preço:"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserratmedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_preco_servico"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_toRightOf="@id/lbl_preco_servico"
+            android:layout_alignBaseline="@id/lbl_preco_servico"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_nome_servico"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="215dp"
+            android:id="@+id/lbl_tipo_servico"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Tipo:"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_tipo_servico"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_toRightOf="@id/lbl_tipo_servico"
+            android:layout_alignBaseline="@id/lbl_tipo_servico"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
