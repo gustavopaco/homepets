@@ -65,4 +65,11 @@ interface API {
         @Path("id") id: Int
     ) : Call<Void>
 
+/*==========================FUNCOES NOVAS=================================================================*/
+    @Headers("Content-Type: application/json")
+    @GET("service")
+    fun getServiceSearch(
+        @Header("Authorization") token: String,
+        @Query("query") pesquisa: String
+    ) : Call<List<ServiceSearchResponse>>
 }
