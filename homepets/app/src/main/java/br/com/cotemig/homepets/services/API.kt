@@ -72,4 +72,11 @@ interface API {
         @Header("Authorization") token: String,
         @Query("query") pesquisa: String
     ) : Call<List<ServiceSearchResponse>>
+
+    @Headers("Content-Type: application/json")
+    @POST("servicecontract")
+    fun contractService(
+        @Header("Authorization") token: String,
+        @Body contractService: ContractService
+    ) : Call<Void>
 }

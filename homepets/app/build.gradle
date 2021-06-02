@@ -76,6 +76,7 @@ dependencies {
 
     // biblioteca de mensagem na tela
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:datetime:3.2.1'
     implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
 
     // biblioteca para currency no edittext

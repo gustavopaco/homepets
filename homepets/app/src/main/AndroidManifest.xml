@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homepets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activities.DonoAddContractActivity">
-        </activity>
+        <activity android:name=".ui.activities.DonoAddContractActivity"/>
         <activity android:name=".ui.activities.DetalhesPetsActivity"/>
         <activity android:name=".ui.activities.DetalhesServicosActivity"/>
         <activity android:name=".ui.activities.HotelFreelancerAddServicoActivity"/>
