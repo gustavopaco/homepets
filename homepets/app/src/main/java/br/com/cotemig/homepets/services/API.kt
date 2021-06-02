@@ -79,4 +79,11 @@ interface API {
         @Header("Authorization") token: String,
         @Body contractService: ContractService
     ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("creditcard")
+    fun createCreditCard(
+        @Header("Authorization") token: String,
+        @Body creditCardModel: CreditCardModel
+    ) : Call<Void>
 }
