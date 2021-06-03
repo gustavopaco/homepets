@@ -68,13 +68,6 @@ class CreditCardAdapter(var context: Context, var list: List<CreditCardResponse>
             cartaoL.expiry = item.validadeMesAno
             cartaoL.cvv = item.codigoValidacao
 
-            cartaoL.apply {
-                pairInput(CardInput.NUMBER,numeroCartao)
-                pairInput(CardInput.HOLDER,titular)
-                pairInput(CardInput.EXPIRY,validade)
-                pairInput(CardInput.CVV,codvv)
-            }
-
             cartaoL.numberFormat = NumberFormat("%d4 %d4 %d4 %d4",false)
         }
     }

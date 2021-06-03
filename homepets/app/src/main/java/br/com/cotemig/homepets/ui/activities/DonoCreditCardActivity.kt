@@ -32,6 +32,10 @@ class DonoCreditCardActivity : AppCompatActivity(), CreditCardAdapter.OnItemClic
             goAddNovoCartao()
         }
 
+        binding.btnVoltar.setOnClickListener {
+            finish()
+        }
+
         swipe()
 
     }

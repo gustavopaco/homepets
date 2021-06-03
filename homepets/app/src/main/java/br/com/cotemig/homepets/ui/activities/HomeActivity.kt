@@ -103,7 +103,13 @@ class HomeActivity : AppCompatActivity(){
                     true
                 }
                 R.id.submenu3 -> {
-                    Toast.makeText(this, "Sub-Menu 3", Toast.LENGTH_SHORT).show()
+                    SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","nome","")
+                    SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","email","")
+                    SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","senha","")
+                    SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","token","")
+                    SharedPreferenceHelper.saveInt(this@HomeActivity,"userpreferences","stats",-1)
+                    startActivity(Intent(this,LoginUserActivity::class.java))
+                    finish()
                     true
                 }
                 else ->  false
