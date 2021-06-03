@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backgroundpets"
-    tools:context=".ui.activities.HomeActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundpets"
+                tools:context=".ui.activities.HomeActivity">
 
 
     <RelativeLayout
@@ -24,19 +24,18 @@
             android:layout_marginLeft="1dp"
             android:background="@android:color/transparent"
             android:src="@drawable/vector_home"
-            android:tint="@color/black" />
-
+            android:tint="@color/black"/>
 
         <ImageButton
             android:id="@+id/btn_perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:layout_marginVertical="2dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/shape_dono_perfil"
             android:src="@drawable/vector_user"
-            android:tint="@color/white" />
+            android:tint="@color/white"/>
 
         <LinearLayout
             android:id="@+id/head_donoPets"
@@ -57,12 +56,12 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Meus Pets"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="@color/black" />
+                android:background="@color/black"/>
 
 
             <Button
@@ -74,7 +73,7 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Serviços"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
@@ -97,12 +96,12 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Meus Serviços"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="@color/black" />
+                android:background="@color/black"/>
 
             <Button
                 android:id="@+id/btn_hotelReservas"
@@ -113,7 +112,7 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Reservas"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
@@ -136,12 +135,12 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Meus Serviços"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="@color/black" />
+                android:background="@color/black"/>
 
             <Button
                 android:id="@+id/btn_freelancerContratados"
@@ -152,12 +151,10 @@
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Contratos"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
 
         </LinearLayout>
-
     </RelativeLayout>
-
     <FrameLayout
         android:id="@+id/contenthome"
         android:layout_width="match_parent"

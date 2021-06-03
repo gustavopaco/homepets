@@ -1,7 +1,10 @@
 package br.com.cotemig.homepets.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -10,7 +13,7 @@ import br.com.cotemig.homepets.databinding.ActivityHomeBinding
 import br.com.cotemig.homepets.ui.fragments.*
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -37,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
             menu(0)
         }
         binding.btnPerfil.setOnClickListener {
-            menu(1)
+            getMenu(it,stats)
         }
 
         /* BOTOES DA TELA DE DONO DE PET */
@@ -64,7 +67,6 @@ class HomeActivity : AppCompatActivity() {
             menu(7)
         }
 
-
     }
 
     fun setFragment(f: Fragment, name: String){
@@ -88,4 +90,29 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    private fun getMenu(view: View, stats : Int){
+        val popupMenu = PopupMenu(this,view)
+        popupMenu.setOnMenuItemClickListener { item ->
+            when(item.itemId){
+                R.id.submenu1 -> {
+                    menu(1)
+                    true
+                }
+                R.id.submenu2 -> {
+                    startActivity(Intent(this,DonoCreditCardActivity::class.java))
+                    true
+                }
+                R.id.submenu3 -> {
+                    Toast.makeText(this, "Sub-Menu 3", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else ->  false
+            }
+        }
+        popupMenu.inflate(R.menu.menu_layoutfile)
+        if(stats != 1){
+            popupMenu.menu.findItem(R.id.submenu2).isVisible = false
+        }
+        popupMenu.show()
+    }
 }
