@@ -86,4 +86,10 @@ interface API {
         @Header("Authorization") token: String,
         @Body creditCardModel: CreditCardModel
     ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("creditcard")
+    fun getCreditCards(
+        @Header("Authorization") token: String
+    ) : Call<List<CreditCardResponse>>
 }
