@@ -16,9 +16,9 @@
         app:cardCvv="123"
         app:cardExpiry="092021"
         app:cardExpiryLabel="Data Vencimento"
-        app:cardHolder="John Doe"
+        app:cardHolder="Jose Silvassauro"
         app:cardHolderLabel="Titular"
-        app:cardNumber=""
+        app:cardNumber="5502 0978 9111 3457"
     />
 
     <RelativeLayout

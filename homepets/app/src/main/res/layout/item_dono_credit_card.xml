@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <com.maxpilotto.creditcardview.CreditCardView
+        android:id="@+id/card"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"
+        app:cardCvv="123"
+        app:cardExpiry="092021"
+        app:cardExpiryLabel="Data Vencimento"
+        app:cardHolder="Jose Silvassauro"
+        app:cardHolderLabel="Titular"
+        app:cardNumber="5502 0978 9111 3457"
+    />
+
+    <TextView
+        android:id="@+id/txt_numeroCartao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+    />
+
+    <TextView
+        android:id="@+id/txt_nomeTitular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+    />
+
+    <TextView
+        android:id="@+id/txt_validade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+    />
+
+    <TextView
+        android:id="@+id/txt_codValidacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+    />
+
+</RelativeLayout>
