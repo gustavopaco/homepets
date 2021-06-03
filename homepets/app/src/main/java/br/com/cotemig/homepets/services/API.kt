@@ -92,4 +92,11 @@ interface API {
     fun getCreditCards(
         @Header("Authorization") token: String
     ) : Call<List<CreditCardResponse>>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("creditcard/{id}")
+    fun deleteCreditCard(
+        @Header("Authorization") token: String,
+        @Path("id") id_cartao: Int
+    ) : Call<Void>
 }
