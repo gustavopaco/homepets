@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homepets"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activities.DonoAddCreditCardActivity"/>
+        <activity android:name=".ui.activities.DonoCreditCardActivity"/>
         <activity android:name=".ui.activities.DonoAddContractActivity"/>
         <activity android:name=".ui.activities.DetalhesPetsActivity"/>
         <activity android:name=".ui.activities.DetalhesServicosActivity"/>
