@@ -99,4 +99,10 @@ interface API {
         @Header("Authorization") token: String,
         @Path("id") id_cartao: Int
     ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("servicecontract")
+    fun getDonoHFContractedService(
+        @Header("Authorization") token: String
+    ) : Call<List<DonoHFContractedServiceResponse>>
 }
