@@ -14,6 +14,7 @@ import br.com.cotemig.homepets.util.SharedPreferenceHelper
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private val historico = DonoHistoricoServicosActivity()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
             3 -> binding.homeFreelancer.isVisible = true
         }
 
-        var historico = DonoHistoricoServicosActivity()
+
         historico.getHistorico(activity,binding.listaDonoHistoricoServicos)
 
         return binding.root
