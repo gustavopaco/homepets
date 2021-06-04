@@ -30,6 +30,10 @@ class HotelFreelancerAddServicoActivity : AppCompatActivity() {
         statsBackground()
         radioGroup = binding.radioTipoPreco
 
+        binding.btnVoltar.setOnClickListener {
+            finish()
+        }
+
         binding.btnSalvarServico.setOnClickListener {
 
             if(validaCampos()){

@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit
 
 class DonoHistoricoServicosActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDonoHistoricoServicosBinding
-    private val activitiyPrincipal = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDonoHistoricoServicosBinding.inflate(layoutInflater)
@@ -29,10 +28,9 @@ class DonoHistoricoServicosActivity : AppCompatActivity() {
         binding.btnVoltar.setOnClickListener {
             finish()
         }
-        var recyclerViewHistorico = binding.listaDonoHistoricoServicos
-        getHistorico(activitiyPrincipal,recyclerViewHistorico)
+        getHistorico(this,binding.listaDonoHistoricoServicos)
 
-        swipe(activitiyPrincipal, recyclerViewHistorico)
+        swipe(this, binding.listaDonoHistoricoServicos)
     }
 
     private fun swipe(activityEscolhida : Context, recyclerView: RecyclerView) {
