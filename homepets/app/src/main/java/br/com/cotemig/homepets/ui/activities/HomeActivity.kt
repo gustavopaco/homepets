@@ -103,6 +103,10 @@ class HomeActivity : AppCompatActivity(){
                     true
                 }
                 R.id.submenu3 -> {
+                    startActivity(Intent(this,DonoHistoricoServicosActivity::class.java))
+                    true
+                }
+                R.id.submenu4 -> {
                     SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","nome","")
                     SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","email","")
                     SharedPreferenceHelper.saveString(this@HomeActivity,"userpreferences","senha","")
@@ -118,6 +122,7 @@ class HomeActivity : AppCompatActivity(){
         popupMenu.inflate(R.menu.menu_layoutfile)
         if(stats != 1){
             popupMenu.menu.findItem(R.id.submenu2).isVisible = false
+            popupMenu.menu.findItem(R.id.submenu3).isVisible = false
         }
         popupMenu.show()
     }

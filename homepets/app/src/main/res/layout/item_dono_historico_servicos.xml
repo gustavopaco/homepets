@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/shadow_item">
+
+    <TextView
+        android:id="@+id/lbl_nome_prestador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Nome:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_nome_prestador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_toEndOf="@id/lbl_nome_prestador"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/lbl_nome_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="215dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Serviço:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_nome_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/lbl_nome_servico"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/lbl_preco_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_nome_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Preço:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_preco_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/lbl_preco_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_toEndOf="@id/lbl_preco_servico"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/lbl_tipo_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_nome_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="215dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Tipo:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_tipo_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/lbl_tipo_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/lbl_tipo_servico"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/input_currency"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/lbl_data_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_preco_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Data:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_data_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/lbl_data_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/lbl_data_servico"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/lbl_nome_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_tipo_servico"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="215dp"
+        android:fontFamily="@font/sourcesansprobold"
+        android:text="Pet:"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/txt_nome_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/lbl_nome_pet"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/lbl_nome_pet"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+</RelativeLayout>

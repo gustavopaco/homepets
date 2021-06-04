@@ -12,5 +12,9 @@
 
     <item
         android:id="@+id/submenu3"
+        android:title="Historico de Serviços"/>
+
+    <item
+        android:id="@+id/submenu4"
         android:title="Sair"/>
 </menu>
