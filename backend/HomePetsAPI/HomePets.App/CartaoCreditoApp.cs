@@ -47,10 +47,10 @@ namespace HomePets.App
                 CartaoCredito oCartaoCredito = _uow.CartoesCredito.ObterCartaoCredito(Id);
 
                 if (oCartaoCredito == null)
-                    throw new Exception("Cartão de Crédito não encontrado.");
+                    throw new RoleException("Cartão de Crédito não encontrado.");
 
                 if (oCartaoCredito.UsuarioId != usuarioId)
-                    throw new Exception("Usuário não tem permissão.");
+                    throw new RoleException("Usuário não tem permissão.");
 
                 oCartaoCredito.Deleted = true;
 

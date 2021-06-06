@@ -17,6 +17,8 @@ namespace HomePets.Domain
         public string nomeTomador { get; set; }
         public string nomeServico { get; set; }
 
+        public double preco { get; set; }
+        public int tipoPreco { get; set; }
         public double valorTotal { get; set; }
         public DateTime dataExecucao { get; set; }
     }

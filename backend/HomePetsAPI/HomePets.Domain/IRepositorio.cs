@@ -26,7 +26,6 @@ namespace HomePets.Domain
         void AddRange(IEnumerable<TEntity> entities);
         void Attach(TEntity entity);
         void Remove(TEntity entity);
-        //IEnumerable<TEntity> RemoveRange(IEnumerable<TEntity> entities);
 
 
         IEnumerable<TEntity> WhereWithInclude(Expression<Func<TEntity, bool>> where, params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includeProperties);

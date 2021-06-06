@@ -47,10 +47,10 @@ namespace HomePets.App
                 ServicoContratado oServicoContratado = _uow.ServicosContratados.ObterServicoContratado(Id);
 
                 if (oServicoContratado == null)
-                    throw new Exception("Serviço não encontrado.");
+                    throw new RoleException("Serviço não encontrado.");
 
                 if (oServicoContratado.UsuarioDonoPetId != usuarioId)
-                    throw new Exception("Usuário não tem permissão.");
+                    throw new RoleException("Usuário não tem permissão.");
 
                 oServicoContratado.Deleted = true;
 

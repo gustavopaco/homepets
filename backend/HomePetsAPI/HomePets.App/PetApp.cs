@@ -46,10 +46,10 @@ namespace HomePets.App
                 Pet oPet = _uow.Pets.ObterPet(Id);
 
                 if (oPet == null)
-                    throw new Exception("Pet não encontrado.");
+                    throw new RoleException("Pet não encontrado.");
 
                 if (oPet.UsuarioId != usuarioId)
-                    throw new Exception("Usuário não tem permissão.");
+                    throw new RoleException("Usuário não tem permissão.");
 
                 oPet.Deleted = true;
 

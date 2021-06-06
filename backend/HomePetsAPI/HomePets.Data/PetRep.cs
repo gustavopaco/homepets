@@ -30,7 +30,7 @@ namespace HomePets.Data
                 .Select(s => new
                 {
                     s,
-                }).ToList().Select(s => s.s);
+                }).AsEnumerable().Select(s => s.s);
 
         }
     }

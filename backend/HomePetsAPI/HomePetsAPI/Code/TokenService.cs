@@ -22,7 +22,7 @@ namespace HomePetsAPI.Code
                 {
                     new Claim(ClaimTypes.UserData, UsuarioId),
                     new Claim(ClaimTypes.NameIdentifier, UsuarioNome),
-                    new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "HomePets", "http://www.w3.org/2001/XMLSchema#string"),
+                    new Claim("https://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "HomePets", "https://www.w3.org/2001/XMLSchema#string"),
                     new Claim(ClaimTypes.Name, UsuarioNome),
                     new Claim(ClaimTypes.GivenName, UsuarioNome),
                     new Claim(ClaimTypes.Role, Role),

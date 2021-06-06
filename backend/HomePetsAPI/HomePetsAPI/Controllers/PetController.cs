@@ -16,7 +16,7 @@ namespace HomePetsAPI.Controllers
     public class PetController : ControllerBase
     {
         private readonly IUoW UoW;
-        PetApp PetApp = null;
+        private readonly PetApp PetApp = null;
 
         public PetController(IUoW uow)
         {
