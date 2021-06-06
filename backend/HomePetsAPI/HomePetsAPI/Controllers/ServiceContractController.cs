@@ -16,7 +16,7 @@ namespace HomePetsAPI.Controllers
     {
 
         private readonly IUoW UoW;
-        ServicoContratadoApp ServicoContratadoApp = null;
+        private readonly ServicoContratadoApp ServicoContratadoApp = null;
 
         public ServiceContractController(IUoW uow)
         {
@@ -48,6 +48,8 @@ namespace HomePetsAPI.Controllers
                     nomeServico = s.Servico.Nome,
                     nomeTomador = s.UsuarioDonoPet.Nome,
 
+                    tipoPreco = s.Servico.TipoPreco,
+                    preco = s.Servico.Preco,
                     valorTotal = s.ValorTotal,
                     dataExecucao = s.DataExecucao,
 

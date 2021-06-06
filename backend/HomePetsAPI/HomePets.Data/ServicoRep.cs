@@ -29,7 +29,8 @@ namespace HomePets.Data
                 .Select(s => new
                 {
                     s,
-                }).ToList().Select(s => s.s);
+                    s.Usuario,
+                }).AsEnumerable().Select(s => s.s);
 
         }
 
@@ -41,7 +42,7 @@ namespace HomePets.Data
                 {
                     s,
                     s.Usuario,
-                }).ToList().Select(s => s.s);
+                }).AsEnumerable().Select(s => s.s);
 
         }
     }

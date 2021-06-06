@@ -20,7 +20,7 @@ namespace HomePets.App
 
             var validacaoEmail = _uow.Usuarios.ExisteEmail(email);
             if (validacaoEmail)
-                throw new Exception("Email já cadastrado.");
+                throw new RoleException("Email já cadastrado.");
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
@@ -47,7 +47,7 @@ namespace HomePets.App
                 Usuario oUsuario = _uow.Usuarios.ObterUsuarioPeloId(Id);
 
                 if (oUsuario == null)
-                    throw new Exception("Usuário não encontrado");
+                    throw new RoleException("Usuário não encontrado");
 
 
                 oUsuario.Nome = nome;

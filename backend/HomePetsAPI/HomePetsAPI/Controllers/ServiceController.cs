@@ -16,7 +16,7 @@ namespace HomePetsAPI.Controllers
     {
 
         private readonly IUoW UoW;
-        ServicoApp ServicoApp = null;
+        private readonly ServicoApp ServicoApp = null;
 
         public ServiceController(IUoW uow)
         {
@@ -29,30 +29,28 @@ namespace HomePetsAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<ServiceModel>> Get()
-        {
-            var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
-            var UsuarioLogadoId = Int32.Parse(userDataClaim);
-
-            return UoW.Servicos.ObterServicos(UsuarioLogadoId)
-                .Select(s => new ServiceModel()
-                {
-                    id = s.Id,
-                    nomeServico = s.Nome,
-                    preco = s.Preco,
-                    tipoPreco = s.TipoPreco,
-                }).ToList();
-        }
-
-
-        // GET api/values
-        [HttpGet]
         public ActionResult<IEnumerable<ServiceDescriptionModel>> Get(string query)
         {
-            var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
-            var UsuarioLogadoId = Int32.Parse(userDataClaim);
+            if (string.IsNullOrEmpty(query))
+            {
+                var userDataClaim = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.UserData).Select(c => c.Value).SingleOrDefault();
+                var UsuarioLogadoId = Int32.Parse(userDataClaim);
 
-            return UoW.Servicos.ObterServicosDisponiveis(query)
+                return UoW.Servicos.ObterServicos(UsuarioLogadoId)
+                    .Select(s => new ServiceDescriptionModel()
+                    {
+                        id = s.Id,
+                        nomeServico = s.Nome,
+                        preco = s.Preco,
+                        tipoPreco = s.TipoPreco,
+
+                        nomePrestador = s.Usuario.Nome,
+                    }).ToList();
+            }
+            else
+            {
+
+                return UoW.Servicos.ObterServicosDisponiveis(query)
                 .Select(s => new ServiceDescriptionModel()
                 {
                     id = s.Id,
@@ -62,7 +60,10 @@ namespace HomePetsAPI.Controllers
 
                     nomePrestador = s.Usuario.Nome,
                 }).ToList();
+
+            }
         }
+
 
         // GET api/values/5
         [HttpGet("{id}")]

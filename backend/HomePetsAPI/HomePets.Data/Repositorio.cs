@@ -15,7 +15,6 @@ namespace HomePets.Data
     public abstract class Repositorio<TData> : IRepositorio<TData>
         where TData : PersistentData, new()
     {
-        //TODO : enviar para classe PersistentDataExpressions
         private Expression<Func<TData, bool>> WhereNotDeleted => p => !p.Deleted;
 
 
@@ -23,7 +22,7 @@ namespace HomePets.Data
 
         protected readonly EFContext _context;
 
-        public Repositorio(EFContext context)
+        protected Repositorio(EFContext context)
         {
             _context = context;
         }
@@ -51,30 +50,10 @@ namespace HomePets.Data
             _context.Set<TData>().Remove(entity);
         }
 
-        //public IEnumerable<TData> RemoveRange(IEnumerable<TData> entities)
-        //{
-        //    return _context.Set<TData>().RemoveRange(entities);
-        //}
 
         #endregion
 
         #region Querys
-
-        //public DbEntityEntry Entry(object entity)
-        //{
-
-        //}
-
-        //public DbEntityEntry<TData> Entry<TData>(TData entity) where TData : class
-        //{
-
-        //}
-
-        //public void Entry()
-        //{
-        //    _context.Entry
-        //}
-
 
         public IQueryable<TData> Where(IQueryable<TData> query, params Expression<Func<TData, bool>>[] wheres)
         {
@@ -162,15 +141,6 @@ namespace HomePets.Data
         #endregion
 
 
-        //#region Dipose
-
-        //public void Dispose()
-        //{
-        //    if (_context != null)
-        //        _context.Dispose();
-        //}
-
-        //#endregion
 
     }
 }

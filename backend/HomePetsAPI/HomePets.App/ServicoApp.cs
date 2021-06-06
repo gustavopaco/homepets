@@ -45,10 +45,10 @@ namespace HomePets.App
                 Servico oServico = _uow.Servicos.ObterServico(Id);
 
                 if (oServico == null)
-                    throw new Exception("Serviço não encontrado.");
+                    throw new RoleException("Serviço não encontrado.");
 
                 if (oServico.UsuarioId != usuarioId)
-                    throw new Exception("Usuário não tem permissão.");
+                    throw new RoleException("Usuário não tem permissão.");
 
                 oServico.Deleted = true;
 

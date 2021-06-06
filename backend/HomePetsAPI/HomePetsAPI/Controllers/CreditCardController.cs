@@ -16,7 +16,7 @@ namespace HomePetsAPI.Controllers
     public class CreditCardController : ControllerBase
     {
         private readonly IUoW UoW;
-        CartaoCreditoApp CartaoCreditoApp = null;
+        private readonly CartaoCreditoApp CartaoCreditoApp = null;
 
         public CreditCardController(IUoW uow)
         {

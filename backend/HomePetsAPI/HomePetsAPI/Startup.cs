@@ -40,12 +40,7 @@ namespace HomePetsAPI
             {
                 options.DefaultAuthenticateScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
-                //}).AddJwtBearer(options =>
-                //{
-                //    options.Authority = "https://pithistmedapi.azurewebsites.net/";
-                //    options.RequireHttpsMetadata = false;
-                //    options.Audience = "orders";
-                //})
+                
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
@@ -73,7 +68,6 @@ namespace HomePetsAPI
             }
 
             app.UseAuthentication();
-            //app.UseAuthorization();
 
             app.UseHttpsRedirection();
             app.UseMvc();

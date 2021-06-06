@@ -39,7 +39,7 @@ namespace HomePets.Data
                     s.Servico,
                     s.Servico.Usuario,
                     s.UsuarioDonoPet,
-                }).ToList().Select(s => s.s);
+                }).AsEnumerable().Select(s => s.s);
 
         }
 

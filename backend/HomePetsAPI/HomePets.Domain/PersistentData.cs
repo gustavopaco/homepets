@@ -5,7 +5,7 @@ namespace HomePets.Domain
 {  
     public abstract class PersistentData
     {
-        public PersistentData()
+        protected PersistentData()
         {
 
         }
