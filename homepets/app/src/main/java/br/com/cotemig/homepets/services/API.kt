@@ -77,7 +77,8 @@ interface API {
     @POST("servicecontract")
     fun contractService(
         @Header("Authorization") token: String,
-        @Body contractService: ContractService
+        @Body contractService: ContractService,
+
     ) : Call<Void>
 
     @Headers("Content-Type: application/json")

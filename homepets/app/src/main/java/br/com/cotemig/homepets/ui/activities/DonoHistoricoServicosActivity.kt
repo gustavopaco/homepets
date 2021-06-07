@@ -43,18 +43,15 @@ class DonoHistoricoServicosActivity : AppCompatActivity() {
     }
 
 
-    fun getHistorico(activityEscolhida : Context,recyclerView: RecyclerView) {
-
+    fun getHistorico(activityEscolhida: Context, recyclerView: RecyclerView){
         var token = SharedPreferenceHelper.readString(activityEscolhida,"userpreferences","token","")
+        var stats = SharedPreferenceHelper.readInt(activityEscolhida,"userpreferences","stats",-1)
 
         RetrofitInitializer().serviceAPI().getDonoHFContractedService(token= "Bearer $token").enqueue(object : Callback<List<DonoHFContractedServiceResponse>>{
-            override fun onResponse(
-                call: Call<List<DonoHFContractedServiceResponse>>,
-                responseHF: Response<List<DonoHFContractedServiceResponse>>
-            ) {
+            override fun onResponse(call: Call<List<DonoHFContractedServiceResponse>>, responseHF: Response<List<DonoHFContractedServiceResponse>>) {
                 responseHF?.let {
                     if(it.code() == 200){
-                        recyclerView.adapter = DonoContractedServiceAdapter(activityEscolhida,it.body())
+                        recyclerView.adapter = DonoContractedServiceAdapter(activityEscolhida,it.body(),stats)
                         recyclerView.layoutManager = LinearLayoutManager(activityEscolhida,LinearLayoutManager.VERTICAL,false)
                     }else{
                         MaterialDialog(activityEscolhida).show {
@@ -73,6 +70,7 @@ class DonoHistoricoServicosActivity : AppCompatActivity() {
                     positiveButton(null,"Ok")
                 }
             }
+
         })
     }
 }

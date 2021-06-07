@@ -25,7 +25,7 @@ class HotelReservasFragment : Fragment() {
     ): View? {
         binding = FragmentHotelReservasBinding.inflate(layoutInflater,container,false)
 
-        val activity = context as HomeActivity
+        var activity = context as HomeActivity
         reservas.getHistorico(activity,binding.listaHotelReservasServicos)
 
         swipe(activity,binding.listaHotelReservasServicos)

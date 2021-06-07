@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.cotemig.homepets.databinding.ItemDonoHistoricoServicosBinding
 import br.com.cotemig.homepets.models.DonoHFContractedServiceResponse
 import br.com.cotemig.homepets.util.Constantes
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-class DonoContractedServiceAdapter(var context: Context, var list: List<DonoHFContractedServiceResponse>?) : RecyclerView.Adapter<DonoContractedServiceAdapter.ViewHFDonoContractedService>() {
+class DonoContractedServiceAdapter(var context: Context, var list: List<DonoHFContractedServiceResponse>?,var stat : Int) : RecyclerView.Adapter<DonoContractedServiceAdapter.ViewHFDonoContractedService>() {
     private lateinit var binding: ItemDonoHistoricoServicosBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHFDonoContractedService {
@@ -24,7 +26,7 @@ class DonoContractedServiceAdapter(var context: Context, var list: List<DonoHFCo
         return list!!.size
     }
 
-    class ViewHFDonoContractedService(binding: ItemDonoHistoricoServicosBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHFDonoContractedService(binding: ItemDonoHistoricoServicosBinding) : RecyclerView.ViewHolder(binding.root){
 
         private var nomeDonoPrestador = binding.txtNomePrestador
         private var nomeServico = binding.txtNomeServico
@@ -35,7 +37,10 @@ class DonoContractedServiceAdapter(var context: Context, var list: List<DonoHFCo
         private var currency = binding.inputCurrency
 
         fun bind(context: Context, item : DonoHFContractedServiceResponse){
-            nomeDonoPrestador.text = item.nomePrestador
+            when(stat){
+                1 -> nomeDonoPrestador.text = item.nomePrestador
+                else -> nomeDonoPrestador.text = item.nomeTomador
+            }
             nomeServico.text = item.nomeServico
             preco.text = currency.formatCurrency((item.preco*100).toLong()).toString()
             when(item.tipoPreco){
@@ -43,7 +48,8 @@ class DonoContractedServiceAdapter(var context: Context, var list: List<DonoHFCo
                 2 -> tipoPreco.text = Constantes.Diaria()
                 3 -> tipoPreco.text = Constantes.Fechado()
             }
-            dataExecucao.text = item.dataExecucao
+            var data2 : LocalDateTime = LocalDateTime.parse(item.dataExecucao)
+            dataExecucao.text = data2.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             nomePet.text = item.nomePet
         }
     }

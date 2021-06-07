@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.ActivityDonoAddContractBinding
@@ -12,27 +13,36 @@ import br.com.cotemig.homepets.models.ContractService
 import br.com.cotemig.homepets.models.PetsResponse
 import br.com.cotemig.homepets.models.ServiceSearchResponse
 import br.com.cotemig.homepets.services.RetrofitInitializer
+import br.com.cotemig.homepets.util.Constantes
 import br.com.cotemig.homepets.util.SharedPreferenceHelper
 import com.afollestad.date.dayOfMonth
 import com.afollestad.date.month
 import com.afollestad.date.year
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
+import com.afollestad.materialdialogs.datetime.selectedDate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Console
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DonoAddContractActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDonoAddContractBinding
     private lateinit var petClickado: PetsResponse
+    private var dataFinal = Instant.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDonoAddContractBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getPets()
+        getDados()
 
         binding.btnVoltar.setOnClickListener {
             finish()
@@ -56,10 +66,11 @@ class DonoAddContractActivity : AppCompatActivity() {
     private fun createContract() {
         var token = SharedPreferenceHelper.readString(this, "userpreferences", "token", "")
         var serviceSearchResponse = intent.getSerializableExtra("contrato") as ServiceSearchResponse
-        var dataExecucao = binding.txtDataExecucao.text.toString()
-        var contractService = ContractService(serviceSearchResponse.id,dataExecucao,petClickado.id)
+        var dataFormatada = LocalDateTime.ofInstant(dataFinal,ZoneOffset.UTC)
+        dataFormatada = LocalDateTime.parse(dataFormatada.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        var criarServico = ContractService(serviceSearchResponse.id,dataFormatada.toString(),petClickado.id)
 
-        RetrofitInitializer().serviceAPI().contractService(token = "Bearer $token",contractService).enqueue(object  : Callback<Void>{
+        RetrofitInitializer().serviceAPI().contractService(token = "Bearer $token",criarServico).enqueue(object  : Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 response?.let {
                     if(it.code() == 200){
@@ -94,7 +105,10 @@ class DonoAddContractActivity : AppCompatActivity() {
     private fun getDataExecucao(): Boolean {
         MaterialDialog(this).show {
             datePicker(minDate = Calendar.getInstance()) { dialog, datetime ->
-                var dataSelecionada = "${datetime.dayOfMonth}/${datetime.month}/${datetime.year}"
+                var dataFormada = if (datetime.dayOfMonth < 10) "0${datetime.dayOfMonth}" else datetime.dayOfMonth
+                var mesFormatado = if (datetime.month.plus(1) < 10) "0${datetime.month.plus(1)}" else datetime.month.plus(1)
+                var dataSelecionada = "$dataFormada/$mesFormatado/${datetime.year}"
+                dataFinal = datetime.toInstant()
                 binding.txtDataExecucao.text = dataSelecionada
                 if (binding.btnSelecionarData.isVisible) {
                     binding.btnSelecionarData.isVisible = false;
@@ -106,7 +120,16 @@ class DonoAddContractActivity : AppCompatActivity() {
         return true
     }
 
-    private fun getPets() {
+    private fun getDados() {
+        var serviceSearchResponse = intent.getSerializableExtra("contrato") as ServiceSearchResponse
+        binding.txtNomePrestador.text = serviceSearchResponse.nomePrestador
+        binding.txtNomeServico.text = serviceSearchResponse.nomeServico
+        binding.txtPrecoServico.text = binding.currency.formatCurrency((serviceSearchResponse.preco * 100).toLong()).toString()
+        when(serviceSearchResponse.tipoPreco){
+            1 -> binding.txtTipoPreco.text = Constantes.Hora()
+            2 -> binding.txtTipoPreco.text = Constantes.Diaria()
+            3 -> binding.txtTipoPreco.text = Constantes.Fechado()
+        }
         var token = SharedPreferenceHelper.readString(this, "userpreferences", "token", "")
         RetrofitInitializer().serviceAPI().getPets(token = "Bearer $token")
             .enqueue(object : Callback<List<PetsResponse>> {
