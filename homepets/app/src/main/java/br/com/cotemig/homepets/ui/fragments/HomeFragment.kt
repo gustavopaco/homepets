@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import br.com.cotemig.homepets.databinding.FragmentHomeBinding
@@ -30,13 +31,16 @@ class HomeFragment : Fragment() {
         binding.headBemvindo.text = binding.headBemvindo.text.toString() + " " + nome.toString()
 
         when (stats) {
-            1 -> binding.homeDono.isVisible = true
+            1 -> {
+                binding.homeDono.isVisible = true
+                historico.getHistorico(activity,binding.listaDonoHistoricoServicos)
+            }
             2 -> binding.homeHotel.isVisible = true
             3 -> binding.homeFreelancer.isVisible = true
         }
 
 
-        historico.getHistorico(activity,binding.listaDonoHistoricoServicos)
+
 
         return binding.root
     }

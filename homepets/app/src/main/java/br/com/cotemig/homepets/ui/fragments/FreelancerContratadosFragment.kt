@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.cotemig.homepets.R
 import br.com.cotemig.homepets.databinding.FragmentFreelancerContratadosBinding
 import br.com.cotemig.homepets.ui.activities.DonoHistoricoServicosActivity
 import br.com.cotemig.homepets.ui.activities.HomeActivity

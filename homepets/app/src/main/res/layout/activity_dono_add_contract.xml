@@ -118,8 +118,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/lbl_tipo_preco"
-            android:layout_alignEnd="@id/lbl_tipo_preco"
             android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/lbl_tipo_preco"
             android:fontFamily="@font/montserratmedium"
             android:textColor="@color/black"
             android:textSize="12sp"/>
@@ -218,6 +218,12 @@
             android:text="Contratar"
             android:textSize="15sp"/>
     </RelativeLayout>
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/currency"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

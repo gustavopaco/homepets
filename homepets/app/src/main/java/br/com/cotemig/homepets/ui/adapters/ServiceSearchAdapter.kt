@@ -30,18 +30,22 @@ class ServiceSearchAdapter(var context: Context, var list: List<ServiceSearchRes
         init {
             binding.root.setOnClickListener(this)
         }
-
+        private var nomePrestador = binding.txtNomePrestador
+        private var nomeServico = binding.txtNomeServico
+        private var precoServico = binding.txtPrecoServico
+        private var tipoPreco = binding.txtTipoServico
+        private var currency = binding.inputCurrency
         private var id_servico = -1
         private var tipo_preco = -1
 
         override fun onClick(v: View?) {
            val position = adapterPosition
             if(position != RecyclerView.NO_POSITION){
-                var nomeServico = binding.txtNomeServico.text.toString()
-                var preco = binding.txtPrecoServico.text.toString().replace("$","").replace(",","").toDouble()
-                var nomePrestador = binding.txtNomePrestador.text.toString()
+                var nomeS = nomeServico.text.toString()
+                var preco = precoServico.text.toString().replace("$","").replace(",","").toDouble()
+                var nomeP = nomePrestador.text.toString()
 
-                var search = ServiceSearchResponse(id_servico,nomeServico,preco,tipo_preco,nomePrestador)
+                var search = ServiceSearchResponse(id_servico,nomeS,preco,tipo_preco,nomeP)
 
                 listener.OnItemClick(search)
             }
@@ -49,20 +53,20 @@ class ServiceSearchAdapter(var context: Context, var list: List<ServiceSearchRes
 
         fun bind(context: Context, item : ServiceSearchResponse){
             id_servico = item.id
-            binding.txtNomePrestador.text = item.nomePrestador
-            binding.txtNomeServico.text = item.nomeServico
-            binding.txtPrecoServico.text = binding.inputCurrency.formatCurrency((item.preco*100).toLong()).toString()
+            nomePrestador.text = item.nomePrestador
+            nomeServico.text = item.nomeServico
+            precoServico.text = currency.formatCurrency((item.preco*100).toLong()).toString()
             when(item.tipoPreco){
                 1 -> {
-                    binding.txtTipoServico.text = Constantes.Hora()
+                    tipoPreco.text = Constantes.Hora()
                     tipo_preco = item.tipoPreco
                 }
                 2 -> {
-                    binding.txtTipoServico.text = Constantes.Diaria()
+                    tipoPreco.text = Constantes.Diaria()
                     tipo_preco = item.tipoPreco
                 }
                 3 -> {
-                    binding.txtTipoServico.text = Constantes.Fechado()
+                    tipoPreco.text = Constantes.Fechado()
                     tipo_preco = item.tipoPreco
                 }
             }
