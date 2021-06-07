@@ -29,9 +29,7 @@ namespace HomePets.Data
 
         public IEnumerable<ServicoContratado> ObterServicosRelacionados(int UsuarioId)
         {
-            return AsQueryable().Where(p => !p.Deleted &&
-                                           ((p.UsuarioDonoPet.Tipo == TipoUsuario.DonoPet && p.UsuarioDonoPetId == UsuarioId) ||
-                                            (p.UsuarioDonoPet.Tipo != TipoUsuario.DonoPet && p.Servico.UsuarioId == UsuarioId)))
+            return AsQueryable().Where(p => !p.Deleted && (p.UsuarioDonoPetId == UsuarioId || p.Servico.UsuarioId == UsuarioId))
                 .Select(s => new
                 {
                     s,
