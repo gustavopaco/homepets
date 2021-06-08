@@ -11,7 +11,7 @@
         android:id="@+id/head_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/sourcesansprobold"
         android:text="Reservas"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/head_title"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista_hotel_reservas_servicos"

@@ -49,7 +49,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Cartão:"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
         />
 
         <EditText
@@ -61,6 +61,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/lbl_numeroCartao"
             android:fontFamily="@font/montserratmedium"
+            android:textSize="12sp"
             android:hint="0000 1111 2222 3333"
             android:inputType="number"
             android:maxLength="16"
@@ -76,7 +77,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Titular:"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
         />
 
         <EditText
@@ -88,6 +89,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/lbl_nomeTitular"
             android:fontFamily="@font/montserratmedium"
+            android:textSize="12sp"
             android:hint="Fulano da Silva"
             android:inputType="text"
             android:paddingLeft="10dp"/>
@@ -102,7 +104,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Validade:"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
         />
 
         <EditText
@@ -114,6 +116,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/lbl_validade"
             android:fontFamily="@font/montserratmedium"
+            android:textSize="12sp"
             android:hint="11/2030"
             android:inputType="number"
             android:maxLength="6"
@@ -129,7 +132,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="CVV:"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
         />
 
         <EditText
@@ -142,6 +145,7 @@
             android:layout_toEndOf="@id/lbl_codValidacao"
             android:fontFamily="@font/montserratmedium"
             android:hint="250"
+            android:textSize="12sp"
             android:inputType="number"
             android:maxLength="3"
             android:paddingLeft="10dp"/>

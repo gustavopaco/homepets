@@ -39,7 +39,7 @@
             android:text="@string/cadastro_de_pet"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:fontFamily="@font/montserratmedium"
+            android:fontFamily="@font/sourcesansprobold"
             android:layout_centerHorizontal="true"
             android:layout_marginVertical="20dp"
             />
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/montserratmedium"
+            android:fontFamily="@font/sourcesansprobold"
             android:text="Nome:"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -65,7 +65,7 @@
             android:layout_alignBaseline="@id/txt_nome"
             android:fontFamily="@font/montserratmedium"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/txt_raca"
@@ -74,7 +74,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginVertical="20dp"
             android:layout_below="@id/txt_nome"
-            android:fontFamily="@font/montserratmedium"
+            android:fontFamily="@font/sourcesansprobold"
             android:text="Raça:"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -90,7 +90,7 @@
             android:layout_alignBaseline="@id/txt_raca"
             android:fontFamily="@font/montserratmedium"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/txt_sexo"
@@ -101,7 +101,7 @@
             android:text="Sexo: "
             android:textSize="15sp"
             android:paddingTop="5dp"
-            android:fontFamily="@font/montserratmedium"
+            android:fontFamily="@font/sourcesansprobold"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp"
             />
@@ -122,7 +122,7 @@
                 android:text="Feminino"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/montserratmedium"/>
+                android:fontFamily="@font/sourcesansprobold"/>
 
             <RadioButton
                 android:id="@+id/radiobtn_masculino"
@@ -131,7 +131,7 @@
                 android:text="Masculino"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/montserratmedium"/>
+                android:fontFamily="@font/sourcesansprobold"/>
 
 
         </RadioGroup>
@@ -146,7 +146,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:fontFamily="@font/montserratmedium"
+            android:fontFamily="@font/sourcesansprobold"
             />
 
         <RadioGroup
@@ -166,7 +166,7 @@
                 android:text="Cachorro"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/montserratmedium"/>
+                android:fontFamily="@font/sourcesansprobold"/>
 
             <RadioButton
                 android:id="@+id/radiobtn_gato"
@@ -175,7 +175,7 @@
                 android:text="Gato"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/montserratmedium"/>
+                android:fontFamily="@font/sourcesansprobold"/>
 
         </RadioGroup>
 

@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/montserratmedium"
                 android:text="Meus Pets"
                 android:textColor="@color/black"
                 android:textSize="13sp"/>
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/montserratmedium"
                 android:text="Serviços"
                 android:textColor="@color/black"
                 android:textSize="13sp"/>
