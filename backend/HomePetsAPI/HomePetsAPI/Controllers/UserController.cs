@@ -15,14 +15,12 @@ namespace HomePetsAPI.Controllers
     public class UserController : ControllerBase
     {
 
-        private readonly IUoW UoW;
-        UsuarioApp UsuarioApp = null;
+        private readonly UsuarioApp UsuarioApp = null;
 
 
         public UserController(IUoW uow)
         {
-            UoW = uow;
-            UsuarioApp = new UsuarioApp(UoW);
+            UsuarioApp = new UsuarioApp(uow);
         }
 
 

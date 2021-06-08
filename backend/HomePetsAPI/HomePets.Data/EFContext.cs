@@ -7,8 +7,6 @@ namespace HomePets.Data
 {
     public class EFContext : DbContext
     {
-        private const string connectionStringName = "Name=MS_TableConnectionString";
-
         public EFContext(DbContextOptions options) : base(options)
         {
 
@@ -16,6 +14,7 @@ namespace HomePets.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Servico> Servicos { get; set; }
-
+        public DbSet<ServicoContratado> ServicosContratados { get; set; }
+        public DbSet<CartaoCredito> CartoesCredito { get; set; }
     }
 }

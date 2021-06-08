@@ -7,5 +7,6 @@ namespace HomePets.Domain
     {
         Servico ObterServico(int Id);
         IEnumerable<Servico> ObterServicos(int UsuarioId);
+        IEnumerable<Servico> ObterServicosDisponiveis(string query);
     }
 }

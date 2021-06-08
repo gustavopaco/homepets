@@ -29,7 +29,20 @@ namespace HomePets.Data
                 .Select(s => new
                 {
                     s,
-                }).ToList().Select(s => s.s);
+                    s.Usuario,
+                }).AsEnumerable().Select(s => s.s);
+
+        }
+
+
+        public IEnumerable<Servico> ObterServicosDisponiveis(string query)
+        {
+            return AsQueryable().Where(p => !p.Deleted && p.Nome.Contains(query))
+                .Select(s => new
+                {
+                    s,
+                    s.Usuario,
+                }).AsEnumerable().Select(s => s.s);
 
         }
     }

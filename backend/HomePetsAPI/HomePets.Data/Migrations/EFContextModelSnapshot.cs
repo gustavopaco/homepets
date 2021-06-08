@@ -19,6 +19,36 @@ namespace HomePets.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HomePets.Domain.CartaoCredito", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("CartaoCreditoId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CodigoValidacao");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("NomeTitular");
+
+                    b.Property<string>("Numero");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("UsuarioId");
+
+                    b.Property<string>("ValidadeMesAno");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("CartoesCredito");
+                });
+
             modelBuilder.Entity("HomePets.Domain.Pet", b =>
                 {
                     b.Property<int>("Id")
@@ -77,6 +107,40 @@ namespace HomePets.Data.Migrations
                     b.ToTable("Servicos");
                 });
 
+            modelBuilder.Entity("HomePets.Domain.ServicoContratado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ServicoContratadoId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DataExecucao");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("PetId");
+
+                    b.Property<int>("ServicoId");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("UsuarioDonoPetId");
+
+                    b.Property<double>("ValorTotal");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetId");
+
+                    b.HasIndex("ServicoId");
+
+                    b.HasIndex("UsuarioDonoPetId");
+
+                    b.ToTable("ServicosContratados");
+                });
+
             modelBuilder.Entity("HomePets.Domain.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -104,6 +168,14 @@ namespace HomePets.Data.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("HomePets.Domain.CartaoCredito", b =>
+                {
+                    b.HasOne("HomePets.Domain.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("HomePets.Domain.Pet", b =>
                 {
                     b.HasOne("HomePets.Domain.Usuario", "Usuario")
@@ -117,6 +189,24 @@ namespace HomePets.Data.Migrations
                     b.HasOne("HomePets.Domain.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HomePets.Domain.ServicoContratado", b =>
+                {
+                    b.HasOne("HomePets.Domain.Pet", "Pet")
+                        .WithMany()
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HomePets.Domain.Servico", "Servico")
+                        .WithMany()
+                        .HasForeignKey("ServicoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HomePets.Domain.Usuario", "UsuarioDonoPet")
+                        .WithMany()
+                        .HasForeignKey("UsuarioDonoPetId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

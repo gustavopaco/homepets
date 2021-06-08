@@ -32,6 +32,10 @@ class DonoAddPetActivity : AppCompatActivity() {
         radioGroupSexo = binding.radioSexo
         radioGroupTipo = binding.radioTipo
 
+        binding.btnVoltar.setOnClickListener {
+            finish()
+        }
+
         binding.btnSalvarPet.setOnClickListener {
            if(validaCampo()){
                /* SALVAR PET DE ACORDO COM DONO */

@@ -16,7 +16,7 @@ namespace HomePetsAPI.Controllers
     {
 
         private readonly IUoW UoW;
-        UsuarioApp UsuarioApp = null;
+        private readonly UsuarioApp UsuarioApp = null;
 
 
         public LoginController(IUoW uow)
@@ -75,7 +75,7 @@ namespace HomePetsAPI.Controllers
                 };
 
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return Unauthorized();
             }

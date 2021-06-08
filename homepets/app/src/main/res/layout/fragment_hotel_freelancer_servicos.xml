@@ -13,7 +13,7 @@
         android:text="Meus Serviços:"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/sourcesansprobold"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"/>
 
@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/head_meusServicos"
-        android:layout_marginLeft="20dp">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

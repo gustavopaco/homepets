@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/submenu1"
+        android:title="Meus Dados"/>
+
+    <item
+        android:id="@+id/submenu2"
+        android:title="Metodos de Pagamento"/>
+
+    <item
+        android:id="@+id/submenu3"
+        android:title="Historico de Serviços"/>
+
+    <item
+        android:id="@+id/submenu4"
+        android:title="Sair"/>
+</menu>

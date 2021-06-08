@@ -65,4 +65,45 @@ interface API {
         @Path("id") id: Int
     ) : Call<Void>
 
+/*==========================FUNCOES NOVAS=================================================================*/
+    @Headers("Content-Type: application/json")
+    @GET("service")
+    fun getServiceSearch(
+        @Header("Authorization") token: String,
+        @Query("query") pesquisa: String
+    ) : Call<List<ServiceSearchResponse>>
+
+    @Headers("Content-Type: application/json")
+    @POST("servicecontract")
+    fun contractService(
+        @Header("Authorization") token: String,
+        @Body contractService: ContractService,
+
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("creditcard")
+    fun createCreditCard(
+        @Header("Authorization") token: String,
+        @Body creditCardModel: CreditCardModel
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("creditcard")
+    fun getCreditCards(
+        @Header("Authorization") token: String
+    ) : Call<List<CreditCardResponse>>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("creditcard/{id}")
+    fun deleteCreditCard(
+        @Header("Authorization") token: String,
+        @Path("id") id_cartao: Int
+    ) : Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("servicecontract")
+    fun getDonoHFContractedService(
+        @Header("Authorization") token: String
+    ) : Call<List<DonoHFContractedServiceResponse>>
 }

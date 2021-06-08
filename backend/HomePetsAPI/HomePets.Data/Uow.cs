@@ -11,7 +11,9 @@ namespace HomePets.Data
         private readonly EFContext _context;
         public IPetRep Pets { get; private set; }
         public IServicoRep Servicos { get; private set; }
+        public IServicoContratadoRep ServicosContratados { get; private set; }
         public IUsuarioRep Usuarios { get; private set; }
+        public ICartaoCreditoRep CartoesCredito { get; private set; }
 
 
         public UoW(EFContext context)
@@ -20,7 +22,9 @@ namespace HomePets.Data
 
             Pets = new PetRep(context);
             Servicos = new ServicoRep(context);
+            ServicosContratados = new ServicoContratadoRep(context);
             Usuarios = new UsuarioRep(context);
+            CartoesCredito = new CartaoCreditoRep(context);
         }
 
 

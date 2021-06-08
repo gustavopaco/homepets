@@ -1,11 +1,11 @@
-<?xml version="1.0.1" encoding="utf-8"?>
-<manifest android:versionName="1.0.0" xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.cotemig.homepets">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="br.com.cotemig.homepets"
+          android:versionName="1.1.0">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,18 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homepets"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activities.DonoHistoricoServicosActivity"/>
+        <activity android:name=".ui.activities.DetalhesCreditCardActivity"/>
+        <activity android:name=".ui.activities.DonoAddCreditCardActivity"/>
+        <activity android:name=".ui.activities.DonoCreditCardActivity"/>
+        <activity android:name=".ui.activities.DonoAddContractActivity"/>
         <activity android:name=".ui.activities.DetalhesPetsActivity"/>
-        <activity android:name=".ui.activities.DetalhesServicosActivity" />
-        <activity android:name=".ui.activities.HotelFreelancerAddServicoActivity" />
-        <activity android:name=".ui.activities.DonoAddPetActivity" />
-        <activity android:name=".ui.activities.RegisterActivity" />
-        <activity android:name=".ui.activities.HomeActivity" />
-        <activity android:name=".ui.activities.LoginUserActivity" />
+        <activity android:name=".ui.activities.DetalhesServicosActivity"/>
+        <activity android:name=".ui.activities.HotelFreelancerAddServicoActivity"/>
+        <activity android:name=".ui.activities.DonoAddPetActivity"/>
+        <activity android:name=".ui.activities.RegisterActivity"/>
+        <activity android:name=".ui.activities.HomeActivity"/>
+        <activity android:name=".ui.activities.LoginUserActivity"/>
         <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundpets"
+    tools:context=".ui.activities.DonoAddContractActivity">
+
+    <ImageButton
+        android:id="@+id/btn_voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/md_transparent"
+        android:src="@drawable/arrow_back"
+        android:tint="@color/black"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/shadow_item">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="@string/contrato"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/lbl_nome_prestador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="Nome:"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txt_nome_prestador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/lbl_nome_prestador"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/lbl_nome_prestador"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/lbl_nome_servico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_nome_prestador"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="Serviço:"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txt_nome_servico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/lbl_nome_servico"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/lbl_nome_servico"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/lbl_preco_servico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_nome_servico"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="Preço:"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txt_preco_servico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/lbl_preco_servico"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/lbl_preco_servico"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/lbl_tipo_preco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_preco_servico"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="Tipo:"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txt_tipo_preco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/lbl_tipo_preco"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/lbl_tipo_preco"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/lbl_selecione_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_tipo_preco"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="Selecione seu Pet:"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_tipo_preco"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/lbl_selecione_pet"
+            android:background="@drawable/shadow_item">
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lbl_selecione_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_selecione_pet"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesansprobold"
+            android:paddingTop="10dp"
+            android:text="Data do Servico:"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_selecionar_data"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_selecione_pet"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/lbl_selecione_data"
+            android:text="Escolher"
+            android:textColor="@color/red"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txt_dataExecucao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/lbl_selecione_data"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/lbl_selecione_data"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/btn_alterar_data"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_selecione_pet"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="Alterar"
+            android:textSize="15sp"
+            android:visibility="invisible"/>
+
+
+        <Button
+            android:id="@+id/btn_contratar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_selecione_data"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_btn"
+            android:fontFamily="@font/robotmedium"
+            android:letterSpacing="0.1"
+            android:text="Contratar"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/currency"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>

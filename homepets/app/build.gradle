@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.cotemig.homepets"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -76,11 +76,17 @@ dependencies {
 
     // biblioteca de mensagem na tela
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:datetime:3.2.1'
     implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
 
     // biblioteca para currency no edittext
 //    implementation 'me.abhinay.input:currency-edittext:1.1'
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    // biblioteca para cartao de credito
+    implementation 'com.github.maxpilotto:credit-card-view:8.0.0'
+
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
