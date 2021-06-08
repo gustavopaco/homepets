@@ -18,7 +18,6 @@ class MeusPetsAdapter (var context : Context, var list: List<PetsResponse>?, val
     }
 
     override fun onBindViewHolder(holder: ViewMeusPets, position: Int) {
-//        val currentItem = list!![position]
         holder.bind(context,list!![position])
     }
 

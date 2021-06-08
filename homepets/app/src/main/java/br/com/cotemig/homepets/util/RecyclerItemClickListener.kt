@@ -26,8 +26,8 @@ class RecyclerItemClickListener(context: Context?,recyclerView: RecyclerView,pri
         return false
     }
 
-    override fun onTouchEvent(view: RecyclerView, motionEvent: MotionEvent) {}
-    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+    override fun onTouchEvent(view: RecyclerView, motionEvent: MotionEvent) { /* Nao estou usando esse metodo*/ }
+    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) { /*Nao estou usando esse metodo*/}
 
     init {
         mGestureDetector = GestureDetector(context, object : SimpleOnGestureListener() {
