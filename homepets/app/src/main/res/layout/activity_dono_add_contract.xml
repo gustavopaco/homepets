@@ -43,7 +43,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Nome:"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/txt_nome_prestador"
@@ -66,7 +66,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Serviço:"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/txt_nome_servico"
@@ -88,7 +88,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Preço:"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/txt_preco_servico"
@@ -111,7 +111,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Tipo:"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/txt_tipo_preco"
@@ -134,7 +134,7 @@
             android:fontFamily="@font/sourcesansprobold"
             android:text="Selecione seu Pet:"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="150dp"
-                android:layout_height="32dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="10dp"/>
         </RelativeLayout>
 
@@ -162,7 +162,7 @@
             android:paddingTop="10dp"
             android:text="Data do Servico:"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btn_selecionar_data"

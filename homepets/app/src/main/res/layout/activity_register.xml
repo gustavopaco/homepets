@@ -9,9 +9,9 @@
 
     <ImageView android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:src="@drawable/homepetsbgless"
                android:layout_centerHorizontal="true"
-               android:layout_marginTop="100dp"/>
+               android:layout_marginTop="100dp"
+               android:src="@drawable/homepetsbgless"/>
 
     <LinearLayout
         android:id="@+id/head"
@@ -39,8 +39,8 @@
             android:layout_centerInParent="true"
             android:layout_marginVertical="5dp"
             android:fontFamily="@font/montserratmedium"
-            android:inputType="textWebEmailAddress"
             android:hint="@string/informe_seu_e_mail"
+            android:inputType="textWebEmailAddress"
             android:paddingLeft="20dp"
             android:textColorHint="@color/black"
             android:textSize="18sp"/>
@@ -74,10 +74,10 @@
             android:id="@+id/lbl_registerQuem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="90dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/sourcesansprobold"
             android:text="@string/quem_sou_eu"
             android:textColor="@color/black"
             android:textSize="20sp"/>
@@ -97,8 +97,9 @@
             android:id="@+id/btn_registerDono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/dono_de_pet"/>
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="@string/dono_de_pet"
+            android:textSize="15sp"/>
 
         <View
             android:layout_width="1px"
@@ -110,8 +111,9 @@
             android:id="@+id/btn_registerHotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/dono_de_hotel"/>
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="@string/dono_de_hotel"
+            android:textSize="15sp"/>
 
         <View
             android:layout_width="1px"
@@ -123,8 +125,9 @@
             android:id="@+id/btn_registerFreelancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/freelancer"/>
+            android:fontFamily="@font/sourcesansprobold"
+            android:text="@string/freelancer"
+            android:textSize="15sp"/>
 
     </RadioGroup>
 

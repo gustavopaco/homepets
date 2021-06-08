@@ -14,7 +14,7 @@
         android:text="Busca Serviços"
         android:layout_margin="20dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserratsemibold"/>
+        android:fontFamily="@font/sourcesansprobold"/>
 
     <RelativeLayout
         android:id="@+id/layout_busca_servicos"
@@ -54,7 +54,7 @@
         android:id="@+id/swipe"
         android:layout_below="@id/layout_busca_servicos"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
