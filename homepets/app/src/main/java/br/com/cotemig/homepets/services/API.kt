@@ -98,7 +98,7 @@ interface API {
     @DELETE("creditcard/{id}")
     fun deleteCreditCard(
         @Header("Authorization") token: String,
-        @Path("id") id_cartao: Int
+        @Path("id") idCartao: Int
     ) : Call<Void>
 
     @Headers("Content-Type: application/json")

@@ -69,15 +69,20 @@ class RegisterActivity : AppCompatActivity() {
                 ) {
                     response.let {
                         if (it!!.code() == 200) {
-                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","nome",nome)
-                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","email",email)
-                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","senha",senha)
-                            SharedPreferenceHelper.saveString(this@RegisterActivity,"userpreferences","token",it.body()!!.token)
-                            SharedPreferenceHelper.saveInt(this@RegisterActivity,"userpreferences","stats",tipo)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity, "userpreferences", "nome", nome)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity, "userpreferences", "email", email)
+                            SharedPreferenceHelper.saveString(this@RegisterActivity, "userpreferences", "senha", senha)
+                            SharedPreferenceHelper.saveString(
+                                this@RegisterActivity,
+                                "userpreferences",
+                                "token",
+                                it.body()!!.token
+                            )
+                            SharedPreferenceHelper.saveInt(this@RegisterActivity, "userpreferences", "stats", tipo)
                             MaterialDialog(this@RegisterActivity).show {
                                 title(R.string.sucesso)
                                 message(R.string.usuariocadastrado)
-                                positiveButton(R.string.ok){
+                                positiveButton(R.string.ok) {
                                     goHomeActvitiy()
                                     finish() // MATANDO ACTIVITY DE CADASTRO APOS REGISTRAR E VOLTANDO PARA TELA DE LOGIN
                                 }
@@ -86,8 +91,8 @@ class RegisterActivity : AppCompatActivity() {
                         } else {
                             MaterialDialog(this@RegisterActivity).show {
                                 title(R.string.erro)
-                                message(null,it.errorBody()!!.string())
-                                positiveButton(null,"Ok")
+                                message(null, it.errorBody()!!.string())
+                                positiveButton(null, "Ok")
                             }
                         }
                     }
@@ -96,8 +101,8 @@ class RegisterActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<TokenModelResponse>?, t: Throwable?) {
                     MaterialDialog(this@RegisterActivity).show {
                         title(R.string.erro)
-                        message(null,"API FORA DO AR")
-                        positiveButton(null,"Ok")
+                        message(null, "API FORA DO AR")
+                        positiveButton(null, "Ok")
                     }
                 }
             })
@@ -116,8 +121,8 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun goHomeActvitiy(){
-        var intent = Intent(this,HomeActivity::class.java)
+    private fun goHomeActvitiy() {
+        var intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
 
@@ -151,16 +156,15 @@ class RegisterActivity : AppCompatActivity() {
             validacao = false
         }
 
-        if(binding.txtRegisterPassword.text.toString().length >= 5 && binding.txtRegisterRepeatPassword.text.toString().length >= 5){
-            if (!binding.txtRegisterPassword.text.toString().equals(binding.txtRegisterRepeatPassword.text.toString(), false)
-            ) {
-                MaterialDialog(this).show {
-                    title(R.string.erro)
-                    message(R.string.senhasdiferentes)
-                    positiveButton(R.string.ok)
-                }
-                validacao = false
+        if ((binding.txtRegisterPassword.text.toString().length >= 5 && binding.txtRegisterRepeatPassword.text.toString().length >= 5) && (!binding.txtRegisterPassword.text.toString()
+                .equals(binding.txtRegisterRepeatPassword.text.toString(), false))
+        ) {
+            MaterialDialog(this).show {
+                title(R.string.erro)
+                message(R.string.senhasdiferentes)
+                positiveButton(R.string.ok)
             }
+            validacao = false
         }
 
 
@@ -168,7 +172,7 @@ class RegisterActivity : AppCompatActivity() {
         if (tipoUsuario() == null) {
             binding.btnRegisterDono.setError("Selecione um Tipo de Usuario")
             validacao = false
-        }else{
+        } else {
             binding.btnRegisterDono.setError(null)
         }
 
