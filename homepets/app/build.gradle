@@ -17,13 +17,13 @@ sonarqube {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "br.com.cotemig.homepets"
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
@@ -42,19 +42,19 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.0-alpha02'
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.7.0-alpha03'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // retrofit
     // biblioteca do retrofit versão 2.1 - https://square.github.io/retrofit/
@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     // bibliotecas para interceptar as requisições
-    implementation 'com.squareup.okhttp3:okhttp:3.5.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 
     // biblioteca para download de imagens e cache de imagens
@@ -84,13 +84,13 @@ dependencies {
     implementation 'com.github.maxpilotto:credit-card-view:8.0.0'
 
 
-    implementation 'com.google.android.material:material:1.4.0-rc01'
+    implementation 'com.google.android.material:material:1.11.0-alpha02'
     implementation 'androidx.cardview:cardview:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
 
 
-    androidTestImplementation 'androidx.test:core:1.3.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 
 }
